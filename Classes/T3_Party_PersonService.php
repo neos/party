@@ -28,18 +28,18 @@ class T3_Party_PersonService  {
 	/**
 	 * The component manager
 	 *
-	 * @var T3_FrameworkComponentManagerInterface The component manager
+	 * @var T3_FLOW3ComponentManagerInterface The component manager
 	 */
 	protected $componentManager;
 	
 	/**
 	 * Constructor
 	 *
-	 * @param  T3_Framework_Component_ManagerInterface $componentManager: A reference to the component manager
+	 * @param  T3_FLOW3_Component_ManagerInterface $componentManager: A reference to the component manager
 	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function __construct(T3_Framework_Component_ManagerInterface $componentManager, T3_DataAccess_DomainModelDataMapper $dataMapper) {
+	public function __construct(T3_FLOW3_Component_ManagerInterface $componentManager, T3_DataAccess_DomainModelDataMapper $dataMapper) {
 		$this->componentManager = $componentManager;
 		$this->dataMapper = $dataMapper;
 	}
