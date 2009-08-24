@@ -68,7 +68,7 @@ class Party {
 	 * @return void
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
-	public function removeAccount(F3\Party\Domain\Model\Account $account) {
+	public function removeAccount(\F3\Party\Domain\Model\Account $account) {
 		$this->accounts->detach($account);
 	}
 
