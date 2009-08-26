@@ -51,7 +51,7 @@ class AccountRepository extends \F3\FLOW3\Persistence\Repository {
 			)
 		)->execute();
 
-		return $result[0];
+		return isset($result[0]) ? $result[0] : FALSE;
 	}
 }
 
