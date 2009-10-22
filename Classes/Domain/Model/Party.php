@@ -25,8 +25,6 @@ namespace F3\Party\Domain\Model;
 /**
  * A party
  *
- * @package Party
- * @subpackage Domain
  * @version $Id:$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @scope prototype
