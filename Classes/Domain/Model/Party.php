@@ -79,5 +79,6 @@ class Party {
 	public function getAccounts() {
 		return $this->accounts;
 	}
+
 }
 ?>

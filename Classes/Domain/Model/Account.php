@@ -35,12 +35,14 @@ class Account {
 	/**
 	 * @var string
 	 * @identity
+	 * @validate NotEmpty, StringLength(minimum = 1, maximum = 255)
 	 */
 	protected $accountIdentifier;
 
 	/**
 	 * @var string
 	 * @identity
+	 * @validate NotEmpty
 	 */
 	protected $authenticationProviderName;
 
@@ -50,7 +52,7 @@ class Account {
 	protected $credentialsSource;
 
 	/**
-	 * @var F3\Party\Model\Party
+	 * @var F3\Party\Domain\Model\Party
 	 */
 	protected $party;
 
