@@ -68,61 +68,116 @@ class PersonName {
 	protected $alias;
 
 	/**
-	 * Constructor
+	 * Setter for title
 	 *
-	 * @param string $firstName The most important name element by which this particular individual is identified in the group. E.g. John, Sam, Brian for Anglo-Saxon cultures.
-	 * @param string $lastName Name element that identifies the group the individual belongs to and is identified by, such as Last Name, Surname, Family Name, etc.
-	 * @param string $middleName Name elements related to additional identification of the individual, such as names are parents or places.
-	 * @param string $otherName Any other additional names that are not directly used to identify or call the individual, such as names of ancestors, saints, etc.
 	 * @param string $title Some sort of status, such as Mr, Miss, Ms (marriage status), or education such as Professor, PhD, Dr, etc.
-	 * @param string $alias A simple nick name that is commonly used as part of the name. E.g. a fancy kick-boxer can be commonly known as Bill "Storm" Bababoons, where "Storm" is obviously an alias.
+	 * @return void
 	 */
-
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 
+	/**
+	 * Setter for firstName
+	 *
+	 * @param string $firstName The most important name element by which this particular individual is identified in the group. E.g. John, Sam, Brian for Anglo-Saxon cultures.
+	 * @return void
+	 */
 	public function setFirstName($firstName) {
 		$this->firstName = $firstName;
 	}
 
+	/**
+	 * Setter for middleName
+	 *
+	 * @param string $middleName Name elements related to additional identification of the individual, such as names are parents or places.
+	 * @return void
+	 */
 	public function setMiddleName($middleName) {
 		$this->middleName = $middleName;
 	}
 
+	/**
+	 * Setter for lastName
+	 *
+	 * @param string $lastName Name element that identifies the group the individual belongs to and is identified by, such as Last Name, Surname, Family Name, etc.
+	 * @return void
+	 */
 	public function setLastName($lastName) {
 		$this->lastName = $lastName;
 	}
 
+	/**
+	 * Setter for otherName
+	 *
+	 * @param string $otherName Any other additional names that are not directly used to identify or call the individual, such as names of ancestors, saints, etc.
+	 * @return void
+	 */
 	public function setOtherName($otherName) {
 		$this->otherName = $otherName;
 	}
 
+	/**
+	 * Setter for alias
+	 *
+	 * @param string $alias A simple nick name that is commonly used as part of the name. E.g. a fancy kick-boxer can be commonly known as Bill "Storm" Bababoons, where "Storm" is obviously an alias.
+	 * @return void
+	 */
 	public function setAlias($alias) {
 		$this->alias = $alias;
 	}
 
 
+	/**
+	 * Getter for firstName
+	 *
+	 * @return string
+	 */
 	public function getFirstName() {
 		return $this->firstName;
 	}
 
+	/**
+	 * Getter for middleName
+	 *
+	 * @return string
+	 */
 	public function getMiddleName() {
 		return $this->middleName;
 	}
 
+	/**
+	 * Getter for lastName
+	 *
+	 * @return string
+	 */
 	public function getLastName() {
 		return $this->lastName;
 	}
 
+	/**
+	 * Getter for title
+	 *
+	 * @return string
+	 */
 	public function getTitle() {
 		return $this->title;
 	}
 
+	/**
+	 * Getter for otherName
+	 *
+	 * @return string
+	 */
 	public function getOtherName() {
 		return $this->otherName;
 	}
 
+	/**
+	 * Getter for alias
+	 *
+	 * @return string
+	 */
 	public function getAlias() {
 		return $this->alias;
 	}
