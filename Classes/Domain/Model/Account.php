@@ -57,7 +57,7 @@ class Account {
 	protected $party;
 
 	/**
-	 * Array of F3\FLOW3\Security\ACL\Role objects
+	 * Array of F3\FLOW3\Security\Policy\Role objects
 	 * @var array
 	 */
 	protected $roles = array();
@@ -159,7 +159,7 @@ class Account {
 	/**
 	 * Sets the roles for this account
 	 *
-	 * @param array $roles An array of F3\FLOW3\Security\ACL\Role objects
+	 * @param array $roles An array of F3\FLOW3\Security\Policy\Role objects
 	 * @return void
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
