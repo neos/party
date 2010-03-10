@@ -51,10 +51,10 @@ class Party {
 	 * Assigns the given account to this party. Note: The internal reference of the account is
 	 * set to this party.
 	 *
-	 * @return F3\Party\Domain\Model\Account $account The account
+	 * @return F3\FLOW3\Security\Account $account The account
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
-	public function addAccount(\F3\Party\Domain\Model\Account $account) {
+	public function addAccount(\F3\FLOW3\Security\Account $account) {
 		$this->accounts->attach($account);
 		$account->setParty($this);
 	}
@@ -62,18 +62,18 @@ class Party {
 	/**
 	 * Remove an account from this party
 	 *
-	 * @param F3\Party\Domain\Model\Account $account The account to remove
+	 * @param F3\FLOW3\Security\Account $account The account to remove
 	 * @return void
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
-	public function removeAccount(\F3\Party\Domain\Model\Account $account) {
+	public function removeAccount(\F3\FLOW3\Security\Account $account) {
 		$this->accounts->detach($account);
 	}
 
 	/**
 	 * Returns the accounts of this party
 	 *
-	 * @return SplObjectStorage All assigned F3\Party\Domain\Model\Account objects
+	 * @return SplObjectStorage All assigned F3\FLOW3\Security\Account objects
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function getAccounts() {

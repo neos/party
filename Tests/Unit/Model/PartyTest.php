@@ -37,7 +37,7 @@ class PartyTest extends \F3\Testing\BaseTestCase {
 	public function addAccountSetsThePartyPropertyInTheAccountToThisParty() {
 		$party = new \F3\Party\Domain\Model\Party();
 
-		$mockAccount = $this->getMock('F3\Party\Domain\Model\Account');
+		$mockAccount = $this->getMock('F3\FLOW3\Security\Account');
 		$mockAccount->expects($this->once())->method('setParty')->with($party);
 
 		$party->addAccount($mockAccount);

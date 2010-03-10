@@ -94,48 +94,63 @@ class ElectronicAddress {
 	}
 
 	/**
+	 * Returns the type of this electronic address
 	 *
-	 * @return <type>
+	 * @return string
+	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getType() {
 		return $this->type;
 	}
 
 	/**
+	 * Sets the type of this electronic address
 	 *
-	 * @param <type> $type
+	 * @param string $type If possible, use one of the TYPE_ constants
+	 * @return void
+ 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function setType($type) {
 		$this->type = $type;
 	}
 
 	/**
+	 * Returns the usage of this electronic address
 	 *
-	 * @return <type>
+	 * @return string
+	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getUsage() {
 		return $this->usage;
 	}
 
 	/**
+	 * Sets the usage of this electronic address
 	 *
-	 * @param <type> $usage 
+	 * @param string $usage If possible, use on of the USAGE_ constants
+	 * @return void
+	 * @author Robert Lemke
 	 */
 	public function setUsage($usage) {
 		$this->usage = $usage;
 	}
 
 	/**
+	 * Sets the approved status
 	 *
-	 * @param <type> $approved
+	 * @param boolean $approved If this address has been approved or not
+	 * @return void
+	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function setApproved($approved) {
 		$this->approved = $approved ? TRUE : FALSE;
 	}
 
 	/**
+	 * Tells if this address has been approved
 	 *
-	 * @return <type>
+	 * @return boolean TRUE if the address has been approved, otherwise FALSE
+	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function isApproved() {
 		return $this->approved;
