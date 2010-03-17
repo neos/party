@@ -63,6 +63,11 @@ class PersonName {
 	protected $alias;
 
 	/**
+	 * @var string
+	 */
+	protected $fullName;
+
+	/**
 	 * Constructs this person name
 	 *
 	 * @param string $title the title, e.g. "Mr." or "Mr. Phd"
