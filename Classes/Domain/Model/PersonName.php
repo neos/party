@@ -63,23 +63,18 @@ class PersonName {
 	protected $alias;
 
 	/**
+	 * Constructs this person name
+	 *
+	 * @param string $title the title, e.g. "Mr." or "Mr. Phd"
+	 * @param string $firstName the first name
+	 * @param string $middleName the middle name
+	 * @param string $lastName the last name
+	 * @param string $otherName the "other" name, e.g. "IV." or "jr."
+	 * @param string $alias an alias or nickname
+	 * @author Robert Lemke <robert@typo3.org>
 	 * @var string
 	 */
-	protected $fullName;
-
-	/**
-	 * Instantiates a PersonName.
-	 *
-	 * @param string $title
-	 * @param string $firstName
-	 * @param string $middleName
-	 * @param string $lastName
-	 * @param string $otherName
-	 * @param string $alias
-	 * @author Karsten Dambekalns <karsten@typo3.org>
-	 * @author Robert Lemke <robert@typo3.org>
-	 */
-	public function __construct($title, $firstName, $middleName, $lastName, $otherName, $alias) {
+	public function __construct($title = '', $firstName = '', $middleName = '', $lastName = '', $otherName = '', $alias = '') {
 		$this->title = $title;
 		$this->firstName = $firstName;
 		$this->middleName = $middleName;
@@ -162,7 +157,7 @@ class PersonName {
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function  __toString() {
-		return $this->getFullName();
+		return $this->fullName;
 	}
 }
 ?>

@@ -33,18 +33,18 @@ namespace F3\Party\Domain\Model;
 class Person extends \F3\Party\Domain\Model\Party {
 
 	/**
-	 * @var F3\Party\Domain\Model\PersonName
+	 * @var \F3\Party\Domain\Model\PersonName
 	 * @validate NotEmpty
 	 */
 	protected $name;
 	
 	/**
-	 * @var SplObjectStorage<\F3\Party\Domain\Model\ElectronicAddress>
+	 * @var \SplObjectStorage<\F3\Party\Domain\Model\ElectronicAddress>
 	 */
 	protected $electronicAddresses;
 
 	/**
-	 * @var F3\Party\Domain\Model\ElectronicAddress
+	 * @var \F3\Party\Domain\Model\ElectronicAddress
 	 */
 	protected $primaryElectronicAddress;
 

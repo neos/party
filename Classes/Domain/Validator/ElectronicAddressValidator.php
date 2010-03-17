@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Party\Domain\Model;
+namespace F3\Party\Domain\Validator;
 
 /*                                                                        *
  * This script belongs to the FLOW3 framework.                            *
@@ -23,61 +23,52 @@ namespace F3\Party\Domain\Model;
  *                                                                        */
 
 /**
- * A party
+ * An electronic address validator
  *
- * @version $Id:$
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @scope prototype
- * @entity
  */
-class Party {
+class ElectronicAddressValidator extends \F3\FLOW3\Validation\Validator\AbstractValidator {
 
 	/**
-	 * @var \SplObjectStorage<\F3\FLOW3\Security\Account>
+	 * @var \F3\FLOW3\Validation\ValidatorResolver
 	 */
-	protected $accounts;
+	protected $validatorResolver;
 
 	/**
-	 * Constructor
+	 * Injects the validator resolver
 	 *
+	 * @param \F3\FLOW3\Validation\ValidatorResolver $validatorResolver
 	 * @return void
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
+	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function __construct() {
-		$this->accounts = new \SplObjectStorage();
+	public function injectValidatorResolver(\F3\FLOW3\Validation\ValidatorResolver $validatorResolver) {
+		$this->validatorResolver = $validatorResolver;
 	}
 
 	/**
-	 * Assigns the given account to this party. Note: The internal reference of the account is
-	 * set to this party.
+	 * Checks if the given value is a valid electronic address according to its type.
 	 *
-	 * @return F3\FLOW3\Security\Account $account The account
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
-	 */
-	public function addAccount(\F3\FLOW3\Security\Account $account) {
-		$this->accounts->attach($account);
-		$account->setParty($this);
-	}
-
-	/**
-	 * Remove an account from this party
+	 * If at least one error occurred, the result is FALSE and any errors can
+	 * be retrieved through the getErrors() method.
 	 *
-	 * @param F3\FLOW3\Security\Account $account The account to remove
-	 * @return void
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
+	 * @param mixed $value The value that should be validated
+	 * @return boolean TRUE if the value is valid, FALSE if an error occured
+	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function removeAccount(\F3\FLOW3\Security\Account $account) {
-		$this->accounts->detach($account);
-	}
-
-	/**
-	 * Returns the accounts of this party
-	 *
-	 * @return SplObjectStorage All assigned F3\FLOW3\Security\Account objects
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
-	 */
-	public function getAccounts() {
-		return $this->accounts;
+	public function isValid($value) {
+		$this->errors = array();
+		if ($value instanceof \F3\Party\Domain\Model\ElectronicAddress) {
+			$addressValidator = $this->validatorResolver->createValidator($value->getType() . 'Address');
+			if ($addressValidator === NULL) {
+				$this->addError('No validator found for electronic address of type "' . $value->getType() . '".', 1268676030);
+				return FALSE;
+			}
+			$result = $addressValidator->isValid($value->getIdentifier());
+			$this->errors = array_merge($this->errors, $addressValidator->getErrors());
+			return $result;
+		}
+		return FALSE;
 	}
 
 }

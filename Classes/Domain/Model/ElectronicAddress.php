@@ -32,20 +32,19 @@ namespace F3\Party\Domain\Model;
  */
 class ElectronicAddress {
 
-	const TYPE_AIM = 'AIM';
-	const TYPE_EMAIL = 'EMAIL';
-	const TYPE_GIZMO = 'GIZMO';
-	const TYPE_ICQ = 'ICQ';
-	const TYPE_JABBER = 'JABBER';
-	const TYPE_MSN = 'MSN';
-	const TYPE_SIP = 'SIP';
-	const TYPE_SKYPE = 'SKYPE';
-	const TYPE_URL = 'URL';
-	const TYPE_XRI = 'XRI';
-	const TYPE_YAHOO = 'YAHOO';
+	const TYPE_AIM = 'Aim';
+	const TYPE_EMAIL = 'Email';
+	const TYPE_GIZMO = 'Gizmo';
+	const TYPE_ICQ = 'Icq';
+	const TYPE_JABBER = 'Jabber';
+	const TYPE_MSN = 'Msn';
+	const TYPE_SIP = 'Sip';
+	const TYPE_SKYPE = 'Skype';
+	const TYPE_URL = 'Url';
+	const TYPE_YAHOO = 'Yahoo';
 
-	const USAGE_HOME = 'HOME';
-	const USAGE_WORK = 'WORK';
+	const USAGE_HOME = 'Home';
+	const USAGE_WORK = 'Work';
 
 	/**
 	 * @var string

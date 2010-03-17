@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Party\Domain\Model;
+namespace F3\Party\Domain\Validator;
 
 /*                                                                        *
  * This script belongs to the FLOW3 framework.                            *
@@ -23,61 +23,32 @@ namespace F3\Party\Domain\Model;
  *                                                                        */
 
 /**
- * A party
+ * A validator for person names
  *
- * @version $Id:$
+ * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
- * @scope prototype
- * @entity
  */
-class Party {
+class PersonNameValidator extends \F3\FLOW3\Validation\Validator\AbstractValidator {
 
 	/**
-	 * @var \SplObjectStorage<\F3\FLOW3\Security\Account>
-	 */
-	protected $accounts;
-
-	/**
-	 * Constructor
+	 * Checks if the concatenated person name has at least one character.
 	 *
-	 * @return void
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
-	 */
-	public function __construct() {
-		$this->accounts = new \SplObjectStorage();
-	}
-
-	/**
-	 * Assigns the given account to this party. Note: The internal reference of the account is
-	 * set to this party.
+	 * If at least one error occurred, the result is FALSE and any errors can
+	 * be retrieved through the getErrors() method.
 	 *
-	 * @return F3\FLOW3\Security\Account $account The account
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
+	 * @param mixed $value The value that should be validated
+	 * @return boolean TRUE if the value is valid, FALSE if an error occured
+	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function addAccount(\F3\FLOW3\Security\Account $account) {
-		$this->accounts->attach($account);
-		$account->setParty($this);
-	}
-
-	/**
-	 * Remove an account from this party
-	 *
-	 * @param F3\FLOW3\Security\Account $account The account to remove
-	 * @return void
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
-	 */
-	public function removeAccount(\F3\FLOW3\Security\Account $account) {
-		$this->accounts->detach($account);
-	}
-
-	/**
-	 * Returns the accounts of this party
-	 *
-	 * @return SplObjectStorage All assigned F3\FLOW3\Security\Account objects
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
-	 */
-	public function getAccounts() {
-		return $this->accounts;
+	public function isValid($value) {
+		$this->errors = array();
+		if ($value instanceof \F3\Party\Domain\Model\PersonName) {
+			if (strlen(trim($value->getFullName())) > 0) {
+				return TRUE;
+			}
+			$this->addError('The person name cannot be empty.', 1268676765);
+		}
+		return FALSE;
 	}
 
 }
