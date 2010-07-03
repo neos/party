@@ -67,8 +67,9 @@ class ElectronicAddressValidator extends \F3\FLOW3\Validation\Validator\Abstract
 			$result = $addressValidator->isValid($value->getIdentifier());
 			$this->errors = array_merge($this->errors, $addressValidator->getErrors());
 			return $result;
+		} elseif ($value === NULL) {
+			return TRUE;
 		}
-		return FALSE;
 	}
 
 }
