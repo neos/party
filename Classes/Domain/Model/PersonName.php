@@ -87,9 +87,21 @@ class PersonName {
 		$this->otherName = $otherName;
 		$this->alias = $alias;
 
-		$this->fullName = ($this->title !== NULL ? $this->title . ' ' : '') .
-			$this->firstName . ' ' . ($this->middleName !== NULL ? ' ' . $this->middleName : '') . $this->lastName .
-			($this->otherName !== NULL ? ' ' . $this->otherName : '');
+		$nameParts = array(
+			$this->title,
+			$this->firstName,
+			$this->middleName,
+			$this->lastName,
+			$this->otherName
+		);
+		$nameParts = array_map('trim', $nameParts);
+		$filledNameParts = array();
+		foreach($nameParts as $namePart) {
+			if($namePart !== '') {
+				$filledNameParts[] = $namePart;
+			}
+		}
+		$this->fullName = implode(' ', $filledNameParts);
 	}
 
 	/**
