@@ -25,7 +25,6 @@ namespace F3\Party\Domain\Repository;
 /**
  * Repository for persons
  *
- * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class PersonRepository extends \F3\FLOW3\Persistence\Repository {
