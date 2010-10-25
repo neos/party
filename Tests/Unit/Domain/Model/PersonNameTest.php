@@ -1,6 +1,6 @@
 <?php
 declare(ENCODING = 'utf-8');
-namespace F3\Party\Domain\Model;
+namespace F3\Party\Tests\Unit\Domain\Model;
 
 /*                                                                        *
  * This script belongs to the FLOW3 framework.                            *
@@ -34,9 +34,9 @@ class PersonNameTest extends \F3\Testing\BaseTestCase {
 	 * @author Sebastian Michaelsen <sebastian.gebhard@gmail.com>
 	 */
 	public function fullNameIsBuiltUpRightFromNameParts() {
-		$personName = new PersonName(NULL, 'Sebastian', NULL, 'Michaelsen', '(born Gebhard)');
+		$personName = new \F3\Party\Domain\Model\PersonName(NULL, 'Sebastian', NULL, 'Michaelsen', '(born Gebhard)');
 		$this->assertEquals('Sebastian Michaelsen (born Gebhard)', $personName->getFullName());
 	}
-	
+
 }
 ?>
