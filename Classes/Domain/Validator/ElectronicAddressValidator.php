@@ -26,6 +26,7 @@ namespace F3\Party\Domain\Validator;
  * An electronic address validator
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @scope prototype
  */
 class ElectronicAddressValidator extends \F3\FLOW3\Validation\Validator\AbstractValidator {
 
