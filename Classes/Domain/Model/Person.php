@@ -3,7 +3,7 @@ declare(ENCODING = 'utf-8');
 namespace F3\Party\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the FLOW3 framework.                            *
+ * This script belongs to the FLOW3 package "Party".                      *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -25,7 +25,7 @@ namespace F3\Party\Domain\Model;
 /**
  * A person
  *
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
  * @entity
  */
@@ -36,7 +36,7 @@ class Person extends \F3\Party\Domain\Model\Party {
 	 * @validate NotEmpty
 	 */
 	protected $name;
-	
+
 	/**
 	 * @var \SplObjectStorage<\F3\Party\Domain\Model\ElectronicAddress>
 	 */
@@ -59,7 +59,7 @@ class Person extends \F3\Party\Domain\Model\Party {
 
 	/**
 	 * Sets the current name of this person
-	 * 
+	 *
 	 * @param \F3\Party\Domain\Model\PersonName $name Name of this person
 	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>
@@ -67,7 +67,7 @@ class Person extends \F3\Party\Domain\Model\Party {
 	public function setName(\F3\Party\Domain\Model\PersonName $name) {
 		$this->name = $name;
 	}
-	
+
 	/**
 	 * Returns the current name of this person
 	 *
@@ -115,7 +115,7 @@ class Person extends \F3\Party\Domain\Model\Party {
 
 	/**
 	 * Sets (and adds if necessary) the primary electronic address of this person.
-	 * 
+	 *
 	 * @param \F3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>

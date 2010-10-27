@@ -3,7 +3,7 @@ declare(ENCODING = 'utf-8');
 namespace F3\Party\Domain\Validator;
 
 /*                                                                        *
- * This script belongs to the FLOW3 framework.                            *
+ * This script belongs to the FLOW3 package "Party".                      *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License as published by the *
@@ -25,7 +25,7 @@ namespace F3\Party\Domain\Validator;
 /**
  * A validator for person names
  *
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
  */
 class PersonNameValidator extends \F3\FLOW3\Validation\Validator\AbstractValidator {
