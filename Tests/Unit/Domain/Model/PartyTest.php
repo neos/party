@@ -23,18 +23,18 @@ namespace F3\Party\Tests\Unit\Domain\Model;
  *                                                                        */
 
 /**
- * Testcase for a party
+ * Testcase for an abstract party
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class PartyTest extends \F3\FLOW3\Tests\UnitTestCase {
+class AbstractPartyTest extends \F3\FLOW3\Tests\UnitTestCase {
 
 	/**
 	 * @test
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function addAccountSetsThePartyPropertyInTheAccountToThisParty() {
-		$party = new \F3\Party\Domain\Model\Party();
+		$party = $this->getMockForAbstractClass('F3\Party\Domain\Model\AbstractParty', array('dummy'));
 
 		$mockAccount = $this->getMock('F3\FLOW3\Security\Account');
 		$mockAccount->expects($this->once())->method('setParty')->with($party);

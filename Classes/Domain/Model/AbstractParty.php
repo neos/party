@@ -29,7 +29,16 @@ namespace F3\Party\Domain\Model;
  * @scope prototype
  * @entity
  */
-class Party {
+abstract class AbstractParty {
+
+	/**
+	 * An entity must have identity, but we cannot know what the identity of
+	 * concrete subclasses will be, thus we introduce something artificial.
+	 *
+	 * @var string
+	 * @identity
+	 */
+	protected $artificialIdentity;
 
 	/**
 	 * @var \SplObjectStorage<\F3\FLOW3\Security\Account>
@@ -43,6 +52,7 @@ class Party {
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function __construct() {
+		$this->artificialIdentity = \F3\FLOW3\Utility\Algorithms::generateUUID();
 		$this->accounts = new \SplObjectStorage();
 	}
 

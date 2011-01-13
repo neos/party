@@ -29,7 +29,7 @@ namespace F3\Party\Domain\Model;
  * @scope prototype
  * @entity
  */
-class Person extends \F3\Party\Domain\Model\Party {
+class Person extends \F3\Party\Domain\Model\AbstractParty {
 
 	/**
 	 * @var \F3\Party\Domain\Model\PersonName
