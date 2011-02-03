@@ -29,7 +29,7 @@ namespace F3\Party\Domain\Model;
  * @scope prototype
  * @entity
  */
-abstract class AbstractParty implements \F3\Party\Domain\Model\PartyInterface {
+abstract class AbstractParty {
 
 	/**
 	 * An entity must have identity, but we cannot know what the identity of
