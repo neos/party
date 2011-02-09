@@ -33,17 +33,26 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 
 	/**
 	 * @var \F3\Party\Domain\Model\PersonName
+	 * @OneToOne(cascade={"all"})
+	 * @JoinColumn(referencedColumnName="artificialId")
 	 * @validate NotEmpty
 	 */
 	protected $name;
 
 	/**
-	 * @var \SplObjectStorage<\F3\Party\Domain\Model\ElectronicAddress>
+	 * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Party\Domain\Model\ElectronicAddress>
+	 * @ManyToMany(cascade={"persist"})
+	 * @JoinTable(
+	 *   joinColumns={@JoinColumn(referencedColumnName="artificialId")},
+	 *   inverseJoinColumns={@JoinColumn(referencedColumnName="artificialId")}
+	 * )
 	 */
 	protected $electronicAddresses;
 
 	/**
 	 * @var \F3\Party\Domain\Model\ElectronicAddress
+	 * @ManyToOne(cascade={"persist"})
+	 * @JoinColumn(referencedColumnName="artificialId")
 	 */
 	protected $primaryElectronicAddress;
 
@@ -54,7 +63,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->electronicAddresses = new \SplObjectStorage();
+		$this->electronicAddresses = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
 	/**
@@ -86,7 +95,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function addElectronicAddress(\F3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
-		$this->electronicAddresses->attach($electronicAddress);
+		$this->electronicAddresses->add($electronicAddress);
 	}
 
 	/**
@@ -97,7 +106,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function removeElectronicAddress(\F3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
-		$this->electronicAddresses->detach($electronicAddress);
+		$this->electronicAddresses->removeElement($electronicAddress);
 		if ($electronicAddress === $this->primaryElectronicAddress) {
 			unset($this->primaryElectronicAddress);
 		}
@@ -106,7 +115,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Returns all known electronic addresses of this person.
 	 *
-	 * @return \SplObjectStorage<\F3\Party\Domain\Model\ElectronicAddress>
+	 * @return \Doctrine\Common\Collections\ArrayCollection<\F3\Party\Domain\Model\ElectronicAddress>
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getElectronicAddresses() {
@@ -122,7 +131,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	 */
 	public function setPrimaryElectronicAddress(\F3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->primaryElectronicAddress = $electronicAddress;
-		$this->electronicAddresses->attach($electronicAddress);
+		$this->electronicAddresses->add($electronicAddress);
 	}
 
 	/**

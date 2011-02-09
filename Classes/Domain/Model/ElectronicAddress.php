@@ -46,20 +46,34 @@ class ElectronicAddress {
 	const USAGE_WORK = 'Work';
 
 	/**
+	 * This ID does not "exist" in the domain model, it's only for the ORM.
+	 *
+	 * @var integer
+	 * @Id
+	 * @GeneratedValue
+	 */
+	protected $artificialId;
+
+	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
+	 * @identity
 	 */
 	protected $identifier;
 
 	/**
 	 * @var string
 	 * @validate Alphanumeric, StringLength(minimum = 1, maximum = 20)
+	 * @identity
+	 * @column(length="20")
 	 */
 	protected $type;
 
 	/**
 	 * @var string
 	 * @validate Alphanumeric, StringLength(minimum = 1, maximum = 20)
+	 * @identity
+	 * @column(name="usagetype", length="20")
 	 */
 	protected $usage;
 
@@ -125,7 +139,7 @@ class ElectronicAddress {
 	/**
 	 * Sets the usage of this electronic address
 	 *
-	 * @param string $usage If possible, use on of the USAGE_ constants
+	 * @param string $usage If possible, use one of the USAGE_ constants
 	 * @return void
 	 * @author Robert Lemke
 	 */

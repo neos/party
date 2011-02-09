@@ -27,9 +27,18 @@ namespace F3\Party\Domain\Model;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
- * @valueobject
+ * @entity
  */
 class PersonName {
+
+	/**
+	 * This ID is only for the ORM.
+	 *
+	 * @var integer
+	 * @Id
+	 * @GeneratedValue
+	 */
+	protected $artificialId;
 
 	/**
 	 * @var string
@@ -86,6 +95,13 @@ class PersonName {
 		$this->otherName = $otherName;
 		$this->alias = $alias;
 
+		$this->generateFullName();
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function generateFullName() {
 		$nameParts = array(
 			$this->title,
 			$this->firstName,
@@ -101,6 +117,71 @@ class PersonName {
 			}
 		}
 		$this->fullName = implode(' ', $filledNameParts);
+	}
+
+	/**
+	 * Setter for firstName
+	 *
+	 * @param string $firstName
+	 * @return void
+	 */
+	public function setFirstName($firstName) {
+		$this->firstName = $firstName;
+		$this->generateFullName();
+	}
+
+	/**
+	 * Setter for middleName
+	 *
+	 * @param string $middleName
+	 * @return void
+	 */
+	public function setMiddleName($middleName) {
+		$this->middleName = $middleName;
+		$this->generateFullName();
+	}
+
+	/**
+	 * Setter for lastName
+	 *
+	 * @param string $lastName
+	 * @return void
+	 */
+	public function setLastName($lastName) {
+		$this->lastName = $lastName;
+		$this->generateFullName();
+	}
+
+	/**
+	 * Setter for title
+	 *
+	 * @param string $title
+	 * @return void
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+		$this->generateFullName();
+	}
+
+	/**
+	 * Setter for otherName
+	 *
+	 * @param string $otherName
+	 * @return void
+	 */
+	public function setOtherName($otherName) {
+		$this->otherName = $otherName;
+		$this->generateFullName();
+	}
+
+	/**
+	 * Setter for alias
+	 *
+	 * @param string $alias
+	 * @return void
+	 */
+	public function setAlias($alias) {
+		$this->alias = $alias;
 	}
 
 	/**

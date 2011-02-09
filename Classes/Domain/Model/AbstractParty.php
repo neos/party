@@ -28,20 +28,23 @@ namespace F3\Party\Domain\Model;
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
  * @entity
+ * @InheritanceType("JOINED")
  */
 abstract class AbstractParty {
 
 	/**
-	 * An entity must have identity, but we cannot know what the identity of
-	 * concrete subclasses will be, thus we introduce something artificial.
+	 * This ID does not "exist" in the domain model, it's only for the ORM.
 	 *
-	 * @var string
-	 * @identity
+	 * @var integer
+	 * @Id
+	 * @GeneratedValue
 	 */
-	protected $artificialIdentity;
+	protected $artificialId;
 
 	/**
-	 * @var \SplObjectStorage<\F3\FLOW3\Security\Account>
+	 * @var \Doctrine\Common\Collections\ArrayCollection<\F3\FLOW3\Security\Account>
+	 * @OneToMany(mappedBy="party")
+	 * @JoinColumn(referencedColumnName="artificialId")
 	 */
 	protected $accounts;
 
@@ -52,37 +55,37 @@ abstract class AbstractParty {
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function __construct() {
-		$this->artificialIdentity = \F3\FLOW3\Utility\Algorithms::generateUUID();
-		$this->accounts = new \SplObjectStorage();
+		$this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
 	/**
 	 * Assigns the given account to this party. Note: The internal reference of the account is
 	 * set to this party.
 	 *
-	 * @return F3\FLOW3\Security\Account $account The account
+	 * @param \F3\FLOW3\Security\Account $account The account
+	 * @return void
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function addAccount(\F3\FLOW3\Security\Account $account) {
-		$this->accounts->attach($account);
+		$this->accounts->add($account);
 		$account->setParty($this);
 	}
 
 	/**
 	 * Remove an account from this party
 	 *
-	 * @param F3\FLOW3\Security\Account $account The account to remove
+	 * @param \F3\FLOW3\Security\Account $account The account to remove
 	 * @return void
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function removeAccount(\F3\FLOW3\Security\Account $account) {
-		$this->accounts->detach($account);
+		$this->accounts->removeElement($account);
 	}
 
 	/**
 	 * Returns the accounts of this party
 	 *
-	 * @return SplObjectStorage All assigned F3\FLOW3\Security\Account objects
+	 * @return \Doctrine\Common\Collections\ArrayCollection All assigned F3\FLOW3\Security\Account objects
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function getAccounts() {
