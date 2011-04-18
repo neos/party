@@ -32,15 +32,6 @@ namespace F3\Party\Domain\Model;
 class PersonName {
 
 	/**
-	 * This ID is only for the ORM.
-	 *
-	 * @var integer
-	 * @Id
-	 * @GeneratedValue
-	 */
-	protected $artificialId;
-
-	/**
 	 * @var string
 	 */
 	protected $title;

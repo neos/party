@@ -46,15 +46,6 @@ class ElectronicAddress {
 	const USAGE_WORK = 'Work';
 
 	/**
-	 * This ID does not "exist" in the domain model, it's only for the ORM.
-	 *
-	 * @var integer
-	 * @Id
-	 * @GeneratedValue
-	 */
-	protected $artificialId;
-
-	/**
 	 * @var string
 	 * @validate StringLength(minimum = 1, maximum = 255)
 	 * @identity

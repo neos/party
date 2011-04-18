@@ -33,18 +33,8 @@ namespace F3\Party\Domain\Model;
 abstract class AbstractParty {
 
 	/**
-	 * This ID does not "exist" in the domain model, it's only for the ORM.
-	 *
-	 * @var integer
-	 * @Id
-	 * @GeneratedValue
-	 */
-	protected $artificialId;
-
-	/**
 	 * @var \Doctrine\Common\Collections\ArrayCollection<\F3\FLOW3\Security\Account>
 	 * @OneToMany(mappedBy="party")
-	 * @JoinColumn(referencedColumnName="artificialId")
 	 */
 	protected $accounts;
 

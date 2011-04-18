@@ -34,7 +34,6 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * @var \F3\Party\Domain\Model\PersonName
 	 * @OneToOne(cascade={"all"})
-	 * @JoinColumn(referencedColumnName="artificialId")
 	 * @validate NotEmpty
 	 */
 	protected $name;
@@ -42,17 +41,12 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Party\Domain\Model\ElectronicAddress>
 	 * @ManyToMany(cascade={"persist"})
-	 * @JoinTable(
-	 *   joinColumns={@JoinColumn(referencedColumnName="artificialId")},
-	 *   inverseJoinColumns={@JoinColumn(referencedColumnName="artificialId")}
-	 * )
 	 */
 	protected $electronicAddresses;
 
 	/**
 	 * @var \F3\Party\Domain\Model\ElectronicAddress
 	 * @ManyToOne(cascade={"persist"})
-	 * @JoinColumn(referencedColumnName="artificialId")
 	 */
 	protected $primaryElectronicAddress;
 
