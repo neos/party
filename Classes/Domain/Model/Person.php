@@ -33,7 +33,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 
 	/**
 	 * @var \F3\Party\Domain\Model\PersonName
-	 * @OneToOne(cascade={"all"})
+	 * @OneToOne(cascade={"all"}, orphanRemoval=true)
 	 * @validate NotEmpty
 	 */
 	protected $name;
