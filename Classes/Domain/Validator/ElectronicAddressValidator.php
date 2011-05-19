@@ -53,22 +53,21 @@ class ElectronicAddressValidator extends \F3\FLOW3\Validation\Validator\Abstract
 	 * be retrieved through the getErrors() method.
 	 *
 	 * @param mixed $value The value that should be validated
-	 * @return boolean TRUE if the value is valid, FALSE if an error occured
+	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>
+	 * @author Bastian Waidelich <bastian@typo3.org>
 	 */
 	public function isValid($value) {
-		$this->errors = array();
 		if ($value instanceof \F3\Party\Domain\Model\ElectronicAddress) {
 			$addressValidator = $this->validatorResolver->createValidator($value->getType() . 'Address');
 			if ($addressValidator === NULL) {
 				$this->addError('No validator found for electronic address of type "' . $value->getType() . '".', 1268676030);
-				return FALSE;
+			} else {
+				$result = $addressValidator->validate($value->getIdentifier());
+				if ($result->hasErrors()) {
+					$this->result = $result;
+				}
 			}
-			$result = $addressValidator->isValid($value->getIdentifier());
-			$this->errors = array_merge($this->errors, $addressValidator->getErrors());
-			return $result;
-		} elseif ($value === NULL) {
-			return TRUE;
 		}
 	}
 
