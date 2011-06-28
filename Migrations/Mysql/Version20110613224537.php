@@ -1,5 +1,4 @@
 <?php
-declare(ENCODING = 'utf-8');
 namespace F3\FLOW3\Persistence\Doctrine\Migrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration,
