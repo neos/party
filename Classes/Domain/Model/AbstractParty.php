@@ -1,5 +1,5 @@
 <?php
-namespace F3\Party\Domain\Model;
+namespace TYPO3\Party\Domain\Model;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Party".                      *
@@ -32,7 +32,7 @@ namespace F3\Party\Domain\Model;
 abstract class AbstractParty {
 
 	/**
-	 * @var \Doctrine\Common\Collections\ArrayCollection<\F3\FLOW3\Security\Account>
+	 * @var \Doctrine\Common\Collections\ArrayCollection<\TYPO3\FLOW3\Security\Account>
 	 * @OneToMany(mappedBy="party")
 	 */
 	protected $accounts;
@@ -51,11 +51,11 @@ abstract class AbstractParty {
 	 * Assigns the given account to this party. Note: The internal reference of the account is
 	 * set to this party.
 	 *
-	 * @param \F3\FLOW3\Security\Account $account The account
+	 * @param \TYPO3\FLOW3\Security\Account $account The account
 	 * @return void
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
-	public function addAccount(\F3\FLOW3\Security\Account $account) {
+	public function addAccount(\TYPO3\FLOW3\Security\Account $account) {
 		$this->accounts->add($account);
 		$account->setParty($this);
 	}
@@ -63,18 +63,18 @@ abstract class AbstractParty {
 	/**
 	 * Remove an account from this party
 	 *
-	 * @param \F3\FLOW3\Security\Account $account The account to remove
+	 * @param \TYPO3\FLOW3\Security\Account $account The account to remove
 	 * @return void
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
-	public function removeAccount(\F3\FLOW3\Security\Account $account) {
+	public function removeAccount(\TYPO3\FLOW3\Security\Account $account) {
 		$this->accounts->removeElement($account);
 	}
 
 	/**
 	 * Returns the accounts of this party
 	 *
-	 * @return \Doctrine\Common\Collections\ArrayCollection All assigned F3\FLOW3\Security\Account objects
+	 * @return \Doctrine\Common\Collections\ArrayCollection All assigned TYPO3\FLOW3\Security\Account objects
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function getAccounts() {

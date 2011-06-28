@@ -1,5 +1,5 @@
 <?php
-namespace F3\Party\Domain\Validator;
+namespace TYPO3\Party\Domain\Validator;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Party".                      *
@@ -27,7 +27,7 @@ namespace F3\Party\Domain\Validator;
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
  */
-class PersonNameValidator extends \F3\FLOW3\Validation\Validator\AbstractValidator {
+class PersonNameValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractValidator {
 
 	/**
 	 * Checks if the concatenated person name has at least one character.
@@ -41,7 +41,7 @@ class PersonNameValidator extends \F3\FLOW3\Validation\Validator\AbstractValidat
 	 */
 	public function isValid($value) {
 		$this->errors = array();
-		if ($value instanceof \F3\Party\Domain\Model\PersonName) {
+		if ($value instanceof \TYPO3\Party\Domain\Model\PersonName) {
 			if (strlen(trim($value->getFullName())) > 0) {
 				return TRUE;
 			}

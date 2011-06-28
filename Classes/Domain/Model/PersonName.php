@@ -1,5 +1,5 @@
 <?php
-namespace F3\Party\Domain\Model;
+namespace TYPO3\Party\Domain\Model;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Party".                      *

@@ -1,5 +1,5 @@
 <?php
-namespace F3\Party\Domain\Model;
+namespace TYPO3\Party\Domain\Model;
 
 /*                                                                        *
  * This script belongs to the FLOW3 package "Party".                      *
@@ -28,23 +28,23 @@ namespace F3\Party\Domain\Model;
  * @scope prototype
  * @entity
  */
-class Person extends \F3\Party\Domain\Model\AbstractParty {
+class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 
 	/**
-	 * @var \F3\Party\Domain\Model\PersonName
+	 * @var \TYPO3\Party\Domain\Model\PersonName
 	 * @OneToOne(cascade={"all"}, orphanRemoval=true)
 	 * @validate NotEmpty
 	 */
 	protected $name;
 
 	/**
-	 * @var \Doctrine\Common\Collections\ArrayCollection<\F3\Party\Domain\Model\ElectronicAddress>
+	 * @var \Doctrine\Common\Collections\ArrayCollection<\TYPO3\Party\Domain\Model\ElectronicAddress>
 	 * @ManyToMany(cascade={"persist"})
 	 */
 	protected $electronicAddresses;
 
 	/**
-	 * @var \F3\Party\Domain\Model\ElectronicAddress
+	 * @var \TYPO3\Party\Domain\Model\ElectronicAddress
 	 * @ManyToOne(cascade={"persist"})
 	 */
 	protected $primaryElectronicAddress;
@@ -62,18 +62,18 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Sets the current name of this person
 	 *
-	 * @param \F3\Party\Domain\Model\PersonName $name Name of this person
+	 * @param \TYPO3\Party\Domain\Model\PersonName $name Name of this person
 	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function setName(\F3\Party\Domain\Model\PersonName $name) {
+	public function setName(\TYPO3\Party\Domain\Model\PersonName $name) {
 		$this->name = $name;
 	}
 
 	/**
 	 * Returns the current name of this person
 	 *
-	 * @return \F3\Party\Domain\Model\PersonName Name of this person
+	 * @return \TYPO3\Party\Domain\Model\PersonName Name of this person
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getName() {
@@ -83,22 +83,22 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Adds the given electronic address to this person.
 	 *
-	 * @param \F3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
+	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function addElectronicAddress(\F3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
+	public function addElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->electronicAddresses->add($electronicAddress);
 	}
 
 	/**
 	 * Removes the given electronic address from this person.
 	 *
-	 * @param \F3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
+	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function removeElectronicAddress(\F3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
+	public function removeElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->electronicAddresses->removeElement($electronicAddress);
 		if ($electronicAddress === $this->primaryElectronicAddress) {
 			unset($this->primaryElectronicAddress);
@@ -108,7 +108,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Returns all known electronic addresses of this person.
 	 *
-	 * @return \Doctrine\Common\Collections\ArrayCollection<\F3\Party\Domain\Model\ElectronicAddress>
+	 * @return \Doctrine\Common\Collections\ArrayCollection<\TYPO3\Party\Domain\Model\ElectronicAddress>
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getElectronicAddresses() {
@@ -118,11 +118,11 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Sets (and adds if necessary) the primary electronic address of this person.
 	 *
-	 * @param \F3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
+	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
-	public function setPrimaryElectronicAddress(\F3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
+	public function setPrimaryElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->primaryElectronicAddress = $electronicAddress;
 		$this->electronicAddresses->add($electronicAddress);
 	}
@@ -130,7 +130,7 @@ class Person extends \F3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Returns the primary electronic address, if one has been defined.
 	 *
-	 * @return \F3\Party\Domain\Model\ElectronicAddress The primary electronic address or NULL
+	 * @return \TYPO3\Party\Domain\Model\ElectronicAddress The primary electronic address or NULL
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getPrimaryElectronicAddress() {

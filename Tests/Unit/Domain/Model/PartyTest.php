@@ -1,5 +1,5 @@
 <?php
-namespace F3\Party\Tests\Unit\Domain\Model;
+namespace TYPO3\Party\Tests\Unit\Domain\Model;
 
 /*                                                                        *
  * This script belongs to the FLOW3 framework.                            *
@@ -26,16 +26,16 @@ namespace F3\Party\Tests\Unit\Domain\Model;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class AbstractPartyTest extends \F3\FLOW3\Tests\UnitTestCase {
+class AbstractPartyTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 
 	/**
 	 * @test
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function addAccountSetsThePartyPropertyInTheAccountToThisParty() {
-		$party = $this->getMockForAbstractClass('F3\Party\Domain\Model\AbstractParty', array('dummy'));
+		$party = $this->getMockForAbstractClass('TYPO3\Party\Domain\Model\AbstractParty', array('dummy'));
 
-		$mockAccount = $this->getMock('F3\FLOW3\Security\Account');
+		$mockAccount = $this->getMock('TYPO3\FLOW3\Security\Account');
 		$mockAccount->expects($this->once())->method('setParty')->with($party);
 
 		$party->addAccount($mockAccount);

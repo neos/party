@@ -1,5 +1,5 @@
 <?php
-namespace F3\Party\Tests\Unit\Domain\Model;
+namespace TYPO3\Party\Tests\Unit\Domain\Model;
 
 /*                                                                        *
  * This script belongs to the FLOW3 framework.                            *
@@ -26,14 +26,14 @@ namespace F3\Party\Tests\Unit\Domain\Model;
  *
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
-class PersonNameTest extends \F3\FLOW3\Tests\UnitTestCase {
+class PersonNameTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 
 	/**
 	 * @test
 	 * @author Sebastian Michaelsen <sebastian.gebhard@gmail.com>
 	 */
 	public function fullNameIsBuiltUpRightFromNameParts() {
-		$personName = new \F3\Party\Domain\Model\PersonName(NULL, 'Sebastian', NULL, 'Michaelsen', '(born Gebhard)');
+		$personName = new \TYPO3\Party\Domain\Model\PersonName(NULL, 'Sebastian', NULL, 'Michaelsen', '(born Gebhard)');
 		$this->assertEquals('Sebastian Michaelsen (born Gebhard)', $personName->getFullName());
 	}
 
