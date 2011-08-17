@@ -32,20 +32,20 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 
 	/**
 	 * @var \TYPO3\Party\Domain\Model\PersonName
-	 * @OneToOne(cascade={"all"}, orphanRemoval=true)
+	 * @OneToOne
 	 * @validate NotEmpty
 	 */
 	protected $name;
 
 	/**
 	 * @var \Doctrine\Common\Collections\ArrayCollection<\TYPO3\Party\Domain\Model\ElectronicAddress>
-	 * @ManyToMany(cascade={"persist"})
+	 * @ManyToMany
 	 */
 	protected $electronicAddresses;
 
 	/**
 	 * @var \TYPO3\Party\Domain\Model\ElectronicAddress
-	 * @ManyToOne(cascade={"persist"})
+	 * @ManyToOne
 	 */
 	protected $primaryElectronicAddress;
 
