@@ -24,7 +24,6 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
 /**
  * Testcase for an abstract party
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class AbstractPartyTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 

@@ -24,7 +24,6 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
 /**
  * Testcase for a personName
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class PersonNameTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 

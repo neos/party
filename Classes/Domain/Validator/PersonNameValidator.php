@@ -24,7 +24,6 @@ namespace TYPO3\Party\Domain\Validator;
 /**
  * A validator for person names
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
  */
 class PersonNameValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractValidator {
