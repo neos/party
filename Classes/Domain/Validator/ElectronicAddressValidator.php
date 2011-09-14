@@ -24,7 +24,6 @@ namespace TYPO3\Party\Domain\Validator;
 /**
  * An electronic address validator
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @scope prototype
  */
 class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractValidator {

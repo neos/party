@@ -24,7 +24,6 @@ namespace TYPO3\Party\Domain\Repository;
 /**
  * Repository for persons
  *
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  */
 class PersonRepository extends \TYPO3\FLOW3\Persistence\Repository {
 
