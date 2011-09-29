@@ -12,10 +12,12 @@ namespace TYPO3\Party\Domain\Repository;
  *                                                                        */
 
 /**
- * Repository for persons
+ * Repository for parties
  *
  */
-class PersonRepository extends \TYPO3\FLOW3\Persistence\Repository {
+class PartyRepository extends \TYPO3\FLOW3\Persistence\Repository {
+
+	const ENTITY_CLASSNAME = 'TYPO3\Party\Domain\Model\AbstractParty';
 
 }
 
