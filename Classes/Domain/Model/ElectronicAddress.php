@@ -44,7 +44,7 @@ class ElectronicAddress {
 	 * @var string
 	 * @validate Alphanumeric, StringLength(minimum = 1, maximum = 20)
 	 * @identity
-	 * @column(length="20")
+	 * @Column(length="20")
 	 */
 	protected $type;
 
@@ -52,7 +52,7 @@ class ElectronicAddress {
 	 * @var string
 	 * @validate Alphanumeric, StringLength(minimum = 1, maximum = 20)
 	 * @identity
-	 * @column(name="usagetype", length="20")
+	 * @Column(name="usagetype", length="20")
 	 */
 	protected $usage;
 
