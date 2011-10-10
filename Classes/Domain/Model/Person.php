@@ -27,8 +27,8 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	protected $name;
 
 	/**
-	 * @var \Doctrine\Common\Collections\ArrayCollection<\TYPO3\Party\Domain\Model\ElectronicAddress>
 	 * @ManyToMany
+	 * @var \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
 	 */
 	protected $electronicAddresses;
 
@@ -97,7 +97,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Returns all known electronic addresses of this person.
 	 *
-	 * @return \Doctrine\Common\Collections\ArrayCollection<\TYPO3\Party\Domain\Model\ElectronicAddress>
+	 * @return \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getElectronicAddresses() {

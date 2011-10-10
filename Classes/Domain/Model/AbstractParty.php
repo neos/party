@@ -21,7 +21,7 @@ namespace TYPO3\Party\Domain\Model;
 abstract class AbstractParty {
 
 	/**
-	 * @var \Doctrine\Common\Collections\ArrayCollection<\TYPO3\FLOW3\Security\Account>
+	 * @var \Doctrine\Common\Collections\Collection<\TYPO3\FLOW3\Security\Account>
 	 * @OneToMany(mappedBy="party")
 	 */
 	protected $accounts;
@@ -63,7 +63,7 @@ abstract class AbstractParty {
 	/**
 	 * Returns the accounts of this party
 	 *
-	 * @return \Doctrine\Common\Collections\ArrayCollection All assigned TYPO3\FLOW3\Security\Account objects
+	 * @return \Doctrine\Common\Collections\Collection All assigned TYPO3\FLOW3\Security\Account objects
 	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function getAccounts() {
