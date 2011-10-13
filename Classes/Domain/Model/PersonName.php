@@ -11,11 +11,14 @@ namespace TYPO3\Party\Domain\Model;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Doctrine\ORM\Mapping as ORM;
+use TYPO3\FLOW3\Annotations as FLOW3;
+
 /**
  * A person name
  *
- * @scope prototype
- * @entity
+ * @FLOW3\Scope("prototype")
+ * @FLOW3\Entity
  */
 class PersonName {
 

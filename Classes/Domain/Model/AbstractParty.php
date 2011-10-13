@@ -11,18 +11,21 @@ namespace TYPO3\Party\Domain\Model;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Doctrine\ORM\Mapping as ORM;
+use TYPO3\FLOW3\Annotations as FLOW3;
+
 /**
  * A party
  *
- * @scope prototype
- * @entity
- * @InheritanceType("JOINED")
+ * @FLOW3\Scope("prototype")
+ * @FLOW3\Entity
+ * @ORM\InheritanceType("JOINED")
  */
 abstract class AbstractParty {
 
 	/**
 	 * @var \Doctrine\Common\Collections\Collection<\TYPO3\FLOW3\Security\Account>
-	 * @OneToMany(mappedBy="party")
+	 * @ORM\OneToMany(mappedBy="party")
 	 */
 	protected $accounts;
 

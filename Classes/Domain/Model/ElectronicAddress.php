@@ -11,11 +11,14 @@ namespace TYPO3\Party\Domain\Model;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Doctrine\ORM\Mapping as ORM;
+use TYPO3\FLOW3\Annotations as FLOW3;
+
 /**
  * An electronic address
  *
- * @scope prototype
- * @entity
+ * @FLOW3\Scope("prototype")
+ * @FLOW3\Entity
  */
 class ElectronicAddress {
 
@@ -35,24 +38,26 @@ class ElectronicAddress {
 
 	/**
 	 * @var string
-	 * @validate StringLength(minimum = 1, maximum = 255)
-	 * @identity
+	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=255 })
+	 * @FLOW3\Identity
 	 */
 	protected $identifier;
 
 	/**
 	 * @var string
-	 * @validate Alphanumeric, StringLength(minimum = 1, maximum = 20)
-	 * @identity
-	 * @Column(length="20")
+	 * @FLOW3\Validate(type="Alphanumeric")
+	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
+	 * @FLOW3\Identity
+	 * @ORM\Column(length=20)
 	 */
 	protected $type;
 
 	/**
 	 * @var string
-	 * @validate Alphanumeric, StringLength(minimum = 1, maximum = 20)
-	 * @identity
-	 * @Column(name="usagetype", length="20")
+	 * @FLOW3\Validate(type="Alphanumeric")
+	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
+	 * @FLOW3\Identity
+	 * @ORM\Column(name="usagetype", length=20)
 	 */
 	protected $usage;
 
