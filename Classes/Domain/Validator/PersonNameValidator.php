@@ -28,7 +28,6 @@ class PersonNameValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractVali
 	 *
 	 * @param mixed $value The value that should be validated
 	 * @return boolean TRUE if the value is valid, FALSE if an error occured
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function isValid($value) {
 		$this->errors = array();

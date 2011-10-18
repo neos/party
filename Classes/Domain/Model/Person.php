@@ -44,7 +44,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Constructs this Person
 	 *
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function __construct() {
 		parent::__construct();
@@ -56,7 +55,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 *
 	 * @param \TYPO3\Party\Domain\Model\PersonName $name Name of this person
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function setName(\TYPO3\Party\Domain\Model\PersonName $name) {
 		$this->name = $name;
@@ -66,7 +64,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * Returns the current name of this person
 	 *
 	 * @return \TYPO3\Party\Domain\Model\PersonName Name of this person
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getName() {
 		return $this->name;
@@ -77,7 +74,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 *
 	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function addElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->electronicAddresses->add($electronicAddress);
@@ -88,7 +84,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 *
 	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function removeElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->electronicAddresses->removeElement($electronicAddress);
@@ -101,7 +96,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * Returns all known electronic addresses of this person.
 	 *
 	 * @return \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getElectronicAddresses() {
 		return clone $this->electronicAddresses;
@@ -112,7 +106,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 *
 	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function setPrimaryElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->primaryElectronicAddress = $electronicAddress;
@@ -123,7 +116,6 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * Returns the primary electronic address, if one has been defined.
 	 *
 	 * @return \TYPO3\Party\Domain\Model\ElectronicAddress The primary electronic address or NULL
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getPrimaryElectronicAddress() {
 		return $this->primaryElectronicAddress;

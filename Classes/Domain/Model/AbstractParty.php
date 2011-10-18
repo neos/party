@@ -33,7 +33,6 @@ abstract class AbstractParty {
 	 * Constructor
 	 *
 	 * @return void
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function __construct() {
 		$this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
@@ -45,7 +44,6 @@ abstract class AbstractParty {
 	 *
 	 * @param \TYPO3\FLOW3\Security\Account $account The account
 	 * @return void
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function addAccount(\TYPO3\FLOW3\Security\Account $account) {
 		$this->accounts->add($account);
@@ -57,7 +55,6 @@ abstract class AbstractParty {
 	 *
 	 * @param \TYPO3\FLOW3\Security\Account $account The account to remove
 	 * @return void
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function removeAccount(\TYPO3\FLOW3\Security\Account $account) {
 		$this->accounts->removeElement($account);
@@ -67,7 +64,6 @@ abstract class AbstractParty {
 	 * Returns the accounts of this party
 	 *
 	 * @return \Doctrine\Common\Collections\Collection All assigned TYPO3\FLOW3\Security\Account objects
-	 * @author Andreas Förthner <andreas.foerthner@netlogix.de>
 	 */
 	public function getAccounts() {
 		return $this->accounts;

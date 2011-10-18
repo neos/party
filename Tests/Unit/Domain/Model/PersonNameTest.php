@@ -19,7 +19,6 @@ class PersonNameTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 
 	/**
 	 * @test
-	 * @author Sebastian Michaelsen <sebastian.gebhard@gmail.com>
 	 */
 	public function fullNameIsBuiltUpRightFromNameParts() {
 		$personName = new \TYPO3\Party\Domain\Model\PersonName(NULL, 'Sebastian', NULL, 'Michaelsen', '(born Gebhard)');

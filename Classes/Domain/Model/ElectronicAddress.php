@@ -73,7 +73,6 @@ class ElectronicAddress {
 	 *
 	 * @param string $identifier The identifier
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function setIdentifier($identifier) {
 		$this->identifier = $identifier;
@@ -83,7 +82,6 @@ class ElectronicAddress {
 	 * Returns the identifier (= the value) of this electronic address.
 	 *
 	 * @return string The identifier
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getIdentifier() {
 		return $this->identifier;
@@ -93,7 +91,6 @@ class ElectronicAddress {
 	 * Returns the type of this electronic address
 	 *
 	 * @return string
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getType() {
 		return $this->type;
@@ -104,7 +101,6 @@ class ElectronicAddress {
 	 *
 	 * @param string $type If possible, use one of the TYPE_ constants
 	 * @return void
- 	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function setType($type) {
 		$this->type = $type;
@@ -114,7 +110,6 @@ class ElectronicAddress {
 	 * Returns the usage of this electronic address
 	 *
 	 * @return string
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function getUsage() {
 		return $this->usage;
@@ -125,7 +120,6 @@ class ElectronicAddress {
 	 *
 	 * @param string $usage If possible, use one of the USAGE_ constants
 	 * @return void
-	 * @author Robert Lemke
 	 */
 	public function setUsage($usage) {
 		$this->usage = $usage;
@@ -136,7 +130,6 @@ class ElectronicAddress {
 	 *
 	 * @param boolean $approved If this address has been approved or not
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function setApproved($approved) {
 		$this->approved = $approved ? TRUE : FALSE;
@@ -146,7 +139,6 @@ class ElectronicAddress {
 	 * Tells if this address has been approved
 	 *
 	 * @return boolean TRUE if the address has been approved, otherwise FALSE
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function isApproved() {
 		return $this->approved;
@@ -156,7 +148,6 @@ class ElectronicAddress {
 	 * An alias for getIdentifier()
 	 *
 	 * @return string The identifier of this electronic address
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function  __toString() {
 		return $this->identifier;

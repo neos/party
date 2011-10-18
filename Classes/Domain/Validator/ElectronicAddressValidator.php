@@ -30,7 +30,6 @@ class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\Abstr
 	 *
 	 * @param \TYPO3\FLOW3\Validation\ValidatorResolver $validatorResolver
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function injectValidatorResolver(\TYPO3\FLOW3\Validation\ValidatorResolver $validatorResolver) {
 		$this->validatorResolver = $validatorResolver;
@@ -44,8 +43,6 @@ class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\Abstr
 	 *
 	 * @param mixed $value The value that should be validated
 	 * @return void
-	 * @author Robert Lemke <robert@typo3.org>
-	 * @author Bastian Waidelich <bastian@typo3.org>
 	 */
 	public function isValid($value) {
 		if ($value instanceof \TYPO3\Party\Domain\Model\ElectronicAddress) {

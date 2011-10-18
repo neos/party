@@ -66,7 +66,6 @@ class PersonName {
 	 * @param string $lastName the last name
 	 * @param string $otherName the "other" name, e.g. "IV." or "jr."
 	 * @param string $alias an alias or nickname
-	 * @author Robert Lemke <robert@typo3.org>
 	 * @var string
 	 */
 	public function __construct($title = '', $firstName = '', $middleName = '', $lastName = '', $otherName = '', $alias = '') {
@@ -233,7 +232,6 @@ class PersonName {
 	 * An alias for getFullName()
 	 *
 	 * @return string The full person name
-	 * @author Robert Lemke <robert@typo3.org>
 	 */
 	public function  __toString() {
 		return $this->fullName;
