@@ -11,12 +11,9 @@ namespace TYPO3\Party\Domain\Validator;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
-
 /**
  * An electronic address validator
  *
- * @FLOW3\Scope("prototype")
  */
 class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractValidator {
 

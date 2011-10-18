@@ -17,7 +17,6 @@ use TYPO3\FLOW3\Annotations as FLOW3;
 /**
  * A person
  *
- * @FLOW3\Scope("prototype")
  * @FLOW3\Entity
  */
 class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
