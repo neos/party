@@ -1,0 +1,23 @@
+#                                                                        #
+# Default subroutes configuration for the TYPO3.Setup package            #
+#                                                                        #
+
+-
+  name: 'Setup'
+  uriPattern: 'setup'
+  defaults:
+    '@package':    'TYPO3.Setup'
+    '@controller': 'Setup'
+    '@action':     'index'
+    '@format':     'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Login'
+  uriPattern: 'setup/login(/{@action})'
+  defaults:
+    '@package':    'TYPO3.Setup'
+    '@controller': 'Login'
+    '@action':     'login'
+    '@format':     'html'
+  appendExceedingArguments: true

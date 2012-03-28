@@ -1,0 +1,32 @@
+#                                                                        #
+# Settings                                                               #
+#                                                                        #
+# This file contains settings for various parts of the application.      #
+# Just add your own modifications as necessary.                          #
+#                                                                        #
+# Please refer to the default settings file(s) or the manuals for        #
+# possible configuration options.                                        #
+#                                                                        #
+
+TYPO3:
+  FLOW3:
+    security:
+      authentication:
+        providers:
+          Typo3SetupProvider:
+            providerClass: FileBasedSimpleKeyProvider
+            requestPatterns:
+              controllerObjectName: TYPO3\Setup\Controller\.*
+            options:
+              name: SetupKey
+  Setup:
+    stepOrder: ['database', 'administrator']
+    steps:
+      database:
+        className: 'TYPO3\Setup\Step\DatabaseStep'
+        requiredConditions:
+          - className: 'TYPO3\Setup\Condition\PdoDriverCondition'
+      administrator:
+        className: 'TYPO3\Setup\Step\AdministratorStep'
+        requiredConditions:
+          - className: 'TYPO3\Setup\Condition\DatabaseConnectionCondition'
