@@ -20,6 +20,18 @@ use TYPO3\FLOW3\Annotations as FLOW3,
 class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 
 	/**
+	 * @var \TYPO3\FLOW3\Configuration\Source\YamlSource
+	 * @FLOW3\Inject
+	 */
+	protected $configurationSource;
+
+	/**
+	 * @var \TYPO3\FLOW3\Persistence\Doctrine\Service
+	 * @FLOW3\Inject
+	 */
+	protected $doctrineService;
+
+	/**
 	 * Returns the form definitions for the step
 	 *
 	 * @param \TYPO3\Form\Core\Model\FormDefinition $formDefinition
@@ -34,13 +46,12 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$connectionSection = $page1->createElement('connectionSection', 'TYPO3.Form:Section');
 		$connectionSection->setLabel('Connection');
 
-		$databaseUser = $connectionSection->createElement('settings_TYPO3_FLOW3_persistence_backendOptions_user', 'TYPO3.Form:SingleLineText');
+		$databaseUser = $connectionSection->createElement('user', 'TYPO3.Form:SingleLineText');
 		$databaseUser->setLabel('DB Username');
 		$databaseUser->setDefaultValue(\TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.user'));
 		$databaseUser->addValidator(new \TYPO3\FLOW3\Validation\Validator\NotEmptyValidator());
 
-			// TODO change to password field (not yet available)
-		$databasePassword = $connectionSection->createElement('settings_TYPO3_FLOW3_persistence_backendOptions_password', 'TYPO3.Form:SingleLineText');
+		$databasePassword = $connectionSection->createElement('password', 'TYPO3.Form:Password');
 		$databasePassword->setLabel('DB Password');
 		$databasePassword->setDefaultValue(\TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.password'));
 
@@ -54,7 +65,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 			$databaseConnection->setProperty('class', 'alert alert-error');
 		}
 
-		$databaseHost = $connectionSection->createElement('settings_TYPO3_FLOW3_persistence_backendOptions_host', 'TYPO3.Form:SingleLineText');
+		$databaseHost = $connectionSection->createElement('host', 'TYPO3.Form:SingleLineText');
 		$databaseHost->setLabel('DB Host');
 
 		$defaultHost = \TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.host');
@@ -72,15 +83,31 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 			$settings = $this->configurationManager->getConfiguration(\TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.FLOW3');
 			$connection = \Doctrine\DBAL\DriverManager::getConnection($settings['persistence']['backendOptions']);
 			$databases = $connection->getSchemaManager()->listDatabases();
-			$databaseName = $page1->createElement('site', 'TYPO3.Form:SingleSelectDropdown');
+			$databaseName = $page1->createElement('dbname', 'TYPO3.Form:SingleSelectDropdown');
 			$databaseName->setProperty('options', array_combine($databases, $databases));
 			$databaseName->setDefaultValue($dbName);
 		} else {
-			$databaseName = $databaseSection->createElement('settings_TYPO3_FLOW3_persistence_backendOptions_dbname', 'TYPO3.Form:SingleLineText');
+			$databaseName = $databaseSection->createElement('dbname', 'TYPO3.Form:SingleLineText');
 			$databaseName->setDefaultValue($dbName);
 		}
 		$databaseName->setLabel('DB Name');
 		$databaseName->addValidator(new \TYPO3\FLOW3\Validation\Validator\NotEmptyValidator());
 	}
 
+	/**
+	 * This method is called when the form of this step has been submitted
+	 *
+	 * @param array $formValues
+	 * @return void
+	 */
+	public function postProcessFormValues(array $formValues) {
+		$this->distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.dbname', $formValues['dbname']);
+		$this->distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.user', $formValues['user']);
+		$this->distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.password', $formValues['password']);
+		$this->distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.host', $formValues['host']);
+		$this->configurationSource->save(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $this->distributionSettings);
+
+		// TODO is this the correct place to execute doctrine migrations?
+		$this->doctrineService->executeMigrations();
+	}
 }
