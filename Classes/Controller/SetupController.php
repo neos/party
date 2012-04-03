@@ -39,6 +39,14 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 	protected $distributionSettings;
 
 	/**
+	 * Contains the current step to be executed
+	 * @see determineCurrentStepIndex()
+	 *
+	 * @var integer
+	 */
+	protected $currentStepIndex = 0;
+
+	/**
 	 * @return void
 	 */
 	public function initializeAction() {
@@ -54,45 +62,53 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 		if ($this->authenticationManager->isAuthenticated() === FALSE) {
 			$this->forward('login', 'Login', NULL, array('step' => $step));
 		}
+		$this->currentStepIndex = $step;
+		$this->checkRequestedStepIndex();
+		$currentStep = $this->instantiateCurrentStep();
 		$controller = $this;
-		$callback = function(\TYPO3\Form\Core\Model\FinisherContext $finisherContext) use ($controller) {
-			$controller->postProcessFormValues($finisherContext->getFormRuntime()->getFormState()->getFormValues());
+		$callback = function(\TYPO3\Form\Core\Model\FinisherContext $finisherContext) use ($controller, $currentStep) {
+			$controller->postProcessStep($finisherContext->getFormRuntime()->getFormState()->getFormValues(), $currentStep);
 		};
-		$currentStep = $this->instantiateCurrentStep($step);
-		$formDefinition = $currentStep['stepClass']->getFormDefinition($callback);
+		$formDefinition = $currentStep->getFormDefinition($callback);
 		$response = new \TYPO3\FLOW3\MVC\Web\SubResponse($this->response);
 		$form = $formDefinition->bind($this->request, $response);
-		$stepIndex = $currentStep['stepIndex'];
 		$this->view->assignMultiple(array(
 			'form' => $form->render(),
-			'step' => $stepIndex,
-			'previousStep' => $stepIndex === 0 ? NULL : $stepIndex - 1
+			'step' => $this->currentStepIndex,
 		));
+		if ($this->currentStepIndex > 0) {
+			$this->view->assign('previousStep', $this->currentStepIndex - 1);
+		}
 	}
 
 	/**
-	 * @param integer $requestedStepIndex
-	 * @return array
+	 * @return void
 	 * @throws \TYPO3\Setup\Exception
 	 */
-	protected function instantiateCurrentStep($requestedStepIndex) {
+	protected function checkRequestedStepIndex() {
 		if (!isset($this->settings['stepOrder']) || !is_array($this->settings['stepOrder'])) {
 			throw new \TYPO3\Setup\Exception('No "stepOrder" configured, setup can\'t be invoked', 1332167136);
 		}
 		$stepOrder = $this->settings['stepOrder'];
-		if (!array_key_exists($requestedStepIndex, $stepOrder)) {
-				// TODO instead of throwing an exception we might also quietly jump to another step
-			throw new \TYPO3\Setup\Exception(sprintf('No setup step #%d configured, setup can\'t be invoked', $requestedStepIndex), 1332167418);
+		if (!array_key_exists($this->currentStepIndex, $stepOrder)) {
+			// TODO instead of throwing an exception we might also quietly jump to another step
+			throw new \TYPO3\Setup\Exception(sprintf('No setup step #%d configured, setup can\'t be invoked', $this->currentStepIndex), 1332167418);
 		}
-		$stepIndex = $requestedStepIndex;
-		while ($this->checkRequiredConditions($stepOrder[$stepIndex]) !== TRUE) {
-			if ($stepIndex === 0) {
+		while ($this->checkRequiredConditions($stepOrder[$this->currentStepIndex]) !== TRUE) {
+			if ($this->currentStepIndex === 0) {
 				throw new \TYPO3\Setup\Exception('Not all requirements are met for the first setup step, aborting setup', 1332169088);
 			}
 			$this->addFlashMessage('Not all requirements are met for step "%s"', '', \TYPO3\FLOW3\Error\Message::SEVERITY_WARNING, array($stepOrder[$stepIndex]));
-			$this->redirect('index', NULL, NULL, array('step' => $stepIndex - 1));
+			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex - 1));
 		};
-		$currentStepIdentifier = $stepOrder[$stepIndex];
+	}
+
+	/**
+	 * @return \TYPO3\Setup\Step\StepInterface
+	 * @throws \TYPO3\Setup\Exception
+	 */
+	protected function instantiateCurrentStep() {
+		$currentStepIdentifier = $this->settings['stepOrder'][$this->currentStepIndex];
 		$currentStepConfiguration = $this->settings['steps'][$currentStepIdentifier];
 		if (!isset($currentStepConfiguration['className'])) {
 			throw new \TYPO3\Setup\Exception(sprintf('No className specified for setup step "%s", setup can\'t be invoked', $currentStepIdentifier), 1332169398);
@@ -105,7 +121,7 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 			$currentStep->setOptions($currentStepConfiguration['options']);
 		}
 		$currentStep->setDistributionSettings($this->distributionSettings);
-		return array('stepIndex' => $stepIndex, 'stepClass' => $currentStep);
+		return $currentStep;
 	}
 
 	/**
@@ -141,22 +157,12 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 
 	/**
 	 * @param array $formValues
+	 * @param \TYPO3\Setup\Step\StepInterface $currentStep
 	 * @return void
 	 */
-	public function postProcessFormValues(array $formValues) {
-		foreach ($formValues as $key => $value) {
-			if (substr($key, 0, 9) === 'settings_') {
-				$settingPath = str_replace('_', '.', substr($key, 9));
-				$this->distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($this->distributionSettings, $settingPath, $value);
-			}
-		}
-		$this->configurationSource->save(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $this->distributionSettings);
-		if ($this->request->hasArgument('step')) {
-			$currentStep = (integer)$this->request->getArgument('step');
-		} else {
-			$currentStep = 0;
-		}
-		$this->redirect('index', NULL, NULL, array('step' => $currentStep + 1));
+	public function postProcessStep(array $formValues, \TYPO3\Setup\Step\StepInterface $currentStep) {
+		$currentStep->postProcessFormValues($formValues);
+		$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex + 1));
 	}
 
 }

@@ -119,4 +119,13 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	 */
 	abstract protected function buildForm(\TYPO3\Form\Core\Model\FormDefinition $formDefinition);
 
+	/**
+	 * This method is called when the form of this step has been submitted
+	 * You can override it in your concrete implementation
+	 *
+	 * @param array $formValues
+	 * @return void
+	 */
+	public function postProcessFormValues(array $formValues) {
+	}
 }

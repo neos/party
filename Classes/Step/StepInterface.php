@@ -37,5 +37,13 @@ interface StepInterface {
 	 */
 	public function getFormDefinition(\Closure $callback);
 
+	/**
+	 * This method is called when the form of this step has been submitted
+	 *
+	 * @param array $formValues
+	 * @return void
+	 */
+	public function postProcessFormValues(array $formValues);
+
 }
 ?>
