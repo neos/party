@@ -108,7 +108,9 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 */
 	public function setPrimaryElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->primaryElectronicAddress = $electronicAddress;
-		$this->electronicAddresses->add($electronicAddress);
+		if (!$this->electronicAddresses->contains($electronicAddress)) {
+			$this->electronicAddresses->add($electronicAddress);
+		}
 	}
 
 	/**
