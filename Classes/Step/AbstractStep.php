@@ -20,6 +20,11 @@ use TYPO3\FLOW3\Annotations as FLOW3,
 abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 
 	/**
+	 * @var boolean
+	 */
+	protected $optional = FALSE;
+
+	/**
 	 * The settings of the TYPO3.Form package
 	 *
 	 * @var array
@@ -48,6 +53,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	protected $presetName = 'default';
 
 	/**
+	 * @return void
 	 * @internal
 	 */
 	public function initializeObject() {
@@ -59,6 +65,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	 *
 	 * @param array $options
 	 * @return void
+	 * @api
 	 */
 	public function setOptions(array $options) {
 		$this->options = $options;
@@ -69,6 +76,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	 *
 	 * @param array $distributionSettings
 	 * @return void
+	 * @api
 	 */
 	public function setDistributionSettings(array $distributionSettings) {
 		$this->distributionSettings = $distributionSettings;
@@ -81,6 +89,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	 * @param string $presetName name of the preset to get the configuration for
 	 * @return array the preset configuration
 	 * @throws \TYPO3\Form\Exception\PresetNotFoundException if preset with the name $presetName was not found
+	 * @api
 	 */
 	public function getPresetConfiguration($presetName) {
 		if (!isset($this->formSettings['presets'][$presetName])) {
@@ -130,7 +139,17 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	 *
 	 * @param array $formValues
 	 * @return void
+	 * @api
 	 */
 	public function postProcessFormValues(array $formValues) {
 	}
+
+	/**
+	 * @return boolean
+	 * @api
+	 */
+	public function isOptional() {
+		return $this->optional;
+	}
+
 }

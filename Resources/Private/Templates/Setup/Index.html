@@ -24,4 +24,9 @@
 		</f:link.action>
 	</div>
 	{form -> f:format.raw()}
+	<f:if condition="{optional}">
+		<f:link.action arguments="{step: nextStep}" class="btn">
+			Skip
+		</f:link.action>
+	</f:if>
 </f:section>

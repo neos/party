@@ -75,6 +75,8 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 		$this->view->assignMultiple(array(
 			'form' => $form->render(),
 			'step' => $this->currentStepIndex,
+			'nextStep' => $this->currentStepIndex + 1,
+			'optional' => $currentStep->isOptional()
 		));
 		if ($this->currentStepIndex > 0) {
 			$this->view->assign('previousStep', $this->currentStepIndex - 1);
