@@ -43,6 +43,11 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	protected $distributionSettings;
 
 	/**
+	 * @var string
+	 */
+	protected $presetName = 'default';
+
+	/**
 	 * @internal
 	 */
 	public function initializeObject() {
@@ -100,7 +105,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	final public function getFormDefinition(\Closure $callback) {
 		$fullyQualifiedClassName = get_class($this);
 		$formIdentifier = lcfirst(substr($fullyQualifiedClassName, strrpos($fullyQualifiedClassName, '\\') + 1));
-		$formConfiguration = $this->getPresetConfiguration('default');
+		$formConfiguration = $this->getPresetConfiguration($this->presetName);
 		$formDefinition = new FormDefinition($formIdentifier, $formConfiguration);
 		$this->buildForm($formDefinition);
 
