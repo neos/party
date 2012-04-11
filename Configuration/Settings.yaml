@@ -20,13 +20,9 @@ TYPO3:
             options:
               name: SetupKey
   Setup:
-    stepOrder: ['database', 'administrator']
+    stepOrder: ['database']
     steps:
       database:
         className: 'TYPO3\Setup\Step\DatabaseStep'
         requiredConditions:
           - className: 'TYPO3\Setup\Condition\PdoDriverCondition'
-      administrator:
-        className: 'TYPO3\Setup\Step\AdministratorStep'
-        requiredConditions:
-          - className: 'TYPO3\Setup\Condition\DatabaseConnectionCondition'
