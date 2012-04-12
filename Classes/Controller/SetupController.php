@@ -70,7 +70,7 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 			$controller->postProcessStep($finisherContext->getFormRuntime()->getFormState()->getFormValues(), $currentStep);
 		};
 		$formDefinition = $currentStep->getFormDefinition($callback);
-		$response = new \TYPO3\FLOW3\MVC\Web\SubResponse($this->response);
+		$response = new \TYPO3\FLOW3\Http\Response($this->response);
 		$form = $formDefinition->bind($this->request, $response);
 		$this->view->assignMultiple(array(
 			'form' => $form->render(),
@@ -98,7 +98,7 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 			if ($this->currentStepIndex === 0) {
 				throw new \TYPO3\Setup\Exception('Not all requirements are met for the first setup step, aborting setup', 1332169088);
 			}
-			$this->addFlashMessage('Not all requirements are met for step "%s"', '', \TYPO3\FLOW3\Error\Message::SEVERITY_WARNING, array($stepOrder[$stepIndex]));
+			$this->addFlashMessage('Not all requirements are met for step "%s"', '', \TYPO3\FLOW3\Error\Message::SEVERITY_WARNING, array($stepOrder[$this->currentStepIndex]));
 			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex - 1));
 		};
 	}

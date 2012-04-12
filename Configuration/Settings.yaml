@@ -14,11 +14,11 @@ TYPO3:
       authentication:
         providers:
           Typo3SetupProvider:
-            providerClass: FileBasedSimpleKeyProvider
+            provider: FileBasedSimpleKeyProvider
             requestPatterns:
               controllerObjectName: TYPO3\Setup\Controller\.*
-            options:
-              name: SetupKey
+            providerOptions:
+              keyName: SetupKey
   Setup:
     stepOrder: ['database']
     steps:

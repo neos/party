@@ -37,14 +37,20 @@ class LoginController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 	protected $fileBasedSimpleKeyService;
 
 	/**
-	 * Injects the authentication provider configuration to be used
+	 * @FLOW3\Inject
+	 * @var \TYPO3\FLOW3\Configuration\ConfigurationManager
+	 */
+	protected $configurationManager;
+
+	/**
+	 * Gets the authentication provider configuration needed
 	 *
-	 * @param array $settings
 	 * @return void
 	 */
-	public function injectSettings(array $settings) {
-		if (isset($settings['security']['authentication']['providers']['Typo3SetupProvider']['options']['name'])) {
-			$this->keyName = $settings['security']['authentication']['providers']['Typo3SetupProvider']['options']['name'];
+	public function initializeObject() {
+		$settings = $this->configurationManager->getConfiguration(\TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.FLOW3');
+		if (isset($settings['security']['authentication']['providers']['Typo3SetupProvider']['providerOptions']['keyName'])) {
+			$this->keyName = $settings['security']['authentication']['providers']['Typo3SetupProvider']['providerOptions']['keyName'];
 		}
 	}
 
