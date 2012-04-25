@@ -58,10 +58,6 @@ class SetupController extends \TYPO3\FLOW3\MVC\Controller\ActionController {
 	 * @return void
 	 */
 	public function indexAction($step = 0) {
-			// TODO this should not only check for any authentication but for Setup authentication (maybe use a special role?)
-		if ($this->authenticationManager->isAuthenticated() === FALSE) {
-			$this->forward('login', 'Login', NULL, array('step' => $step));
-		}
 		$this->currentStepIndex = $step;
 		$this->checkRequestedStepIndex();
 		$currentStep = $this->instantiateCurrentStep();

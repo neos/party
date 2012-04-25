@@ -14,11 +14,15 @@ TYPO3:
       authentication:
         providers:
           Typo3SetupProvider:
-            provider: FileBasedSimpleKeyProvider
-            requestPatterns:
-              controllerObjectName: TYPO3\Setup\Controller\.*
+            provider: 'FileBasedSimpleKeyProvider'
             providerOptions:
-              keyName: SetupKey
+              keyName: 'SetupKey'
+            requestPatterns:
+              controllerObjectName: "TYPO3\Setup\Controller\.*"
+            entryPoint: 'WebRedirect'
+            entryPointOptions:
+              uri: 'setup/login'
+
   Setup:
     stepOrder: ['database']
     steps:

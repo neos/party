@@ -1,0 +1,12 @@
+#                                                                        #
+# Security policy for the TYPO3.Setup package                            #
+#                                                                        #
+
+resources:
+  methods:
+    TYPO3_Setup_SetupController: "method(TYPO3\Setup\Controller\SetupController->.*Action())"
+
+acls:
+  Everybody:
+    methods:
+      TYPO3_Setup_SetupController: GRANT
