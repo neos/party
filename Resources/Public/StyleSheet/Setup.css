@@ -4,7 +4,10 @@ body {
 	font-size: 13px;
 	line-height: 18px;
 	color: #333;
-	padding-top: 40px;
+	padding: 40px 0;
+	background-image: url('../Images/TYPO3_logo.png');
+	background-repeat: no-repeat;
+	background-position: right top;
 }
 
 .container {
@@ -49,4 +52,25 @@ body {
 }
 .alert-Notice, .alert-Notice .alert-heading {
 	color: #3A87AD;
+}
+
+form {
+	margin: 0;
+}
+
+.form-navigation {
+	padding-top: 10px;
+}
+
+.form-navigation ul {
+	margin: 0;
+	float: right;
+}
+
+.form-navigation li {
+	list-style: none;
+}
+
+fieldset div.error {
+	margin-bottom: 10px;
 }
