@@ -45,5 +45,10 @@ interface StepInterface {
 	 */
 	public function postProcessFormValues(array $formValues);
 
+	/**
+	 * @return boolean
+	 */
+	public function isOptional();
+
 }
 ?>
