@@ -54,6 +54,10 @@ body {
 	color: #3A87AD;
 }
 
+p {
+	margin-bottom: 18px;
+}
+
 form {
 	margin: 0;
 }
@@ -83,3 +87,7 @@ legend + * {
 	-webkit-margin-top-collapse: separate;
 	margin-top: 20px;
 }​
+
+#finalStep .form-navigation {
+	display: none;
+}

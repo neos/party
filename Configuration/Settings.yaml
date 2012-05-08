@@ -24,9 +24,29 @@ TYPO3:
               uri: 'setup/login'
 
   Setup:
-    stepOrder: ['database']
+    stepOrder: ['database', 'final']
     steps:
       database:
         className: 'TYPO3\Setup\Step\DatabaseStep'
         requiredConditions:
           - className: 'TYPO3\Setup\Condition\PdoDriverCondition'
+      final:
+        className: 'TYPO3\Setup\Step\FinalStep'
+
+  Form:
+    presets:
+      setup:
+        title: 'Setup Elements'
+        parentPreset: 'default'
+        formElementTypes:
+          'TYPO3.Form:Form':
+            renderingOptions:
+              submitButtonLabel: 'Next'
+          'TYPO3.Setup:LinkElement':
+            superTypes: ['TYPO3.Form:ReadOnlyFormElement']
+            properties:
+              text: ''
+              class: 'btn'
+              href: ''
+            renderingOptions:
+              templatePathPattern: 'resource://TYPO3.Setup/Private/FormElements/Link.html'
