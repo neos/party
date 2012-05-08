@@ -15,7 +15,7 @@ namespace TYPO3\Party\Domain\Validator;
  * An electronic address validator
  *
  */
-class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractValidator {
+class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\GenericObjectValidator {
 
 	/**
 	 * @var \TYPO3\FLOW3\Validation\ValidatorResolver
@@ -43,6 +43,10 @@ class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\Abstr
 	 */
 	public function isValid($value) {
 		if ($value instanceof \TYPO3\Party\Domain\Model\ElectronicAddress) {
+			if ($this->isValidatedAlready($value)) {
+				return;
+			}
+
 			$addressValidator = $this->validatorResolver->createValidator($value->getType() . 'Address');
 			if ($addressValidator === NULL) {
 				$this->addError('No validator found for electronic address of type "' . $value->getType() . '".', 1268676030);
