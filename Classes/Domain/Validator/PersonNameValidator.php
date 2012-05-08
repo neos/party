@@ -27,10 +27,6 @@ class PersonNameValidator extends \TYPO3\FLOW3\Validation\Validator\GenericObjec
 	 */
 	public function isValid($value) {
 		if ($value instanceof \TYPO3\Party\Domain\Model\PersonName) {
-			if ($this->isValidatedAlready($value)) {
-				return;
-			}
-
 			if (strlen(trim($value->getFullName())) === 0) {
 				$this->addError('The person name cannot be empty.', 1268676765);
 			}
