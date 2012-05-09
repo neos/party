@@ -67,7 +67,6 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 
 		$databaseHost = $connectionSection->createElement('host', 'TYPO3.Form:SingleLineText');
 		$databaseHost->setLabel('DB Host');
-
 		$defaultHost = \TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.host');
 		if ($defaultHost === NULL) {
 			$defaultHost = '127.0.0.1';
@@ -107,7 +106,9 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$this->distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.host', $formValues['host']);
 		$this->configurationSource->save(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $this->distributionSettings);
 
-		// TODO is this the correct place to execute doctrine migrations?
-		$this->doctrineService->executeMigrations();
+		$databaseConnectionCondition = new \TYPO3\Setup\Condition\DatabaseConnectionCondition();
+		if ($databaseConnectionCondition->isMet()) {
+			$this->doctrineService->executeMigrations();
+		}
 	}
 }
