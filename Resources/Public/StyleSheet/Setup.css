@@ -74,3 +74,12 @@ form {
 fieldset div.error {
 	margin-bottom: 10px;
 }
+
+legend {
+	margin: 0;
+}
+
+legend + * {
+	-webkit-margin-top-collapse: separate;
+	margin-top: 20px;
+}​
