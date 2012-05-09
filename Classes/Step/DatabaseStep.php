@@ -41,7 +41,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$page1 = $formDefinition->createPage('page1');
 
 		$introduction = $page1->createElement('introduction', 'TYPO3.Form:StaticText');
-		$introduction->setProperty('text', 'Please enter Database details below:');
+		$introduction->setProperty('text', 'Please enter database details below:');
 
 		$connectionSection = $page1->createElement('connectionSection', 'TYPO3.Form:Section');
 		$connectionSection->setLabel('Connection');
