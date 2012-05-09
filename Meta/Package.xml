@@ -4,4 +4,9 @@
 	<version>1.1.0-dev</version>
 	<title>Party Information Framework</title>
 	<description>A PHP implementation of the OASIS Customer Information Quality (CIQ) XML Standard.</description>
+	<constraints>
+		<depends>
+			<package>TYPO3.FLOW3</package>
+		</depends>
+	</constraints>
 </package>
