@@ -11,6 +11,9 @@ namespace TYPO3\Setup\Step;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+/**
+ * A contract for setup steps.
+ */
 interface StepInterface {
 
 	/**
