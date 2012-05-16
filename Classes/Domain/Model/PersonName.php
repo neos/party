@@ -91,7 +91,7 @@ class PersonName {
 		);
 		$nameParts = array_map('trim', $nameParts);
 		$filledNameParts = array();
-		foreach($nameParts as $namePart) {
+		foreach ($nameParts as $namePart) {
 			if($namePart !== '') {
 				$filledNameParts[] = $namePart;
 			}
