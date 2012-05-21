@@ -38,7 +38,6 @@ class ElectronicAddress {
 	/**
 	 * @var string
 	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=255 })
-	 * @FLOW3\Identity
 	 */
 	protected $identifier;
 
@@ -46,7 +45,6 @@ class ElectronicAddress {
 	 * @var string
 	 * @FLOW3\Validate(type="Alphanumeric")
 	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
-	 * @FLOW3\Identity
 	 * @ORM\Column(length=20)
 	 */
 	protected $type;
@@ -55,7 +53,6 @@ class ElectronicAddress {
 	 * @var string
 	 * @FLOW3\Validate(type="Alphanumeric")
 	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
-	 * @FLOW3\Identity
 	 * @ORM\Column(name="usagetype", length=20)
 	 */
 	protected $usage;
