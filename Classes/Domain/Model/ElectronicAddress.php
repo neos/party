@@ -53,7 +53,7 @@ class ElectronicAddress {
 	 * @var string
 	 * @FLOW3\Validate(type="Alphanumeric")
 	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
-	 * @ORM\Column(name="usagetype", length=20)
+	 * @ORM\Column(name="usagetype", length=20, nullable=true)
 	 */
 	protected $usage;
 
