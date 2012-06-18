@@ -30,8 +30,6 @@ abstract class AbstractParty {
 
 	/**
 	 * Constructor
-	 *
-	 * @return void
 	 */
 	public function __construct() {
 		$this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
