@@ -15,26 +15,22 @@ namespace TYPO3\Party\Domain\Validator;
  * A validator for person names
  *
  */
-class PersonNameValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractValidator {
+class PersonNameValidator extends \TYPO3\FLOW3\Validation\Validator\GenericObjectValidator {
 
 	/**
 	 * Checks if the concatenated person name has at least one character.
 	 *
-	 * If at least one error occurred, the result is FALSE and any errors can
-	 * be retrieved through the getErrors() method.
+	 * Any errors can be retrieved through the getErrors() method.
 	 *
 	 * @param mixed $value The value that should be validated
-	 * @return boolean TRUE if the value is valid, FALSE if an error occured
+	 * @return void
 	 */
 	public function isValid($value) {
-		$this->errors = array();
 		if ($value instanceof \TYPO3\Party\Domain\Model\PersonName) {
-			if (strlen(trim($value->getFullName())) > 0) {
-				return TRUE;
+			if (strlen(trim($value->getFullName())) === 0) {
+				$this->addError('The person name cannot be empty.', 1268676765);
 			}
-			$this->addError('The person name cannot be empty.', 1268676765);
 		}
-		return FALSE;
 	}
 
 }

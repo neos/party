@@ -15,7 +15,7 @@ namespace TYPO3\Party\Domain\Validator;
  * An electronic address validator
  *
  */
-class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\AbstractValidator {
+class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\GenericObjectValidator {
 
 	/**
 	 * @var \TYPO3\FLOW3\Validation\ValidatorResolver
