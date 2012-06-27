@@ -86,7 +86,7 @@ legend {
 legend + * {
 	-webkit-margin-top-collapse: separate;
 	margin-top: 20px;
-}​
+}
 
 #finalStep .form-navigation {
 	display: none;
