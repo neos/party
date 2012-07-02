@@ -56,6 +56,7 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	/**
 	 * @param integer $step
 	 * @return void
+	 * @FLOW3\SkipCsrfProtection
 	 */
 	public function indexAction($step = 0) {
 		$this->currentStepIndex = $step;

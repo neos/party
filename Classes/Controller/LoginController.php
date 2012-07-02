@@ -60,7 +60,21 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 */
 	public function loginAction($step = 0) {
 		if ($this->fileBasedSimpleKeyService->keyExists($this->keyName) === FALSE) {
-			$this->view->assign('key', $this->fileBasedSimpleKeyService->generateKey($this->keyName));
+			$setupPassword = $this->fileBasedSimpleKeyService->generateKey($this->keyName);
+
+			$initialPasswordFileContents = 'The setup password is:' . PHP_EOL;
+			$initialPasswordFileContents .= PHP_EOL;
+			$initialPasswordFileContents .= $setupPassword . PHP_EOL;
+			$initialPasswordFileContents .= PHP_EOL;
+			$initialPasswordFileContents .= 'After you successfully logged in, this file is automatically deleted for security reasons.' . PHP_EOL;
+			$initialPasswordFileContents .= 'Make sure to save the setup password for later use.' . PHP_EOL;
+
+			$result = file_put_contents($this->settings['initialPasswordFile'], $initialPasswordFileContents);
+			if ($result === FALSE) {
+				$this->addFlashMessage('It was not possible to save the initial setup password to file "%s". Check file permissions and re-try.', 'Password Generation Failure', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR, array($this->settings['initialPasswordFile']));
+			} else {
+				$this->view->assign('initialPasswordFile', $this->settings['initialPasswordFile']);
+			}
 		}
 		$this->view->assign('step', $step);
 	}
@@ -72,12 +86,15 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	public function authenticateAction($step) {
 		try {
 			$this->authenticationManager->authenticate();
+
+			if (file_exists($this->settings['initialPasswordFile'])) {
+				unlink($this->settings['initialPasswordFile']);
+			}
 			$this->redirect('index', 'Setup', NULL, array('step' => $step));
 		} catch (\TYPO3\FLOW3\Security\Exception\AuthenticationRequiredException $exception) {
+			$this->addFlashMessage('Sorry, you were not able to authenticate.', 'Authentication error', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR);
+			$this->redirect('login', NULL, NULL, array('step' => $step));
 		}
-
-		$this->addFlashMessage('Sorry, you were not able to authenticate.', 'Authentication error', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR);
-		$this->redirect('login', NULL, NULL, array('step' => $step));
 	}
 
 	/**

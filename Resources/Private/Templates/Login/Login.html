@@ -4,6 +4,10 @@
 	<div class="row">
 		<div class="login-form">
 			<h2>TYPO3 Setup</h2>
+
+			<f:if condition="{initialPasswordFile}">
+				<div class="alert alert-info"><strong>Initial Password:</strong> The initial password for accessing the setup can be found at:<br /><code>{initialPasswordFile}</code></div>
+			</f:if>
 			<f:form action="authenticate">
 				<fieldset>
 					<div class="clearfix">
@@ -14,9 +18,6 @@
 					<f:form.submit class="typo3-setup-login-button btn btn-primary" value="Login" />
 				</fieldset>
 			</f:form>
-			<f:if condition="{key}">
-				<div class="alert alert-info">{key}</div>
-			</f:if>
 		</div>
 	</div>
 </f:section>
