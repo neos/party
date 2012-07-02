@@ -2,9 +2,11 @@
 # Default routes configuration for the TYPO3.Setup package               #
 #                                                                        #
 
+# While the setup is active on "setup/index", the URI "setup" is directly handled
+# by the request handler to display a first screen and a loading indicator.
 -
   name: 'Setup'
-  uriPattern: 'setup'
+  uriPattern: 'setup/index'
   defaults:
     '@package':    'TYPO3.Setup'
     '@controller': 'Setup'

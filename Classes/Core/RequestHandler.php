@@ -51,6 +51,8 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 		$this->request = Request::createFromEnvironment();
 		$this->response = new Response();
 
+		$this->checkBasicRequirementsAndDisplayLoadingScreen();
+
 		$this->boot();
 		$this->resolveDependencies();
 		$this->request->injectSettings($this->settings);
@@ -72,5 +74,23 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 		$this->exit->__invoke();
 	}
 
+	/**
+	 * Check the basic requirements, and display a loading screen on initial request.
+	 *
+	 * @return void
+	 */
+	protected function checkBasicRequirementsAndDisplayLoadingScreen() {
+		$basicRequirements = new BasicRequirements();
+		$messageRenderer = new MessageRenderer($this->bootstrap);
+		$error = $basicRequirements->findError();
+		if ($error !== NULL) {
+			$messageRenderer->showMessage($error);
+		}
+		$currentUri = substr($this->request->getUri(), strlen($this->request->getBaseUri()));
+		if ($currentUri === 'setup' || $currentUri === 'setup/') {
+			$redirectUri = ($currentUri === 'setup/' ? 'index': 'setup/index');
+			$messageRenderer->showMessage(new \TYPO3\FLOW3\Error\Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as FLOW3 needs to build up various caches.', 0, array(), 'Your environment is suited for installing FLOW3!'), '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
+		}
+	}
 }
 ?>
