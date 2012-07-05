@@ -59,7 +59,7 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 * @return void
 	 */
 	public function loginAction($step = 0) {
-		if ($this->fileBasedSimpleKeyService->keyExists($this->keyName) === FALSE) {
+		if ($this->fileBasedSimpleKeyService->keyExists($this->keyName) === FALSE || file_exists($this->settings['initialPasswordFile'])) {
 			$setupPassword = $this->fileBasedSimpleKeyService->generateKey($this->keyName);
 
 			$initialPasswordFileContents = 'The setup password is:' . PHP_EOL;
