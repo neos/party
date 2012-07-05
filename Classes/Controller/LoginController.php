@@ -75,6 +75,9 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 			} else {
 				$this->view->assign('initialPasswordFile', $this->settings['initialPasswordFile']);
 			}
+		} else {
+			$existingPasswordFile = \TYPO3\FLOW3\Utility\Files::concatenatePaths(array('.../Data/Persistent', 'FileBasedSimpleKeyService', $this->keyName));
+			$this->view->assign('existingPasswordFile', $existingPasswordFile);
 		}
 		$this->view->assign('step', $step);
 	}

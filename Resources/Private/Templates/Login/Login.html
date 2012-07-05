@@ -6,7 +6,12 @@
 			<h2>TYPO3 Setup</h2>
 
 			<f:if condition="{initialPasswordFile}">
-				<div class="alert alert-info"><strong>Initial Password:</strong> The initial password for accessing the setup can be found at:<br /><code>{initialPasswordFile}</code></div>
+				<f:then>
+					<div class="alert alert-info"><strong>Initial Password:</strong> The initial password for accessing the setup can be found at:<br /><code>{initialPasswordFile}</code></div>
+				</f:then>
+				<f:else>
+					<div class="alert alert-info">If you have forgotten your password, delete the file<br /><code>{existingPasswordFile}</code><br />and reload this page to generate a new password.</div>
+				</f:else>
 			</f:if>
 			<f:form action="authenticate">
 				<fieldset>
