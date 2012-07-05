@@ -67,7 +67,7 @@ class BasicRequirements {
 	 *
 	 * @var array
 	 */
-	protected $requiredWritableFolders = array('Configuration', 'Data', 'Packages', 'Web');
+	protected $requiredWritableFolders = array('Configuration', 'Data', 'Packages', 'Web/_Resources');
 
 	/**
 	 * Ensure that the environment and file permission requirements are fulfilled.
