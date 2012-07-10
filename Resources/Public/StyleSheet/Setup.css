@@ -1,33 +1,14 @@
 body {
-	background-color: #eee;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	line-height: 18px;
-	color: #333;
-	padding: 40px 0;
-	background-image: url('../Images/TYPO3_logo.png');
-	background-repeat: no-repeat;
-	background-position: right top;
+	background: #eee url('../Images/TYPO3_logo.png') right top no-repeat;
 }
 
-.container {
-	width: 300px;
+legend {
+	font-size: 15px;
+	font-weight: bold;
 }
 
-.container > .content {
-	background-color: #fff;
-	padding: 20px;
-	margin: 0 -20px;
-	-webkit-border-radius: 10px 10px 10px 10px;
-	   -moz-border-radius: 10px 10px 10px 10px;
-	        border-radius: 10px 10px 10px 10px;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-	   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-	        box-shadow: 0 1px 2px rgba(0,0,0,.15);
-}
-
-.login-form {
-	margin-left: 65px;
+h3 {
+	margin-bottom: 10px;
 }
 
 .alert-OK {
@@ -54,40 +35,21 @@ body {
 	color: #3A87AD;
 }
 
-p {
-	margin-bottom: 18px;
+.loading {
+	background: transparent url('../Images/loading.gif') 0 0 no-repeat;
+	width: 20px;
+	height: 20px;
+}
+div.error, .error .help-inline {
+	color: #B94A48;
+}
+input.error {
+	border-color: #B94A48;
+}
+div.success {
+	color: #468847;
 }
 
-form {
-	margin: 0;
-}
-
-.form-navigation {
-	padding-top: 10px;
-}
-
-.form-navigation ul {
-	margin: 0;
-	float: right;
-}
-
-.form-navigation li {
-	list-style: none;
-}
-
-fieldset div.error {
-	margin-bottom: 10px;
-}
-
-legend {
-	margin: 0;
-}
-
-legend + * {
-	-webkit-margin-top-collapse: separate;
-	margin-top: 20px;
-}
-
-#finalStep .form-navigation {
+#finalStep .modal-footer {
 	display: none;
 }

@@ -50,7 +50,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	/**
 	 * @var string
 	 */
-	protected $presetName = 'setup';
+	protected $presetName = 'typo3.setup';
 
 	/**
 	 * @return void

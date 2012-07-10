@@ -67,17 +67,15 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 			$controller->postProcessStep($finisherContext->getFormRuntime()->getFormState()->getFormValues(), $currentStep);
 		};
 		$formDefinition = $currentStep->getFormDefinition($callback);
+		if ($this->currentStepIndex > 0) {
+			$formDefinition->setRenderingOption('previousStepUri', $this->uriBuilder->uriFor('index', array('step' => $this->currentStepIndex - 1)));
+		}
+		if ($currentStep->isOptional()) {
+			$formDefinition->setRenderingOption('nextStepUri', $this->uriBuilder->uriFor('index', array('step' => $this->currentStepIndex + 1)));
+		}
 		$response = new \TYPO3\FLOW3\Http\Response($this->response);
 		$form = $formDefinition->bind($this->request, $response);
-		$this->view->assignMultiple(array(
-			'form' => $form->render(),
-			'step' => $this->currentStepIndex,
-			'nextStep' => $this->currentStepIndex + 1,
-			'optional' => $currentStep->isOptional()
-		));
-		if ($this->currentStepIndex > 0) {
-			$this->view->assign('previousStep', $this->currentStepIndex - 1);
-		}
+		$this->view->assign('form', $form->render());
 	}
 
 	/**

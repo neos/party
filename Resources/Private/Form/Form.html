@@ -1,0 +1,30 @@
+{namespace form=TYPO3\Form\ViewHelpers}
+<form:form object="{form}" method="post" id="{form.identifier}" enctype="multipart/form-data">
+	<div class="modal-body">
+		<form:renderRenderable renderable="{form.currentPage}" />
+	</div>
+	<div class="modal-footer">
+		<f:if condition="{form.renderingOptions.previousStepUri}">
+			<a href="{form.renderingOptions.previousStepUri}" class="btn pull-left">
+				<i class="icon-chevron-left"></i> Back
+			</a>
+		</f:if>
+		<f:if condition="{form.renderingOptions.nextStepUri}">
+			<a href="{form.renderingOptions.nextStepUri}" class="btn">
+				Skip <i class="icon-share-alt"></i>
+			</a>
+		</f:if>
+		<f:if condition="{form.nextPage}">
+			<f:then>
+				<f:form.button name="__currentPage" value="{form.nextPage.index}" class="btn btn-primary">
+					Next <i class="icon-chevron-right icon-white"></i>
+				</f:form.button>
+			</f:then>
+			<f:else>
+				<f:form.button name="__currentPage" value="{form.pages -> f:count()}" class="btn btn-primary">
+					Next <i class="icon-chevron-right icon-white"></i>
+				</f:form.button>
+			</f:else>
+		</f:if>
+	</div>
+</form:form>

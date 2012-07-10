@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html version="HTML+RDFa 1.1">
+<html lang="en">
 	<head>
+		<meta charset="utf-8">
 		<f:base/>
-		<meta charset="UTF-8" />
 		<title>TYPO3.Setup</title>
 		<link rel="stylesheet" href="{f:uri.resource(path: '2/css/bootstrap.min.css', package: 'Twitter.Bootstrap')}" />
 		<link rel="stylesheet" href="{f:uri.resource(path: 'StyleSheet/Setup.css')}" />
-		<script src="{f:uri.resource(path: 'JavaScript/jquery-1.7.1.min.js')}"></script>
-		<script src="{f:uri.resource(path: '2/js/bootstrap.min.js', package: 'Twitter.Bootstrap')}"></script>
 	</head>
 	<body>
 		<div class="container">
-			<div class="content clearfix">
-				<f:render partial="Flashmessages" />
+			<div class="modal">
 				<f:render section="content" />
 			</div>
 		</div>
+		<script src="{f:uri.resource(path: 'JavaScript/jquery-1.7.1.min.js')}"></script>
+		<script src="{f:uri.resource(path: '2/js/bootstrap.min.js', package: 'Twitter.Bootstrap')}"></script>
 	</body>
 </html>

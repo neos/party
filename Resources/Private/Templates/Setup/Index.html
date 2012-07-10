@@ -2,31 +2,13 @@
 <f:layout name="Default" />
 
 <f:section name="content">
-	<div class="accordion clearfix">
-		<f:if condition="{step} != 0">
-			<f:if condition="{form}">
-				<f:then>
-					<f:link.action arguments="{step: previousStep}" class="btn">
-						Back
-					</f:link.action>
-				</f:then>
-				<f:else>
-					<f:link.action arguments="{step: step}" class="btn">
-						<i class="icon-refresh"></i>
-						Refresh
-					</f:link.action>
-				</f:else>
-			</f:if>
-		</f:if>
-		<f:link.action controller="Login" action="logout" class="typo3-setup-logout-button btn btn-danger pull-right">
-			<i class="icon-off icon-white"></i>
+	<div class="modal-header">
+		<f:link.action controller="Login" action="logout" class="btn pull-right">
+			<i class="icon-off"></i>
 			Logout
 		</f:link.action>
+		<h3>TYPO3 Setup</h3>
+		<f:render partial="Flashmessages" />
 	</div>
 	{form -> f:format.raw()}
-	<f:if condition="{optional}">
-		<f:link.action arguments="{step: nextStep}" class="btn btn-inverse">
-			Skip
-		</f:link.action>
-	</f:if>
 </f:section>

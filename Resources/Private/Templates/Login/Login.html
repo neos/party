@@ -1,28 +1,33 @@
 <f:layout name="Default" />
 
 <f:section name="content">
-	<div class="row">
-		<div class="login-form">
-			<h2>TYPO3 Setup</h2>
-
-			<f:if condition="{initialPasswordFile}">
-				<f:then>
-					<div class="alert alert-info"><strong>Initial Password:</strong> The initial password for accessing the setup can be found at:<br /><code>{initialPasswordFile}</code></div>
-				</f:then>
-				<f:else>
-					<div class="alert alert-info">If you have forgotten your password, delete the file<br /><code>{existingPasswordFile}</code><br />and reload this page to generate a new password.</div>
-				</f:else>
-			</f:if>
-			<f:form action="authenticate">
-				<fieldset>
-					<div class="clearfix">
-						<label>Password</label>
-						<f:form.textfield class="active" type="password" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][PasswordToken][password]" additionalAttributes="{autofocus: 'autofocus'}" />
+	<div class="modal-header">
+		<h3>TYPO3 Setup / Login</h3>
+		<f:render partial="Flashmessages" />
+	</div>
+	<div class="modal-body">
+		<f:form action="authenticate" class="form-horizontal">
+			<fieldset>
+				<legend>Enter the setup password to continue:</legend>
+				<div class="control-group">
+					<label class="control-label" for="password">Password</label>
+					<div class="controls">
+						<f:form.textfield class="active" id="password" type="password" name="__authentication[TYPO3][FLOW3][Security][Authentication][Token][PasswordToken][password]" additionalAttributes="{autofocus: 'autofocus'}" />
 						<f:form.hidden name="step" value="{step}" />
+						<f:form.button class="btn btn-primary" type="submit">
+							<i class="icon-lock icon-white"></i> Login
+						</f:form.button>
 					</div>
-					<f:form.submit class="typo3-setup-login-button btn btn-primary" value="Login" />
-				</fieldset>
-			</f:form>
-		</div>
+				</div>
+			</fieldset>
+		</f:form>
+		<f:if condition="{initialPasswordFile}">
+			<f:then>
+				<div class="alert alert-info"><strong>Initial Password:</strong> The initial password for accessing the setup can be found at:<br /><code>{initialPasswordFile}</code></div>
+			</f:then>
+			<f:else>
+				<div class="alert alert-info">If you have forgotten your password, delete the file<br /><code>{existingPasswordFile}</code><br />and reload this page to generate a new password.</div>
+			</f:else>
+		</f:if>
 	</div>
 </f:section>

@@ -36,13 +36,13 @@ TYPO3:
 
   Form:
     presets:
-      setup:
+      'typo3.setup':
         title: 'Setup Elements'
         parentPreset: 'default'
         formElementTypes:
           'TYPO3.Form:Form':
             renderingOptions:
-              submitButtonLabel: 'Next'
+              templatePathPattern: 'resource://TYPO3.Setup/Private/Form/{@type}.html'
           'TYPO3.Setup:LinkElement':
             superTypes: ['TYPO3.Form:ReadOnlyFormElement']
             properties:
