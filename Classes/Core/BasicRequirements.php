@@ -112,19 +112,19 @@ class BasicRequirements {
 			return new Error('FLOW3 requires PHP version %s or lower but your installed version is currently %s.', 1172215792, array(\TYPO3\FLOW3\Core\Bootstrap::MAXIMUM_PHP_VERSION, phpversion()));
 		}
 		if (version_compare(PHP_VERSION, '6.0.0', '<') && !extension_loaded('mbstring')) {
-			return new Error('FLOW3 requires the PHP extension "mbstring" for PHP versions below 6.0.0', 1207148809);
+			return new Error('FLOW3 requires the PHP extension "mbstring" to be available for PHP versions below 6.0.0', 1207148809);
 		}
 		if (DIRECTORY_SEPARATOR !== '/' && PHP_WINDOWS_VERSION_MAJOR < 6) {
-			return new Error('FLOW3 does not support Windows versions older than Windows Vista or Windows Server 2008.', 1312463704);
+			return new Error('FLOW3 does not support Windows versions older than Windows Vista or Windows Server 2008, because they lack proper support for symbolic links.', 1312463704);
 		}
 		foreach ($this->requiredExtensions as $extension => $errorKey) {
 			if (!extension_loaded($extension)) {
-				return new Error('FLOW3 requires the PHP extension "%s"', $errorKey, array($extension));
+				return new Error('FLOW3 requires the PHP extension "%s" to be available.', $errorKey, array($extension));
 			}
 		}
 		foreach ($this->requiredFunctions as $function => $errorKey) {
 			if (!function_exists($function)) {
-				return new Error('FLOW3 requires the PHP function "%s"', $errorKey, array($function));
+				return new Error('FLOW3 requires the PHP function "%s" to be available.', $errorKey, array($function));
 			}
 		}
 
@@ -166,11 +166,11 @@ class BasicRequirements {
 				try {
 					\TYPO3\FLOW3\Utility\Files::createDirectoryRecursively($folderPath);
 				} catch(\TYPO3\FLOW3\Utility\Exception $e) {
-					return new Error('Unable to create folder "%s". Check your file permissions.', 1330363887, array($folderPath));
+					return new Error('Unable to create folder "%s". Check your file permissions (did you use flow3:core:setfilepermissions?).', 1330363887, array($folderPath));
 				}
 			}
 			if (!is_writable($folderPath)) {
-				return new Error('The folder "%s" is not writable.', 1330372964, array($folderPath));
+				return new Error('The folder "%s" is not writable. Check your file permissions (did you use flow3:core:setfilepermissions?)', 1330372964, array($folderPath));
 			}
 		}
 		return NULL;
