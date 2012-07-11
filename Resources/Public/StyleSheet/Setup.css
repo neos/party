@@ -1,14 +1,19 @@
 body {
 	background: #eee url('../Images/TYPO3_logo.png') right top no-repeat;
+	margin: 2em;
+}
+
+code {
+	word-break: break-all;
+}
+
+form {
+	margin: 0;
 }
 
 legend {
 	font-size: 15px;
 	font-weight: bold;
-}
-
-h3 {
-	margin-bottom: 10px;
 }
 
 .alert-OK {

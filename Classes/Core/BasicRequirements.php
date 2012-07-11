@@ -77,12 +77,12 @@ class BasicRequirements {
 	public function findError() {
 		$requiredEnvironmentError = $this->ensureRequiredEnvironment();
 		if ($requiredEnvironmentError !== NULL) {
-			return $this->setErrorTitle($requiredEnvironmentError, 'Environment requirements not fulfilled:');
+			return $this->setErrorTitle($requiredEnvironmentError, 'Environment requirements not fulfilled');
 		}
 
 		$filePermissionsError = $this->checkFilePermissions();
 		if ($filePermissionsError !== NULL) {
-			return $this->setErrorTitle($filePermissionsError, 'Error with file system permissions:');
+			return $this->setErrorTitle($filePermissionsError, 'Error with file system permissions');
 		}
 
 		return NULL;
@@ -92,7 +92,7 @@ class BasicRequirements {
 	 * return a new error object which has all options like $error except the $title overridden.
 	 *
 	 * @param \TYPO3\FLOW3\Error\Error $error
-	 * @param type $title
+	 * @param string $title
 	 * @return \TYPO3\FLOW3\Error\Error
 	 */
 	protected function setErrorTitle(Error $error, $title) {

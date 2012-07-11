@@ -118,11 +118,7 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 		$configurationSource = new \TYPO3\FLOW3\Configuration\Source\YamlSource();
 		$distributionSettings = $configurationSource->load(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
 		if (isset($distributionSettings['TYPO3']['FLOW3']['core']['phpBinaryPathAndFilename'])) {
-			if ($this->checkPhpBinary($distributionSettings['TYPO3']['FLOW3']['core']['phpBinaryPathAndFilename']) === TRUE) {
-				return TRUE;
-			} else {
-				return new \TYPO3\FLOW3\Error\Error('The specified path to your php binary (see Configuration/Settings.yaml) does not point to the same version as is currently running.', 1341839377);
-			}
+			return $this->checkPhpBinary($distributionSettings['TYPO3']['FLOW3']['core']['phpBinaryPathAndFilename']);
 		}
 		$phpBinaryPathAndFilename = $this->detectPhpBinaryPathAndFilename();
 		if ($phpBinaryPathAndFilename !== NULL) {
@@ -136,7 +132,7 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 			}
 			return TRUE;
 		} else {
-			return new \TYPO3\FLOW3\Error\Error('The path to your php binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159);
+			return new \TYPO3\FLOW3\Error\Error('The path to your php binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
 		}
 	}
 
@@ -144,16 +140,21 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 	 * Checks if the given PHP binary is executable and of the same version as the currently running one.
 	 *
 	 * @param string $phpBinaryPathAndFilename
-	 * @return boolean
+	 * @return boolean|\TYPO3\FLOW3\Error\Error
 	 */
 	protected function checkPhpBinary($phpBinaryPathAndFilename) {
+		$phpVersion = NULL;
 		if (file_exists($phpBinaryPathAndFilename) && is_file($phpBinaryPathAndFilename)) {
 			$phpVersion = trim(exec(escapeshellcmd($phpBinaryPathAndFilename) . ' -r "echo PHP_VERSION;"'));
 			if ($phpVersion === PHP_VERSION) {
 				return TRUE;
 			}
 		}
-		return FALSE;
+		if ($phpVersion === NULL) {
+			return new \TYPO3\FLOW3\Error\Error('The specified path to your php binary (see Configuration/Settings.yaml) does not point to a PHP binary.', 1341839376, array(), 'Environment requirements not fulfilled');
+		} else {
+			return new \TYPO3\FLOW3\Error\Error('The specified path to your php binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not the same version as is currently running ("%s").', 1341839377, array($phpVersion, PHP_VERSION), 'Environment requirements not fulfilled');
+		}
 	}
 
 	/**
@@ -173,7 +174,7 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 				continue;
 			}
 			$phpBinaryPathAndFilename = $path . '/php' . (DIRECTORY_SEPARATOR !== '/' ? '.exe' : '');
-			if ($this->checkPhpBinary($phpBinaryPathAndFilename)) {
+			if ($this->checkPhpBinary($phpBinaryPathAndFilename) === TRUE) {
 				return $phpBinaryPathAndFilename;
 			}
 		}

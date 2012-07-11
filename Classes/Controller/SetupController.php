@@ -64,7 +64,7 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 		$currentStep = $this->instantiateCurrentStep();
 		$controller = $this;
 		$callback = function(\TYPO3\Form\Core\Model\FinisherContext $finisherContext) use ($controller, $currentStep) {
-			$controller->postProcessStep($finisherContext->getFormRuntime()->getFormState()->getFormValues(), $currentStep);
+			$controller->postProcessStep($finisherContext->getFormValues(), $currentStep);
 		};
 		$formDefinition = $currentStep->getFormDefinition($callback);
 		if ($this->currentStepIndex > 0) {

@@ -52,14 +52,14 @@ class MessageRenderer {
 		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\FLOW3\Package\PackageManagerInterface');
 
 		$css = '';
+		if ($packageManager->isPackageAvailable('Twitter.Bootstrap')) {
+			$css .= file_get_contents($packageManager->getPackage('Twitter.Bootstrap')->getResourcesPath() . 'Public/2/css/bootstrap.min.css');
+		}
 		if ($packageManager->isPackageAvailable('TYPO3.Setup')) {
 			$css .= file_get_contents($packageManager->getPackage('TYPO3.Setup')->getResourcesPath() . 'Public/StyleSheet/Setup.css');
 
 			$logoImage = file_get_contents($packageManager->getPackage('TYPO3.Setup')->getResourcesPath() . 'Public/Images/TYPO3_logo.png');
 			$css = str_replace('url(\'../Images/TYPO3_logo.png\')', 'url(data:image/png;base64,'. base64_encode($logoImage) .')', $css);
-		}
-		if ($packageManager->isPackageAvailable('Twitter.Bootstrap')) {
-			$css .= file_get_contents($packageManager->getPackage('Twitter.Bootstrap')->getResourcesPath() . 'Public/2/css/bootstrap.min.css');
 		}
 
 		echo '<html>';
@@ -90,10 +90,17 @@ class MessageRenderer {
 
 
 		echo sprintf('
-			<h1>%s</h1>
-			<br />
-			<div class="alert alert-%s">
-				%s %s
+			<div class="container">
+				<div class="modal">
+					<div class="modal-header">
+						<h3>%s</h3>
+					</div>
+					<div class="modal-body">
+						<div class="alert alert-%s">
+							%s %s
+						</div>
+					</div>
+				</div>
 			</div>
 			', $message->getTitle(), $severity, $message->render(), ($message->getSeverity() !== Message::SEVERITY_OK ? '(#' . $message->getCode() . ')' : ''));
 		echo '</body></html>';
