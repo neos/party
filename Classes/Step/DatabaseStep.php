@@ -26,12 +26,6 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	protected $configurationSource;
 
 	/**
-	 * @var \TYPO3\FLOW3\Persistence\Doctrine\Service
-	 * @FLOW3\Inject
-	 */
-	protected $doctrineService;
-
-	/**
 	 * Returns the form definitions for the step
 	 *
 	 * @param \TYPO3\Form\Core\Model\FormDefinition $formDefinition
@@ -55,16 +49,6 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$databasePassword->setLabel('DB Password');
 		$databasePassword->setDefaultValue(\TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.password'));
 
-		$databaseConnectionCondition = new \TYPO3\Setup\Condition\DatabaseConnectionCondition();
-		$databaseConnection = $page1->createElement('databaseConnection', 'TYPO3.Form:StaticText');
-		if ($databaseConnectionCondition->isMet()) {
-			$databaseConnection->setProperty('text', 'Database connection established');
-			$databaseConnection->setProperty('class', 'alert alert-success');
-		} else {
-			$databaseConnection->setProperty('text', 'Database connection not established');
-			$databaseConnection->setProperty('class', 'alert alert-error');
-		}
-
 		$databaseHost = $connectionSection->createElement('host', 'TYPO3.Form:SingleLineText');
 		$databaseHost->setLabel('DB Host');
 		$defaultHost = \TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.host');
@@ -77,19 +61,12 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$databaseSection = $page1->createElement('databaseSection', 'TYPO3.Form:Section');
 		$databaseSection->setLabel('Database');
 
-		$dbName = \TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.dbname');
-		if ($databaseConnectionCondition->isMet()) {
-			$settings = $this->configurationManager->getConfiguration(\TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.FLOW3');
-			$connection = \Doctrine\DBAL\DriverManager::getConnection($settings['persistence']['backendOptions']);
-			$databases = $connection->getSchemaManager()->listDatabases();
-			$databaseName = $page1->createElement('dbname', 'TYPO3.Form:SingleSelectDropdown');
-			$databaseName->setProperty('options', array_combine($databases, $databases));
-			$databaseName->setDefaultValue($dbName);
-		} else {
-			$databaseName = $databaseSection->createElement('dbname', 'TYPO3.Form:SingleLineText');
-			$databaseName->setDefaultValue($dbName);
-		}
+		$databaseName = $databaseSection->createElement('dbname', 'TYPO3.Setup:DatabaseSelector');
 		$databaseName->setLabel('DB Name');
+		$databaseName->setProperty('userFieldId', $databaseUser->getUniqueIdentifier());
+		$databaseName->setProperty('passwordFieldId', $databasePassword->getUniqueIdentifier());
+		$databaseName->setProperty('hostFieldId', $databaseHost->getUniqueIdentifier());
+		$databaseName->setDefaultValue(\TYPO3\FLOW3\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.dbname'));
 		$databaseName->addValidator(new \TYPO3\FLOW3\Validation\Validator\NotEmptyValidator());
 	}
 
@@ -106,9 +83,53 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$this->distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.FLOW3.persistence.backendOptions.host', $formValues['host']);
 		$this->configurationSource->save(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $this->distributionSettings);
 
-		$databaseConnectionCondition = new \TYPO3\Setup\Condition\DatabaseConnectionCondition();
-		if ($databaseConnectionCondition->isMet()) {
-			$this->doctrineService->executeMigrations();
+		$this->configurationManager->flushConfigurationCache();
+
+		$settings = $this->configurationManager->getConfiguration(\TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.FLOW3');
+		$connectionSettings = $settings['persistence']['backendOptions'];
+		$connectionEstablished = $this->connectToDatabase($connectionSettings);
+		if ($connectionEstablished !== TRUE) {
+			$this->createDatabase($connectionSettings, $formValues['dbname']);
+			$connectionEstablished = $this->connectToDatabase($connectionSettings);
 		}
+
+		if ($connectionEstablished) {
+			\TYPO3\FLOW3\Core\Booting\Scripts::executeCommand('typo3.flow3:doctrine:migrate', $settings, FALSE);
+		}
+	}
+
+	/**
+	 * Tries to connect to the database using the specified $connectionSettings
+	 *
+	 * @param array $connectionSettings array in the format array('user' => 'dbuser', 'password' => 'dbpassword', 'host' => 'dbhost', 'dbname' => 'dbname')
+	 * @return boolean TRUE if the connection could be established, otherwise FALSE
+	 */
+	protected function connectToDatabase(array $connectionSettings) {
+		$connection = \Doctrine\DBAL\DriverManager::getConnection($connectionSettings);
+		try {
+			$connection->connect();
+		} catch(\PDOException $e) {
+		}
+		return $connection->isConnected();
+	}
+
+	/**
+	 * Connects to the database using the specified $connectionSettings
+	 * and tries to create a database named $databaseName.
+	 *
+	 * @param array $connectionSettings array in the format array('user' => 'dbuser', 'password' => 'dbpassword', 'host' => 'dbhost', 'dbname' => 'dbname')
+	 * @param string $databaseName name of the database to create
+	 * @return boolean TRUE if the database could be created, otherwise FALSE
+	 */
+	protected function createDatabase(array $connectionSettings, $databaseName) {
+		unset($connectionSettings['dbname']);
+		$connection = \Doctrine\DBAL\DriverManager::getConnection($connectionSettings);
+		try {
+			$connection->getSchemaManager()->createDatabase($databaseName);
+			$connection->close();
+			return TRUE;
+		} catch(\PDOException $e) {
+		}
+		return FALSE;
 	}
 }

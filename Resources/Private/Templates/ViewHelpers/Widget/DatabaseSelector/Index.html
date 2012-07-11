@@ -1,0 +1,102 @@
+<script>
+(function($) {
+	$(function() {
+		var xhr,
+			dbNameDropdownField = $('#{dbNameDropdownFieldId}'),
+			dbNameTextField = $('#{dbNameTextFieldId}'),
+			userField = $('#{userFieldId}'),
+			passwordField = $('#{passwordFieldId}'),
+			hostField = $('#{hostFieldId}'),
+			statusContainer = $('#{statusContainerId}'),
+			ajaxEndpoint = "{f:widget.uri(action:'checkConnection', ajax: 1, includeWidgetContext: 1)}";
+
+		/* <![CDATA[ */
+
+		var fillDatabaseSelector = function(databases) {
+			dbNameDropdownField.html('<option value=""></option><option value="__new__">[New Database]</option>');
+			$.each(databases, function(index, databaseName) {
+				dbNameDropdownField
+					.append($('<option></option>')
+					.attr('value', databaseName)
+					.text(databaseName));
+			});
+			dbNameDropdownField.val(dbNameTextField.val());
+		};
+
+		var enableDatabaseSelector = function() {
+			dbNameTextField.hide().attr('disabled', true);
+			dbNameDropdownField.show().attr('disabled', false);
+		};
+
+		var disableDatabaseSelector = function() {
+			dbNameDropdownField.hide().attr('disabled', true);
+			dbNameTextField.show().attr('disabled', false);
+		};
+
+		var checkDatabaseConnection = function() {
+			if (xhr && xhr.readyState !== 4) {
+				xhr.abort();
+			}
+			statusContainer.removeClass('success error').addClass('loading').text('');
+			dbNameDropdownField.hide();
+			dbNameTextField.hide();
+			xhr = $.ajax({
+				url: ajaxEndpoint,
+				data: {
+					user: userField.val(),
+					password: passwordField.val(),
+					host: hostField.val()
+				},
+				dataType: 'json',
+				cache: false
+			}).done(function(result) {
+				statusContainer.removeClass('loading').attr('title', result.errorMessage);
+				if (result.success) {
+					statusContainer.addClass('success').text('Connection established');
+					fillDatabaseSelector(result.databases);
+					enableDatabaseSelector();
+				} else {
+					statusContainer.addClass('error').text('Could not connect to database');
+					disableDatabaseSelector();
+				}
+			}).error(function() {
+				statusContainer.removeClass('loading').addClass('error').text('Unexpected error');
+				disableDatabaseSelector();
+			});
+		};
+
+		var detectChanges = function(selector, callback) {
+			var timeout;
+			selector.bind('input propertychange', function() {
+				if (window.event && event.type === 'propertychange' && event.propertyName !== 'value') {
+					return;
+				}
+				if (xhr && xhr.readyState !== 4) {
+					xhr.abort();
+				}
+
+				window.clearTimeout(timeout);
+				timeout = setTimeout(function() {
+					callback.apply(this);
+				}, 750);
+			});
+		};
+
+		/* ]]> */
+
+		detectChanges($('#{userFieldId}, #{passwordFieldId}, #{hostFieldId}'), checkDatabaseConnection);
+		dbNameDropdownField.change(function(event, target) {
+			if ($(this).val() === '__new__') {
+				disableDatabaseSelector();
+				dbNameTextField.focus();
+				dbNameTextField.blur(function() {
+					if ($(this).val() === '') {
+						enableDatabaseSelector();
+					}
+				});
+			}
+		});
+		checkDatabaseConnection();
+	});
+})(jQuery);
+</script>

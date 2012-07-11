@@ -1,0 +1,8 @@
+{namespace setup=TYPO3\Setup\ViewHelpers}
+<f:layout name="TYPO3.Form:Field" />
+<f:section name="field">
+	<div class="status" id="{element.uniqueIdentifier}-status"></div>
+	<f:form.select property="{element.identifier}" id="{element.uniqueIdentifier}-dropdown" options="{element.properties.options}" class="xlarge" errorClass="{element.properties.elementErrorClassAttribute}" disabled="true" style="display: none" />
+	<f:form.textfield property="{element.identifier}" id="{element.uniqueIdentifier}" class="{element.properties.elementClassAttribute}" placeholder="{element.properties.placeholder}" errorClass="{element.properties.elementErrorClassAttribute}" />
+	<setup:widget.databaseSelector userFieldId="{element.properties.userFieldId}" passwordFieldId="{element.properties.passwordFieldId}" hostFieldId="{element.properties.hostFieldId}" dbNameTextFieldId="{element.uniqueIdentifier}" dbNameDropdownFieldId="{element.uniqueIdentifier}-dropdown" statusContainerId="{element.uniqueIdentifier}-status" />
+</f:section>

@@ -49,5 +49,5 @@ TYPO3:
               text: ''
               class: 'btn'
               href: ''
-            renderingOptions:
-              templatePathPattern: 'resource://TYPO3.Setup/Private/FormElements/Link.html'
+          'TYPO3.Setup:DatabaseSelector':
+            superTypes: ['TYPO3.Form:FormElement']
