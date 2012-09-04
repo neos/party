@@ -69,7 +69,7 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 		$this->router->setRoutesConfiguration($configurationSource->load($packageManager->getPackage('TYPO3.Setup')->getConfigurationPath() . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_ROUTES));
 		$actionRequest = $this->router->route($this->request);
 
-		$this->securityContext->injectRequest($actionRequest);
+		$this->securityContext->setRequest($actionRequest);
 
 		$this->dispatcher->dispatch($actionRequest, $this->response);
 
