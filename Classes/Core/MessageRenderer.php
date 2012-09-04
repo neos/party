@@ -88,6 +88,10 @@ class MessageRenderer {
 				break;
 		}
 
+		$messageBody = $message->render();
+		if ($message->getSeverity() !== Message::SEVERITY_OK && $message->getCode() !== NULL) {
+			$messageBody .= ' (<a href="http://typo3.org/go/exception/' . $message->getCode() . '">More information</a>)';
+		}
 
 		echo sprintf('
 			<div class="container">
@@ -97,12 +101,12 @@ class MessageRenderer {
 					</div>
 					<div class="modal-body">
 						<div class="alert alert-%s">
-							%s %s
+							%s
 						</div>
 					</div>
 				</div>
 			</div>
-			', $message->getTitle(), $severity, $message->render(), ($message->getSeverity() !== Message::SEVERITY_OK ? '(#' . $message->getCode() . ')' : ''));
+			', $message->getTitle(), $severity, $messageBody);
 		echo '</body></html>';
 		exit(0);
 	}

@@ -87,14 +87,24 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 
 		$settings = $this->configurationManager->getConfiguration(\TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.FLOW3');
 		$connectionSettings = $settings['persistence']['backendOptions'];
-		$connectionEstablished = $this->connectToDatabase($connectionSettings);
-		if ($connectionEstablished !== TRUE) {
-			$this->createDatabase($connectionSettings, $formValues['dbname']);
-			$connectionEstablished = $this->connectToDatabase($connectionSettings);
+		try {
+			$this->connectToDatabase($connectionSettings);
+		} catch (\PDOException $exception) {
+			try {
+				$this->createDatabase($connectionSettings, $formValues['dbname']);
+			} catch (\PDOException $exception) {
+				throw new \TYPO3\Setup\Exception(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758663, $exception);
+			}
+			try {
+				$this->connectToDatabase($connectionSettings);
+			} catch (\PDOException $exception) {
+				throw new \TYPO3\Setup\Exception(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758737);
+			}
 		}
 
-		if ($connectionEstablished) {
-			\TYPO3\FLOW3\Core\Booting\Scripts::executeCommand('typo3.flow3:doctrine:migrate', $settings, FALSE);
+		$migrationExecuted = \TYPO3\FLOW3\Core\Booting\Scripts::executeCommand('typo3.flow3:doctrine:migrate', $settings, FALSE);
+		if ($migrationExecuted !== TRUE) {
+			throw new \TYPO3\Setup\Exception(sprintf('Could not execute database migrations. Please check the permissions for user "%s" and execute "./flow3 typo3.flow3:doctrine:migrate" manually.', $formValues['user']), 1346759486);
 		}
 	}
 
@@ -102,15 +112,12 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 * Tries to connect to the database using the specified $connectionSettings
 	 *
 	 * @param array $connectionSettings array in the format array('user' => 'dbuser', 'password' => 'dbpassword', 'host' => 'dbhost', 'dbname' => 'dbname')
-	 * @return boolean TRUE if the connection could be established, otherwise FALSE
+	 * @return void
+	 * @throws \PDOException if the connection fails
 	 */
 	protected function connectToDatabase(array $connectionSettings) {
 		$connection = \Doctrine\DBAL\DriverManager::getConnection($connectionSettings);
-		try {
-			$connection->connect();
-		} catch(\PDOException $e) {
-		}
-		return $connection->isConnected();
+		$connection->connect();
 	}
 
 	/**
@@ -119,17 +126,13 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 *
 	 * @param array $connectionSettings array in the format array('user' => 'dbuser', 'password' => 'dbpassword', 'host' => 'dbhost', 'dbname' => 'dbname')
 	 * @param string $databaseName name of the database to create
-	 * @return boolean TRUE if the database could be created, otherwise FALSE
+	 * @return void
+	 * @throws \PDOException if creation of database failed
 	 */
 	protected function createDatabase(array $connectionSettings, $databaseName) {
 		unset($connectionSettings['dbname']);
 		$connection = \Doctrine\DBAL\DriverManager::getConnection($connectionSettings);
-		try {
-			$connection->getSchemaManager()->createDatabase($databaseName);
-			$connection->close();
-			return TRUE;
-		} catch(\PDOException $e) {
-		}
-		return FALSE;
+		$connection->getSchemaManager()->createDatabase($databaseName);
+		$connection->close();
 	}
 }

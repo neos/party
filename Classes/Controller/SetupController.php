@@ -158,7 +158,12 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 * @return void
 	 */
 	public function postProcessStep(array $formValues, \TYPO3\Setup\Step\StepInterface $currentStep) {
-		$currentStep->postProcessFormValues($formValues);
+		try {
+			$currentStep->postProcessFormValues($formValues);
+		} catch (\TYPO3\Setup\Exception $exception) {
+			$this->addFlashMessage($exception->getMessage(), 'Exception while executing setup step', \TYPO3\FLOW3\Error\Message::SEVERITY_WARNING);
+			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex));
+		}
 		$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex + 1));
 	}
 

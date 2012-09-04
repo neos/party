@@ -14,6 +14,7 @@ namespace TYPO3\Setup\Core;
 use TYPO3\FLOW3\Annotations as FLOW3;
 use TYPO3\FLOW3\Http\Request;
 use TYPO3\FLOW3\Http\Response;
+use TYPO3\FLOW3\Error\Message;
 
 /**
  * A request handler which can handle HTTP requests.
@@ -100,7 +101,7 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 		$currentUri = substr($this->request->getUri(), strlen($this->request->getBaseUri()));
 		if ($currentUri === 'setup' || $currentUri === 'setup/') {
 			$redirectUri = ($currentUri === 'setup/' ? 'index': 'setup/index');
-			$messageRenderer->showMessage(new \TYPO3\FLOW3\Error\Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as FLOW3 needs to build up various caches.', 0, array(), 'Your environment is suited for installing FLOW3!'), '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
+			$messageRenderer->showMessage(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as FLOW3 needs to build up various caches.', NULL, array(), 'Your environment is suited for installing FLOW3!'), '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
 		}
 	}
 
@@ -132,7 +133,7 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 			}
 			return TRUE;
 		} else {
-			return new \TYPO3\FLOW3\Error\Error('The path to your php binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
+			return new \TYPO3\FLOW3\Error\Error('The path to your PHP binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
 		}
 	}
 
@@ -151,9 +152,9 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 			}
 		}
 		if ($phpVersion === NULL) {
-			return new \TYPO3\FLOW3\Error\Error('The specified path to your php binary (see Configuration/Settings.yaml) does not point to a PHP binary.', 1341839376, array(), 'Environment requirements not fulfilled');
+			return new \TYPO3\FLOW3\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect.', 1341839376, array(), 'Environment requirements not fulfilled');
 		} else {
-			return new \TYPO3\FLOW3\Error\Error('The specified path to your php binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not the same version as is currently running ("%s").', 1341839377, array($phpVersion, PHP_VERSION), 'Environment requirements not fulfilled');
+			return new \TYPO3\FLOW3\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not the same version as is currently running ("%s").', 1341839377, array($phpVersion, PHP_VERSION), 'Environment requirements not fulfilled');
 		}
 	}
 
@@ -164,10 +165,11 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 	 * @return string
 	 */
 	protected function detectPhpBinaryPathAndFilename() {
-		if (defined('PHP_BINARY')) {
+		if (defined('PHP_BINARY') && PHP_BINARY !== '') {
 			return PHP_BINARY;
 		}
 		$environmentPaths = explode(PATH_SEPARATOR, getenv('PATH'));
+		$environmentPaths[] = PHP_BINDIR;
 		foreach ($environmentPaths as $path) {
 			$path = rtrim(str_replace('\\', '/', $path), '/');
 			if (strlen($path) === 0) {
