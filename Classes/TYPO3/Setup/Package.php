@@ -2,7 +2,7 @@
 namespace TYPO3\Setup;
 
 /*                                                                        *
- * This script belongs to the FLOW3 framework.                            *
+ * This script belongs to the FLOW3 package "TYPO3.Setup".                *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
