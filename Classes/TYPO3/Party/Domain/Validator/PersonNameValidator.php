@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Domain\Validator;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "Party".                      *
+ * This script belongs to the TYPO3 Flow package "Party".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -15,7 +15,7 @@ namespace TYPO3\Party\Domain\Validator;
  * A validator for person names
  *
  */
-class PersonNameValidator extends \TYPO3\FLOW3\Validation\Validator\GenericObjectValidator {
+class PersonNameValidator extends \TYPO3\Flow\Validation\Validator\GenericObjectValidator {
 
 	/**
 	 * Checks if the concatenated person name has at least one character.

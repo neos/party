@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "Party".                      *
+ * This script belongs to the TYPO3 Flow package "Party".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -12,12 +12,12 @@ namespace TYPO3\Party\Domain\Model;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * An electronic address
  *
- * @FLOW3\Entity
+ * @Flow\Entity
  */
 class ElectronicAddress {
 
@@ -37,22 +37,22 @@ class ElectronicAddress {
 
 	/**
 	 * @var string
-	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=255 })
+	 * @Flow\Validate(type="StringLength", options={ "minimum"=1, "maximum"=255 })
 	 */
 	protected $identifier;
 
 	/**
 	 * @var string
-	 * @FLOW3\Validate(type="Alphanumeric")
-	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
+	 * @Flow\Validate(type="Alphanumeric")
+	 * @Flow\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
 	 * @ORM\Column(length=20)
 	 */
 	protected $type;
 
 	/**
 	 * @var string
-	 * @FLOW3\Validate(type="Alphanumeric")
-	 * @FLOW3\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
+	 * @Flow\Validate(type="Alphanumeric")
+	 * @Flow\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
 	 * @ORM\Column(name="usagetype", length=20, nullable=true)
 	 */
 	protected $usage;

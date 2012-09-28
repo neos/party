@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Tests\Functional\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the FLOW3 framework.                            *
+ * This script belongs to the TYPO3 Flow framework.                       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -11,12 +11,12 @@ namespace TYPO3\Party\Tests\Functional\Domain\Model;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 use \TYPO3\Party\Domain;
 
 /**
  */
-class PersonTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
+class PersonTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
 	/**
 	* @var boolean
@@ -29,12 +29,12 @@ class PersonTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	protected $partyRepository;
 
 	/**
-	* @var \TYPO3\FLOW3\Security\AccountRepository
+	* @var \TYPO3\Flow\Security\AccountRepository
 	*/
 	protected $accountRepository;
 
 	/**
-	* @var \TYPO3\FLOW3\Security\AccountFactory
+	* @var \TYPO3\Flow\Security\AccountFactory
 	*/
 	protected $accountFactory;
 
@@ -43,8 +43,8 @@ class PersonTest extends \TYPO3\FLOW3\Tests\FunctionalTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->partyRepository = $this->objectManager->get('TYPO3\Party\Domain\Repository\PartyRepository');
-		$this->accountRepository = $this->objectManager->get('TYPO3\FLOW3\Security\AccountRepository');
-		$this->accountFactory = $this->objectManager->get('TYPO3\FLOW3\Security\AccountFactory');
+		$this->accountRepository = $this->objectManager->get('TYPO3\Flow\Security\AccountRepository');
+		$this->accountFactory = $this->objectManager->get('TYPO3\Flow\Security\AccountFactory');
 	}
 
 	/**

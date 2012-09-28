@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "Party".                      *
+ * This script belongs to the TYPO3 Flow package "Party".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -12,18 +12,18 @@ namespace TYPO3\Party\Domain\Model;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * A party
  *
- * @FLOW3\Entity
+ * @Flow\Entity
  * @ORM\InheritanceType("JOINED")
  */
 abstract class AbstractParty {
 
 	/**
-	 * @var \Doctrine\Common\Collections\Collection<\TYPO3\FLOW3\Security\Account>
+	 * @var \Doctrine\Common\Collections\Collection<\TYPO3\Flow\Security\Account>
 	 * @ORM\OneToMany(mappedBy="party")
 	 */
 	protected $accounts;
@@ -39,10 +39,10 @@ abstract class AbstractParty {
 	 * Assigns the given account to this party. Note: The internal reference of the account is
 	 * set to this party.
 	 *
-	 * @param \TYPO3\FLOW3\Security\Account $account The account
+	 * @param \TYPO3\Flow\Security\Account $account The account
 	 * @return void
 	 */
-	public function addAccount(\TYPO3\FLOW3\Security\Account $account) {
+	public function addAccount(\TYPO3\Flow\Security\Account $account) {
 		$this->accounts->add($account);
 		$account->setParty($this);
 	}
@@ -50,17 +50,17 @@ abstract class AbstractParty {
 	/**
 	 * Remove an account from this party
 	 *
-	 * @param \TYPO3\FLOW3\Security\Account $account The account to remove
+	 * @param \TYPO3\Flow\Security\Account $account The account to remove
 	 * @return void
 	 */
-	public function removeAccount(\TYPO3\FLOW3\Security\Account $account) {
+	public function removeAccount(\TYPO3\Flow\Security\Account $account) {
 		$this->accounts->removeElement($account);
 	}
 
 	/**
 	 * Returns the accounts of this party
 	 *
-	 * @return \Doctrine\Common\Collections\Collection All assigned TYPO3\FLOW3\Security\Account objects
+	 * @return \Doctrine\Common\Collections\Collection All assigned TYPO3\Flow\Security\Account objects
 	 */
 	public function getAccounts() {
 		return $this->accounts;

@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Domain\Validator;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "Party".                      *
+ * This script belongs to the TYPO3 Flow package "Party".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -15,20 +15,20 @@ namespace TYPO3\Party\Domain\Validator;
  * An electronic address validator
  *
  */
-class ElectronicAddressValidator extends \TYPO3\FLOW3\Validation\Validator\GenericObjectValidator {
+class ElectronicAddressValidator extends \TYPO3\Flow\Validation\Validator\GenericObjectValidator {
 
 	/**
-	 * @var \TYPO3\FLOW3\Validation\ValidatorResolver
+	 * @var \TYPO3\Flow\Validation\ValidatorResolver
 	 */
 	protected $validatorResolver;
 
 	/**
 	 * Injects the validator resolver
 	 *
-	 * @param \TYPO3\FLOW3\Validation\ValidatorResolver $validatorResolver
+	 * @param \TYPO3\Flow\Validation\ValidatorResolver $validatorResolver
 	 * @return void
 	 */
-	public function injectValidatorResolver(\TYPO3\FLOW3\Validation\ValidatorResolver $validatorResolver) {
+	public function injectValidatorResolver(\TYPO3\Flow\Validation\ValidatorResolver $validatorResolver) {
 		$this->validatorResolver = $validatorResolver;
 	}
 

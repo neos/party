@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Tests\Unit\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the FLOW3 framework.                            *
+ * This script belongs to the TYPO3 Flow framework.                       *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -15,7 +15,7 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
  * Testcase for an abstract party
  *
  */
-class AbstractPartyTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
+class AbstractPartyTest extends \TYPO3\Flow\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -23,7 +23,7 @@ class AbstractPartyTest extends \TYPO3\FLOW3\Tests\UnitTestCase {
 	public function addAccountSetsThePartyPropertyInTheAccountToThisParty() {
 		$party = $this->getMockForAbstractClass('TYPO3\Party\Domain\Model\AbstractParty', array('dummy'));
 
-		$mockAccount = $this->getMock('TYPO3\FLOW3\Security\Account');
+		$mockAccount = $this->getMock('TYPO3\Flow\Security\Account');
 		$mockAccount->expects($this->once())->method('setParty')->with($party);
 
 		$party->addAccount($mockAccount);

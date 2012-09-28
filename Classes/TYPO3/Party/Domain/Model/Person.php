@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "Party".                      *
+ * This script belongs to the TYPO3 Flow package "Party".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -12,19 +12,19 @@ namespace TYPO3\Party\Domain\Model;
  *                                                                        */
 
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * A person
  *
- * @FLOW3\Entity
+ * @Flow\Entity
  */
 class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 
 	/**
 	 * @var \TYPO3\Party\Domain\Model\PersonName
 	 * @ORM\OneToOne
-	 * @FLOW3\Validate(type="NotEmpty")
+	 * @Flow\Validate(type="NotEmpty")
 	 */
 	protected $name;
 
