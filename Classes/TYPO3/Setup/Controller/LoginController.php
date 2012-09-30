@@ -2,7 +2,7 @@
 namespace TYPO3\Setup\Controller;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Setup".                *
+ * This script belongs to the TYPO3 Flow package "TYPO3.Setup".           *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -11,12 +11,12 @@ namespace TYPO3\Setup\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * @var string
@@ -25,20 +25,20 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 
 	/**
 	 * The authentication manager
-	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
-	 * @FLOW3\Inject
+	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
+	 * @Flow\Inject
 	 */
 	protected $authenticationManager;
 
 	/**
-	 * @var \TYPO3\FLOW3\Security\Cryptography\FileBasedSimpleKeyService
-	 * @FLOW3\Inject
+	 * @var \TYPO3\Flow\Security\Cryptography\FileBasedSimpleKeyService
+	 * @Flow\Inject
 	 */
 	protected $fileBasedSimpleKeyService;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Configuration\ConfigurationManager
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Configuration\ConfigurationManager
 	 */
 	protected $configurationManager;
 
@@ -48,7 +48,7 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 * @return void
 	 */
 	public function initializeObject() {
-		$settings = $this->configurationManager->getConfiguration(\TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.FLOW3');
+		$settings = $this->configurationManager->getConfiguration(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
 		if (isset($settings['security']['authentication']['providers']['Typo3SetupProvider']['providerOptions']['keyName'])) {
 			$this->keyName = $settings['security']['authentication']['providers']['Typo3SetupProvider']['providerOptions']['keyName'];
 		}
@@ -71,12 +71,12 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 
 			$result = file_put_contents($this->settings['initialPasswordFile'], $initialPasswordFileContents);
 			if ($result === FALSE) {
-				$this->addFlashMessage('It was not possible to save the initial setup password to file "%s". Check file permissions and re-try.', 'Password Generation Failure', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR, array($this->settings['initialPasswordFile']));
+				$this->addFlashMessage('It was not possible to save the initial setup password to file "%s". Check file permissions and re-try.', 'Password Generation Failure', \TYPO3\Flow\Error\Message::SEVERITY_ERROR, array($this->settings['initialPasswordFile']));
 			} else {
 				$this->view->assign('initialPasswordFile', $this->settings['initialPasswordFile']);
 			}
 		} else {
-			$existingPasswordFile = \TYPO3\FLOW3\Utility\Files::concatenatePaths(array('.../Data/Persistent', 'FileBasedSimpleKeyService', $this->keyName));
+			$existingPasswordFile = \TYPO3\Flow\Utility\Files::concatenatePaths(array('.../Data/Persistent', 'FileBasedSimpleKeyService', $this->keyName));
 			$this->view->assign('existingPasswordFile', $existingPasswordFile);
 		}
 		$this->view->assign('step', $step);
@@ -94,8 +94,8 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 				unlink($this->settings['initialPasswordFile']);
 			}
 			$this->redirect('index', 'Setup', NULL, array('step' => $step));
-		} catch (\TYPO3\FLOW3\Security\Exception\AuthenticationRequiredException $exception) {
-			$this->addFlashMessage('Sorry, you were not able to authenticate.', 'Authentication error', \TYPO3\FLOW3\Error\Message::SEVERITY_ERROR);
+		} catch (\TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception) {
+			$this->addFlashMessage('Sorry, you were not able to authenticate.', 'Authentication error', \TYPO3\Flow\Error\Message::SEVERITY_ERROR);
 			$this->redirect('login', NULL, NULL, array('step' => $step));
 		}
 	}
@@ -107,7 +107,7 @@ class LoginController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 */
 	public function logoutAction() {
 		$this->authenticationManager->logout();
-		$this->addFlashMessage('Successfully logged out.', 'Logged out', \TYPO3\FLOW3\Error\Message::SEVERITY_OK);
+		$this->addFlashMessage('Successfully logged out.', 'Logged out', \TYPO3\Flow\Error\Message::SEVERITY_OK);
 		$this->redirect('login');
 	}
 

@@ -2,7 +2,7 @@
 namespace TYPO3\Setup\Core;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Setup".                *
+ * This script belongs to the TYPO3 Flow package "TYPO3.Setup".           *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -11,20 +11,20 @@ namespace TYPO3\Setup\Core;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
-use TYPO3\FLOW3\Http\Request;
-use TYPO3\FLOW3\Http\Response;
-use TYPO3\FLOW3\Error\Message;
+use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Http\Request;
+use TYPO3\Flow\Http\Response;
+use TYPO3\Flow\Error\Message;
 
 /**
  * A request handler which can handle HTTP requests.
  *
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
+class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 
 	/**
-	 * @var \TYPO3\FLOW3\Http\Response
+	 * @var \TYPO3\Flow\Http\Response
 	 */
 	protected $response;
 
@@ -63,10 +63,10 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 		$this->resolveDependencies();
 		$this->request->injectSettings($this->settings);
 
-		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\FLOW3\Package\PackageManagerInterface');
-		$configurationSource = $this->bootstrap->getObjectManager()->get('TYPO3\FLOW3\Configuration\Source\YamlSource');
+		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\Flow\Package\PackageManagerInterface');
+		$configurationSource = $this->bootstrap->getObjectManager()->get('TYPO3\Flow\Configuration\Source\YamlSource');
 
-		$this->router->setRoutesConfiguration($configurationSource->load($packageManager->getPackage('TYPO3.Setup')->getConfigurationPath() . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_ROUTES));
+		$this->router->setRoutesConfiguration($configurationSource->load($packageManager->getPackage('TYPO3.Setup')->getConfigurationPath() . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_ROUTES));
 		$actionRequest = $this->router->route($this->request);
 
 		$this->securityContext->setRequest($actionRequest);
@@ -89,19 +89,19 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 		$messageRenderer = new MessageRenderer($this->bootstrap);
 		$basicRequirements = new BasicRequirements();
 		$result = $basicRequirements->findError();
-		if ($result instanceof \TYPO3\FLOW3\Error\Error) {
+		if ($result instanceof \TYPO3\Flow\Error\Error) {
 			$messageRenderer->showMessage($result);
 		}
 
 		$result = $this->checkAndSetPhpBinaryIfNeeded();
-		if ($result instanceof \TYPO3\FLOW3\Error\Error) {
+		if ($result instanceof \TYPO3\Flow\Error\Error) {
 			$messageRenderer->showMessage($result);
 		}
 
 		$currentUri = substr($this->request->getUri(), strlen($this->request->getBaseUri()));
 		if ($currentUri === 'setup' || $currentUri === 'setup/') {
 			$redirectUri = ($currentUri === 'setup/' ? 'index': 'setup/index');
-			$messageRenderer->showMessage(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as FLOW3 needs to build up various caches.', NULL, array(), 'Your environment is suited for installing FLOW3!'), '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
+			$messageRenderer->showMessage(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as TYPO3 Flow needs to build up various caches.', NULL, array(), 'Your environment is suited for installing TYPO3 Flow!'), '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
 		}
 	}
 
@@ -113,13 +113,13 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 	 * Once found, the binary will be written to the configuration, if it is not the default one
 	 * (PHP_BINARY or in PHP_BINDIR).
 	 *
-	 * @return boolean|\TYPO3\FLOW3\Error\Error TRUE on success, otherwise an instance of \TYPO3\FLOW3\Error\Error
+	 * @return boolean|\TYPO3\Flow\Error\Error TRUE on success, otherwise an instance of \TYPO3\Flow\Error\Error
 	 */
 	protected function checkAndSetPhpBinaryIfNeeded() {
-		$configurationSource = new \TYPO3\FLOW3\Configuration\Source\YamlSource();
-		$distributionSettings = $configurationSource->load(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
-		if (isset($distributionSettings['TYPO3']['FLOW3']['core']['phpBinaryPathAndFilename'])) {
-			return $this->checkPhpBinary($distributionSettings['TYPO3']['FLOW3']['core']['phpBinaryPathAndFilename']);
+		$configurationSource = new \TYPO3\Flow\Configuration\Source\YamlSource();
+		$distributionSettings = $configurationSource->load(FLOW_PATH_CONFIGURATION . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
+		if (isset($distributionSettings['TYPO3']['Flow']['core']['phpBinaryPathAndFilename'])) {
+			return $this->checkPhpBinary($distributionSettings['TYPO3']['Flow']['core']['phpBinaryPathAndFilename']);
 		}
 		$phpBinaryPathAndFilename = $this->detectPhpBinaryPathAndFilename();
 		if ($phpBinaryPathAndFilename !== NULL) {
@@ -128,12 +128,12 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 				$defaultPhpBinaryPathAndFilename = str_replace('\\', '/', $defaultPhpBinaryPathAndFilename) . '.exe';
 			}
 			if ($phpBinaryPathAndFilename !== $defaultPhpBinaryPathAndFilename) {
-				$distributionSettings = \TYPO3\FLOW3\Utility\Arrays::setValueByPath($distributionSettings, 'TYPO3.FLOW3.core.phpBinaryPathAndFilename', $phpBinaryPathAndFilename);
-				$configurationSource->save(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $distributionSettings);
+				$distributionSettings = \TYPO3\Flow\Utility\Arrays::setValueByPath($distributionSettings, 'TYPO3.Flow.core.phpBinaryPathAndFilename', $phpBinaryPathAndFilename);
+				$configurationSource->save(FLOW_PATH_CONFIGURATION . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $distributionSettings);
 			}
 			return TRUE;
 		} else {
-			return new \TYPO3\FLOW3\Error\Error('The path to your PHP binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
+			return new \TYPO3\Flow\Error\Error('The path to your PHP binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
 		}
 	}
 
@@ -141,7 +141,7 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 	 * Checks if the given PHP binary is executable and of the same version as the currently running one.
 	 *
 	 * @param string $phpBinaryPathAndFilename
-	 * @return boolean|\TYPO3\FLOW3\Error\Error
+	 * @return boolean|\TYPO3\Flow\Error\Error
 	 */
 	protected function checkPhpBinary($phpBinaryPathAndFilename) {
 		$phpVersion = NULL;
@@ -152,9 +152,9 @@ class RequestHandler extends \TYPO3\FLOW3\Http\RequestHandler {
 			}
 		}
 		if ($phpVersion === NULL) {
-			return new \TYPO3\FLOW3\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect.', 1341839376, array(), 'Environment requirements not fulfilled');
+			return new \TYPO3\Flow\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect.', 1341839376, array(), 'Environment requirements not fulfilled');
 		} else {
-			return new \TYPO3\FLOW3\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not the same version as is currently running ("%s").', 1341839377, array($phpVersion, PHP_VERSION), 'Environment requirements not fulfilled');
+			return new \TYPO3\Flow\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not the same version as is currently running ("%s").', 1341839377, array($phpVersion, PHP_VERSION), 'Environment requirements not fulfilled');
 		}
 	}
 

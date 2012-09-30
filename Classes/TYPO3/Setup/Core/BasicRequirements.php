@@ -2,7 +2,7 @@
 namespace TYPO3\Setup\Core;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Setup".                *
+ * This script belongs to the TYPO3 Flow package "TYPO3.Setup".           *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -11,15 +11,15 @@ namespace TYPO3\Setup\Core;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
-use TYPO3\FLOW3\Error\Error;
+use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Error\Error;
 
 /**
  * This class checks the basic requirements and returns an error object in case
  * of missing requirements.
  *
- * @FLOW3\Proxy(false)
- * @FLOW3\Scope("singleton")
+ * @Flow\Proxy(false)
+ * @Flow\Scope("singleton")
  */
 class BasicRequirements {
 
@@ -72,7 +72,7 @@ class BasicRequirements {
 	/**
 	 * Ensure that the environment and file permission requirements are fulfilled.
 	 *
-	 * @return TYPO3\FLOW3\Error\Error if requirements are fulfilled, NULL is returned. else, an Error object is returned.
+	 * @return TYPO3\Flow\Error\Error if requirements are fulfilled, NULL is returned. else, an Error object is returned.
 	 */
 	public function findError() {
 		$requiredEnvironmentError = $this->ensureRequiredEnvironment();
@@ -91,9 +91,9 @@ class BasicRequirements {
 	/**
 	 * return a new error object which has all options like $error except the $title overridden.
 	 *
-	 * @param \TYPO3\FLOW3\Error\Error $error
+	 * @param \TYPO3\Flow\Error\Error $error
 	 * @param string $title
-	 * @return \TYPO3\FLOW3\Error\Error
+	 * @return \TYPO3\Flow\Error\Error
 	 */
 	protected function setErrorTitle(Error $error, $title) {
 		return new Error($error->getMessage(), $error->getCode(), $error->getArguments(), $title);
@@ -105,26 +105,26 @@ class BasicRequirements {
 	 * @return mixed
 	 */
 	protected function ensureRequiredEnvironment() {
-		if (version_compare(phpversion(), \TYPO3\FLOW3\Core\Bootstrap::MINIMUM_PHP_VERSION, '<')) {
-			return new Error('FLOW3 requires PHP version %s or higher but your installed version is currently %s.', 1172215790, array(\TYPO3\FLOW3\Core\Bootstrap::MINIMUM_PHP_VERSION, phpversion()));
+		if (version_compare(phpversion(), \TYPO3\Flow\Core\Bootstrap::MINIMUM_PHP_VERSION, '<')) {
+			return new Error('Flow requires PHP version %s or higher but your installed version is currently %s.', 1172215790, array(\TYPO3\Flow\Core\Bootstrap::MINIMUM_PHP_VERSION, phpversion()));
 		}
-		if (version_compare(PHP_VERSION, \TYPO3\FLOW3\Core\Bootstrap::MAXIMUM_PHP_VERSION, '>')) {
-			return new Error('FLOW3 requires PHP version %s or lower but your installed version is currently %s.', 1172215792, array(\TYPO3\FLOW3\Core\Bootstrap::MAXIMUM_PHP_VERSION, phpversion()));
+		if (version_compare(PHP_VERSION, \TYPO3\Flow\Core\Bootstrap::MAXIMUM_PHP_VERSION, '>')) {
+			return new Error('Flow requires PHP version %s or lower but your installed version is currently %s.', 1172215792, array(\TYPO3\Flow\Core\Bootstrap::MAXIMUM_PHP_VERSION, phpversion()));
 		}
 		if (version_compare(PHP_VERSION, '6.0.0', '<') && !extension_loaded('mbstring')) {
-			return new Error('FLOW3 requires the PHP extension "mbstring" to be available for PHP versions below 6.0.0', 1207148809);
+			return new Error('Flow requires the PHP extension "mbstring" to be available for PHP versions below 6.0.0', 1207148809);
 		}
 		if (DIRECTORY_SEPARATOR !== '/' && PHP_WINDOWS_VERSION_MAJOR < 6) {
-			return new Error('FLOW3 does not support Windows versions older than Windows Vista or Windows Server 2008, because they lack proper support for symbolic links.', 1312463704);
+			return new Error('Flow does not support Windows versions older than Windows Vista or Windows Server 2008, because they lack proper support for symbolic links.', 1312463704);
 		}
 		foreach ($this->requiredExtensions as $extension => $errorKey) {
 			if (!extension_loaded($extension)) {
-				return new Error('FLOW3 requires the PHP extension "%s" to be available.', $errorKey, array($extension));
+				return new Error('Flow requires the PHP extension "%s" to be available.', $errorKey, array($extension));
 			}
 		}
 		foreach ($this->requiredFunctions as $function => $errorKey) {
 			if (!function_exists($function)) {
-				return new Error('FLOW3 requires the PHP function "%s" to be available.', $errorKey, array($function));
+				return new Error('Flow requires the PHP function "%s" to be available.', $errorKey, array($function));
 			}
 		}
 
@@ -140,15 +140,15 @@ class BasicRequirements {
 
 		if (version_compare(PHP_VERSION, '5.4', '<')) {
 			if (get_magic_quotes_gpc() === 1) {
-				return new Error('FLOW3 requires the PHP setting "magic_quotes_gpc" set to off', 1224003190);
+				return new Error('Flow requires the PHP setting "magic_quotes_gpc" set to off', 1224003190);
 			}
 			if (ini_get('register_globals')) {
-				return new Error('FLOW3 requires the PHP setting "register_globals" set to off.', 1224003190);
+				return new Error('Flow requires the PHP setting "register_globals" set to off.', 1224003190);
 			}
 		}
 
 		if (ini_get('session.auto_start')) {
-			return new Error('FLOW3 requires the PHP setting "session.auto_start" set to off.', 1224003190);
+			return new Error('Flow requires the PHP setting "session.auto_start" set to off.', 1224003190);
 		}
 
 		return NULL;
@@ -161,16 +161,16 @@ class BasicRequirements {
 	 */
 	protected function checkFilePermissions() {
 		foreach ($this->requiredWritableFolders as $folder) {
-			$folderPath = FLOW3_PATH_ROOT . $folder;
-			if (!is_dir($folderPath) && !\TYPO3\FLOW3\Utility\Files::is_link($folderPath)) {
+			$folderPath = FLOW_PATH_ROOT . $folder;
+			if (!is_dir($folderPath) && !\TYPO3\Flow\Utility\Files::is_link($folderPath)) {
 				try {
-					\TYPO3\FLOW3\Utility\Files::createDirectoryRecursively($folderPath);
-				} catch(\TYPO3\FLOW3\Utility\Exception $e) {
-					return new Error('Unable to create folder "%s". Check your file permissions (did you use flow3:core:setfilepermissions?).', 1330363887, array($folderPath));
+					\TYPO3\Flow\Utility\Files::createDirectoryRecursively($folderPath);
+				} catch(\TYPO3\Flow\Utility\Exception $e) {
+					return new Error('Unable to create folder "%s". Check your file permissions (did you use flow:core:setfilepermissions?).', 1330363887, array($folderPath));
 				}
 			}
 			if (!is_writable($folderPath)) {
-				return new Error('The folder "%s" is not writable. Check your file permissions (did you use flow3:core:setfilepermissions?)', 1330372964, array($folderPath));
+				return new Error('The folder "%s" is not writable. Check your file permissions (did you use flow:core:setfilepermissions?)', 1330372964, array($folderPath));
 			}
 		}
 		return NULL;

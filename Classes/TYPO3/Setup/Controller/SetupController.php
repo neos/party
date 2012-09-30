@@ -2,7 +2,7 @@
 namespace TYPO3\Setup\Controller;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Setup".                *
+ * This script belongs to the TYPO3 Flow package "TYPO3.Setup".           *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -11,23 +11,23 @@ namespace TYPO3\Setup\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
-class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
+class SetupController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * The authentication manager
-	 * @var \TYPO3\FLOW3\Security\Authentication\AuthenticationManagerInterface
-	 * @FLOW3\Inject
+	 * @var \TYPO3\Flow\Security\Authentication\AuthenticationManagerInterface
+	 * @Flow\Inject
 	 */
 	protected $authenticationManager;
 
 	/**
-	 * @var \TYPO3\FLOW3\Configuration\Source\YamlSource
-	 * @FLOW3\Inject
+	 * @var \TYPO3\Flow\Configuration\Source\YamlSource
+	 * @Flow\Inject
 	 */
 	protected $configurationSource;
 
@@ -50,13 +50,13 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->distributionSettings = $this->configurationSource->load(FLOW3_PATH_CONFIGURATION . \TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
+		$this->distributionSettings = $this->configurationSource->load(FLOW_PATH_CONFIGURATION . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
 	}
 
 	/**
 	 * @param integer $step
 	 * @return void
-	 * @FLOW3\SkipCsrfProtection
+	 * @Flow\SkipCsrfProtection
 	 */
 	public function indexAction($step = 0) {
 		$this->currentStepIndex = $step;
@@ -73,7 +73,7 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 		if ($currentStep->isOptional()) {
 			$formDefinition->setRenderingOption('nextStepUri', $this->uriBuilder->uriFor('index', array('step' => $this->currentStepIndex + 1)));
 		}
-		$response = new \TYPO3\FLOW3\Http\Response($this->response);
+		$response = new \TYPO3\Flow\Http\Response($this->response);
 		$form = $formDefinition->bind($this->request, $response);
 		$this->view->assign('form', $form->render());
 	}
@@ -95,7 +95,7 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 			if ($this->currentStepIndex === 0) {
 				throw new \TYPO3\Setup\Exception('Not all requirements are met for the first setup step, aborting setup', 1332169088);
 			}
-			$this->addFlashMessage('Not all requirements are met for step "%s"', '', \TYPO3\FLOW3\Error\Message::SEVERITY_WARNING, array($stepOrder[$this->currentStepIndex]));
+			$this->addFlashMessage('Not all requirements are met for step "%s"', '', \TYPO3\Flow\Error\Message::SEVERITY_WARNING, array($stepOrder[$this->currentStepIndex]));
 			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex - 1));
 		};
 	}
@@ -161,7 +161,7 @@ class SetupController extends \TYPO3\FLOW3\Mvc\Controller\ActionController {
 		try {
 			$currentStep->postProcessFormValues($formValues);
 		} catch (\TYPO3\Setup\Exception $exception) {
-			$this->addFlashMessage($exception->getMessage(), 'Exception while executing setup step', \TYPO3\FLOW3\Error\Message::SEVERITY_WARNING);
+			$this->addFlashMessage($exception->getMessage(), 'Exception while executing setup step', \TYPO3\Flow\Error\Message::SEVERITY_WARNING);
 			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex));
 		}
 		$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex + 1));

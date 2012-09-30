@@ -2,7 +2,7 @@
 namespace TYPO3\Setup;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Setup".                *
+ * This script belongs to the TYPO3 Flow package "TYPO3.Setup".           *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -14,6 +14,6 @@ namespace TYPO3\Setup;
 /**
  * A generic Setup Exception
  */
-class Exception extends \TYPO3\FLOW3\Exception {
+class Exception extends \TYPO3\Flow\Exception {
 }
 ?>

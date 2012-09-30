@@ -9,7 +9,7 @@
 #                                                                        #
 
 TYPO3:
-  FLOW3:
+  Flow:
     security:
       authentication:
         providers:
@@ -24,7 +24,7 @@ TYPO3:
               uri: 'setup/login'
 
   Setup:
-    initialPasswordFile: '%FLOW3_PATH_DATA%SetupPassword.txt'
+    initialPasswordFile: '%FLOW_PATH_DATA%SetupPassword.txt'
     stepOrder: ['database', 'final']
     steps:
       database:

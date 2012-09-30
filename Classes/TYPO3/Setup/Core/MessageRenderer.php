@@ -2,7 +2,7 @@
 namespace TYPO3\Setup\Core;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Setup".                *
+ * This script belongs to the TYPO3 Flow package "TYPO3.Setup".           *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -11,45 +11,45 @@ namespace TYPO3\Setup\Core;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3;
-use TYPO3\FLOW3\Error\Message;
+use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Error\Message;
 
 /**
- * Rendering class for displaying messages before the FLOW3 proxy classes are built.
+ * Rendering class for displaying messages before the Flow proxy classes are built.
  *
- * Because this class is extremely low-level, we cannot rely on most of FLOW3's
+ * Because this class is extremely low-level, we cannot rely on most of Flow's
  * magic: There are no caches built yet, no resources published and the object
  * manager is not yet initialized. Only package management is loaded so far.
  *
- * @FLOW3\Proxy(false)
- * @FLOW3\Scope("singleton")
+ * @Flow\Proxy(false)
+ * @Flow\Scope("singleton")
  */
 class MessageRenderer {
 
 	/**
-	 * @var \TYPO3\FLOW3\Core\Bootstrap
+	 * @var \TYPO3\Flow\Core\Bootstrap
 	 */
 	protected $bootstrap;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param \TYPO3\FLOW3\Core\Bootstrap $bootstrap
+	 * @param \TYPO3\Flow\Core\Bootstrap $bootstrap
 	 */
-	public function __construct(\TYPO3\FLOW3\Core\Bootstrap $bootstrap) {
+	public function __construct(\TYPO3\Flow\Core\Bootstrap $bootstrap) {
 		$this->bootstrap = $bootstrap;
 	}
 
 	/**
-	 * Display a message. As we cannot rely on any FLOW3 requirements being fulfilled here,
+	 * Display a message. As we cannot rely on any Flow requirements being fulfilled here,
 	 * we have to statically include the CSS styles at this point, and have to in-line the TYPO3 logo.
 	 *
-	 * @param \TYPO3\FLOW3\Error\Message $message
+	 * @param \TYPO3\Flow\Error\Message $message
 	 * @param string $extraHeaderHtml extra HTML code to include at the end of the head tag
 	 * @return void This method never returns.
 	 */
 	public function showMessage(Message $message, $extraHeaderHtml = '') {
-		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\FLOW3\Package\PackageManagerInterface');
+		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\Flow\Package\PackageManagerInterface');
 
 		$css = '';
 		if ($packageManager->isPackageAvailable('Twitter.Bootstrap')) {

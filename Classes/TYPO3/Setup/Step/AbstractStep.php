@@ -2,7 +2,7 @@
 namespace TYPO3\Setup\Step;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "TYPO3.Setup".                *
+ * This script belongs to the TYPO3 Flow package "TYPO3.Setup".           *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -11,11 +11,11 @@ namespace TYPO3\Setup\Step;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\FLOW3\Annotations as FLOW3,
+use TYPO3\Flow\Annotations as Flow,
 	TYPO3\Form\Core\Model\FormDefinition;
 
 /**
- * @FLOW3\Scope("singleton")
+ * @Flow\Scope("singleton")
  */
 abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 
@@ -32,8 +32,8 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	protected $formSettings;
 
 	/**
-	 * @FLOW3\Inject
-	 * @var \TYPO3\FLOW3\Configuration\ConfigurationManager
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Configuration\ConfigurationManager
 	 */
 	protected $configurationManager;
 
@@ -57,7 +57,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	 * @internal
 	 */
 	public function initializeObject() {
-		$this->formSettings = $this->configurationManager->getConfiguration(\TYPO3\FLOW3\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Form');
+		$this->formSettings = $this->configurationManager->getConfiguration(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Form');
 	}
 
 	/**
@@ -72,7 +72,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 	}
 
 	/**
-	 * Sets global settings of the FLOW3 distribution
+	 * Sets global settings of the Flow distribution
 	 *
 	 * @param array $distributionSettings
 	 * @return void
@@ -99,7 +99,7 @@ abstract class AbstractStep implements \TYPO3\Setup\Step\StepInterface {
 		if (isset($preset['parentPreset'])) {
 			$parentPreset = $this->getPresetConfiguration($preset['parentPreset']);
 			unset($preset['parentPreset']);
-			$preset = \TYPO3\FLOW3\Utility\Arrays::arrayMergeRecursiveOverrule($parentPreset, $preset);
+			$preset = \TYPO3\Flow\Utility\Arrays::arrayMergeRecursiveOverrule($parentPreset, $preset);
 		}
 		return $preset;
 	}
