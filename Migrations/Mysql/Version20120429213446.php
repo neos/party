@@ -26,7 +26,7 @@ class Version20120429213446 extends AbstractMigration {
 	public function down(Schema $schema) {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
 
-		$this->addSql("DROP INDEX flow3_identity_typo3_party_domain_model_electronicaddress");
+		$this->addSql("DROP INDEX flow3_identity_typo3_party_domain_model_electronicaddress ON typo3_party_domain_model_electronicaddress");
 	}
 }
 
