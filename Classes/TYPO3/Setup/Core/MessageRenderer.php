@@ -52,8 +52,8 @@ class MessageRenderer {
 		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\Flow\Package\PackageManagerInterface');
 
 		$css = '';
-		if ($packageManager->isPackageAvailable('Twitter.Bootstrap')) {
-			$css .= file_get_contents($packageManager->getPackage('Twitter.Bootstrap')->getResourcesPath() . 'Public/2/css/bootstrap.min.css');
+		if ($packageManager->isPackageAvailable('TYPO3.Twitter.Bootstrap')) {
+			$css .= file_get_contents($packageManager->getPackage('TYPO3.Twitter.Bootstrap')->getResourcesPath() . 'Public/2/css/bootstrap.min.css');
 		}
 		if ($packageManager->isPackageAvailable('TYPO3.Setup')) {
 			$css .= file_get_contents($packageManager->getPackage('TYPO3.Setup')->getResourcesPath() . 'Public/StyleSheet/Setup.css');

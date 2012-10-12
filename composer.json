@@ -6,7 +6,7 @@
     "require": {
         "typo3/flow": "*",
         "typo3/form": "*",
-        "twitter/bootstrap": "*"
+        "typo3/twitter-bootstrap": "*"
     },
     "autoload": {
         "psr-0": {
