@@ -33,6 +33,9 @@ TYPO3:
           - className: 'TYPO3\Setup\Condition\PdoDriverCondition'
       final:
         className: 'TYPO3\Setup\Step\FinalStep'
+    view:
+      # The title will be shown in the header of the setup wizard
+      title: 'TYPO3 Setup'
 
   Form:
     presets:
