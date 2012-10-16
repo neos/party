@@ -1,18 +1,18 @@
 <f:layout name="Default" />
 
 <f:section name="content">
-	<div class="modal-header">
-		<h3>{settings.view.title} <small>Login</small></h3>
-		<f:render partial="Flashmessages" />
-	</div>
-	<div class="modal-body">
-		<f:form action="authenticate" class="form-horizontal">
+	<h1>{settings.view.title} <small>Login</small></h1>
+	<f:render partial="Flashmessages" />
+	<div class="row t3-module-container indented">
+		<f:form action="authenticate">
 			<fieldset>
 				<legend>Enter the setup password to continue:</legend>
 				<div class="control-group">
 					<label class="control-label" for="password">Password</label>
 					<div class="controls">
 						<f:form.textfield class="active" id="password" type="password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][PasswordToken][password]" additionalAttributes="{autofocus: 'autofocus'}" />
+					</div>
+					<div class="controls">
 						<f:form.hidden name="step" value="{step}" />
 						<f:form.button class="btn btn-primary" type="submit">
 							<i class="icon-lock icon-white"></i> Login

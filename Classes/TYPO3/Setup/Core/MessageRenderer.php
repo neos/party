@@ -94,12 +94,11 @@ class MessageRenderer {
 		}
 
 		echo sprintf('
-			<div class="container">
-				<div class="modal">
-					<div class="modal-header">
-						<h3>%s</h3>
-					</div>
-					<div class="modal-body">
+			<span class="logo">TYPO3 Neos Setup</span>
+			<div class="well">
+				<h1>%s</h1>
+				<div class="row t3-module-container indented">
+					<div class="indented">
 						<div class="alert alert-%s">
 							%s
 						</div>

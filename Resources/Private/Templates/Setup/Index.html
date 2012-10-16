@@ -2,12 +2,14 @@
 <f:layout name="Default" />
 
 <f:section name="content">
-	<div class="modal-header">
-		<f:link.action controller="Login" action="logout" class="btn pull-right">
-			<i class="icon-off"></i>
+	<div class="well-header">
+		<f:link.action controller="Login" action="logout" class="btn pull-right logout btn-mini">
+			<i class="icon-off icon-white"></i>
 			Logout
 		</f:link.action>
-		<h3>{settings.view.title}</h3>
+	</div>
+	<h1>{settings.view.title}</h1>
+	<div class="row t3-module-container indented">
 		<f:render partial="Flashmessages" />
 	</div>
 	{form -> f:format.raw()}

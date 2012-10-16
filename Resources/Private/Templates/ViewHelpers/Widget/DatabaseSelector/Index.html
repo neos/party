@@ -37,7 +37,7 @@
 			if (xhr && xhr.readyState !== 4) {
 				xhr.abort();
 			}
-			statusContainer.removeClass('success error').addClass('loading').text('');
+			statusContainer.removeClass('db-success error').addClass('loading').html('<div class="alert alert-info"><span class="loading"></span>Connecting ...</div>');
 			dbNameDropdownField.hide();
 			dbNameTextField.hide();
 			xhr = $.ajax({
@@ -52,11 +52,11 @@
 			}).done(function(result) {
 				statusContainer.removeClass('loading').attr('title', result.errorMessage);
 				if (result.success) {
-					statusContainer.addClass('success').text('Connection established');
+					statusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="icon-ok"></span>Connection established</div>');
 					fillDatabaseSelector(result.databases);
 					enableDatabaseSelector();
 				} else {
-					statusContainer.addClass('error').text('Could not connect to database');
+					statusContainer.addClass('error').html('<div class="alert alert-error">Could not connect to database</div>');
 					disableDatabaseSelector();
 				}
 			}).error(function() {
