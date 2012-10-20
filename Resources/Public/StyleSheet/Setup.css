@@ -169,6 +169,10 @@ div.db-success {
       font-size: 14px;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
       color: white; }
+  .well .help-block {
+    color: #BBBBBB;
+    font-size: 12px;
+    margin: -8px 0 5px 0; }
   .well a.skip {
     margin-right: 5px; }
   .well .btn {
