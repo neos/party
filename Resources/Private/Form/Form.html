@@ -20,9 +20,17 @@
 			</f:else>
 		</f:if>
 		<f:if condition="{form.renderingOptions.nextStepUri}">
-			<a href="{form.renderingOptions.nextStepUri}" class="btn pull-right skip">
+			<a {f:if(condition: form.renderingOptions.skipStepNotice, then: 'title="{form.renderingOptions.skipStepNotice}"')} rel="tooltip" href="{form.renderingOptions.nextStepUri}" class="btn pull-right skip">
 				Skip <i class="icon-share-alt icon-white"></i>
 			</a>
 		</f:if>
 	</div>
 </form:form>
+
+<script type="text/javascript">
+	(function($) {
+		$(function() {
+			$('[rel="tooltip"]').tooltip();
+		});
+	})(jQuery);
+</script>

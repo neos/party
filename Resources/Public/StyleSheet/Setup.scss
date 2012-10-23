@@ -9,6 +9,7 @@ $light-grey3: #888888;
 $lightest: #FFFFFF;
 
 $green: #69A550;
+$orange: #F18F0B;
 
 // Basic styles
 
@@ -270,4 +271,27 @@ div.db-success {
 			@include background-image(linear-gradient(lighten($green, 5%), $green));
 		}
 	}
+}
+
+// Tooltip
+.tooltip-inner {
+	background-color: $light-grey;
+	color: $dark-grey2;
+	@include box-shadow(0px 0px 5px rgba($darkest, 0.3));
+	max-width: 180px;
+	line-height: 1.3em;
+}
+.tooltip.left .tooltip-arrow {
+	border-left-color: $light-grey;
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: $light-grey;
+}
+.tooltip-inner code {
+	color: $darkest;
+	background: transparent;
+	border: 0px;
+	font-size: 10px;
+	margin: 0px;
+	padding: 0px;
 }
