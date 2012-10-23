@@ -132,6 +132,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	protected function createDatabase(array $connectionSettings, $databaseName) {
 		unset($connectionSettings['dbname']);
 		$connection = \Doctrine\DBAL\DriverManager::getConnection($connectionSettings);
+		$databaseName = $connection->getSchemaManager()->getDatabasePlatform()->quoteIdentifier($databaseName);
 		$connection->getSchemaManager()->createDatabase($databaseName);
 		$connection->close();
 	}
