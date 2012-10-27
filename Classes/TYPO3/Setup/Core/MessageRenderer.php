@@ -94,7 +94,7 @@ class MessageRenderer {
 		}
 
 		echo sprintf('
-			<span class="logo">TYPO3 Neos Setup</span>
+			<span class="logo">TYPO3 Setup</span>
 			<div class="well">
 				<h1>%s</h1>
 				<div class="row t3-module-container indented">
