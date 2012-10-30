@@ -92,11 +92,15 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		} catch (\PDOException $exception) {
 			try {
 				$this->createDatabase($connectionSettings, $formValues['dbname']);
+			} catch (\Doctrine\DBAL\DBALException $exception) {
+				throw new \TYPO3\Setup\Exception(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000841, $exception);
 			} catch (\PDOException $exception) {
 				throw new \TYPO3\Setup\Exception(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758663, $exception);
 			}
 			try {
 				$this->connectToDatabase($connectionSettings);
+			} catch (\Doctrine\DBAL\DBALException $exception) {
+				throw new \TYPO3\Setup\Exception(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000864);
 			} catch (\PDOException $exception) {
 				throw new \TYPO3\Setup\Exception(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758737);
 			}
