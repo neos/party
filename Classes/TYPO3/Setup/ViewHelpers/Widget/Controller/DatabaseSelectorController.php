@@ -48,7 +48,11 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 		$connectionSettings['user'] = $user;
 		$connectionSettings['password'] = $password;
 		$connectionSettings['host'] = $host;
-		unset($connectionSettings['dbname']);
+		if ($connectionSettings['driver'] === 'pdo_pgsql') {
+			$connectionSettings['dbname'] = 'template1';
+		} else {
+			unset($connectionSettings['dbname']);
+		}
 		$result = $this->getDatabases($connectionSettings);
 		return json_encode($result);
 	}
