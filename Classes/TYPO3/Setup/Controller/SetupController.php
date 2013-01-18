@@ -73,6 +73,10 @@ class SetupController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		if ($currentStep->isOptional()) {
 			$formDefinition->setRenderingOption('nextStepUri', $this->uriBuilder->uriFor('index', array('step' => $this->currentStepIndex + 1)));
 		}
+		if ($this->currentStepIndex === count($this->settings['steps']) - 1) {
+			$formDefinition->setRenderingOption('finalStep', TRUE);
+			$this->authenticationManager->logout();
+		}
 		$response = new \TYPO3\Flow\Http\Response($this->response);
 		$form = $formDefinition->bind($this->request, $response);
 		$this->view->assign('form', $form->render());
