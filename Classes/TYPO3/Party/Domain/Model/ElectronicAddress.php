@@ -23,7 +23,6 @@ class ElectronicAddress {
 
 	const TYPE_AIM = 'Aim';
 	const TYPE_EMAIL = 'Email';
-	const TYPE_GIZMO = 'Gizmo';
 	const TYPE_ICQ = 'Icq';
 	const TYPE_JABBER = 'Jabber';
 	const TYPE_MSN = 'Msn';
