@@ -87,7 +87,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	public function removeElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
 		$this->electronicAddresses->removeElement($electronicAddress);
 		if ($electronicAddress === $this->primaryElectronicAddress) {
-			unset($this->primaryElectronicAddress);
+			$this->primaryElectronicAddress = NULL;
 		}
 	}
 
