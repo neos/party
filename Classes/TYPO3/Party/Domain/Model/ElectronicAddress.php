@@ -35,7 +35,33 @@ class ElectronicAddress {
 	const USAGE_WORK = 'Work';
 
 	/**
+	 * @var array
+	 * @Flow\Transient
+	 */
+	protected $availableElectronicAddressTypes = array(
+		self::TYPE_AIM,
+		self::TYPE_EMAIL,
+		self::TYPE_ICQ,
+		self::TYPE_JABBER,
+		self::TYPE_MSN,
+		self::TYPE_SIP,
+		self::TYPE_SKYPE,
+		self::TYPE_URL,
+		self::TYPE_YAHOO
+	);
+
+	/**
+	 * @var array
+	 * @Flow\Transient
+	 */
+	protected $availableUsageTypes = array(
+		self::USAGE_HOME,
+		self::USAGE_WORK
+	);
+
+	/**
 	 * @var string
+	 * @Flow\Validate(type="NotEmpty")
 	 * @Flow\Validate(type="StringLength", options={ "minimum"=1, "maximum"=255 })
 	 */
 	protected $identifier;
@@ -43,6 +69,7 @@ class ElectronicAddress {
 	/**
 	 * @var string
 	 * @Flow\Validate(type="Alphanumeric")
+	 * @Flow\Validate(type="NotEmpty")
 	 * @Flow\Validate(type="StringLength", options={ "minimum"=1, "maximum"=20 })
 	 * @ORM\Column(length=20)
 	 */
@@ -60,6 +87,24 @@ class ElectronicAddress {
 	 * @var boolean
 	 */
 	protected $approved = FALSE;
+
+	/**
+	 * Get all electronic address types
+	 *
+	 * @return array
+	 */
+	public function getAvailableElectronicAddressTypes() {
+		return $this->availableElectronicAddressTypes;
+	}
+
+	/**
+	 * Get all usage types
+	 *
+	 * @return array
+	 */
+	public function getAvailableUsageTypes() {
+		return $this->availableUsageTypes;
+	}
 
 	/**
 	 * Sets the identifier (= the value) of this electronic address.
@@ -147,5 +192,6 @@ class ElectronicAddress {
 	public function  __toString() {
 		return $this->identifier;
 	}
+
 }
 ?>
