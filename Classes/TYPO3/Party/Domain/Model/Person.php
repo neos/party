@@ -74,7 +74,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 */
-	public function addElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
+	public function addElectronicAddress(ElectronicAddress $electronicAddress) {
 		$this->electronicAddresses->add($electronicAddress);
 	}
 
@@ -84,11 +84,24 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 */
-	public function removeElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
+	public function removeElectronicAddress(ElectronicAddress $electronicAddress) {
 		$this->electronicAddresses->removeElement($electronicAddress);
 		if ($electronicAddress === $this->primaryElectronicAddress) {
 			$this->primaryElectronicAddress = NULL;
 		}
+	}
+
+	/**
+	 * Sets the electronic addresses of this person.
+	 *
+	 * @param \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress> $electronicAddresses
+	 * @return void
+	 */
+	public function setElectronicAddresses(\Doctrine\Common\Collections\Collection $electronicAddresses) {
+		if ($this->primaryElectronicAddress !== NULL && !$this->electronicAddresses->contains($this->primaryElectronicAddress)) {
+			$this->primaryElectronicAddress = NULL;
+		}
+		$this->electronicAddresses = $electronicAddresses;
 	}
 
 	/**
@@ -106,7 +119,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 */
-	public function setPrimaryElectronicAddress(\TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress) {
+	public function setPrimaryElectronicAddress(ElectronicAddress $electronicAddress) {
 		$this->primaryElectronicAddress = $electronicAddress;
 		if (!$this->electronicAddresses->contains($electronicAddress)) {
 			$this->electronicAddresses->add($electronicAddress);
