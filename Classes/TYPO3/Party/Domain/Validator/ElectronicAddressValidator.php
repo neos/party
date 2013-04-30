@@ -43,13 +43,17 @@ class ElectronicAddressValidator extends \TYPO3\Flow\Validation\Validator\Generi
 	 */
 	public function isValid($value) {
 		if ($value instanceof \TYPO3\Party\Domain\Model\ElectronicAddress) {
-			if ($this->isValidatedAlready($value)) {
-				return;
-			}
 
-			$addressValidator = $this->validatorResolver->createValidator($value->getType() . 'Address');
+			$addressType = $value->getType();
+			switch ($addressType) {
+				case 'Email':
+					$addressValidator = $this->validatorResolver->createValidator('EmailAddress');
+					break;
+				default;
+					$addressValidator = $this->validatorResolver->createValidator('TYPO3.Party:' . $addressType . 'Address');
+			}
 			if ($addressValidator === NULL) {
-				$this->addError('No validator found for electronic address of type "' . $value->getType() . '".', 1268676030);
+				$this->addError('No validator found for electronic address of type "' . $addressType . '".', 1268676030);
 			} else {
 				$result = $addressValidator->validate($value->getIdentifier());
 				if ($result->hasErrors()) {
