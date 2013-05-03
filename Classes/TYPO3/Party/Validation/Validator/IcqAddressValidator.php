@@ -33,8 +33,8 @@ class IcqAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValid
 	 * @api
 	 */
 	protected function isValid($value) {
-		if (!is_string($value) || preg_match('^(-*[0-9]-*){8,9}$', $value) !== 1) {
-			$this->addError('Please specify a valid ICQ UIN address.', 1343235498);
+		if (!is_string($value) || preg_match('/^(-*[0-9]-*){7,9}$/', $value) !== 1) {
+			$this->addError('Please specify a valid ICQ address.', 1343235498);
 		}
 	}
 }
