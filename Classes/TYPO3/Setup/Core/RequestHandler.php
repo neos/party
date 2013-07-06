@@ -162,12 +162,17 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 	 * Traverse the PATH locations and check for the existence of a valid PHP binary.
 	 * If found, the path and filename are returned, if not NULL is returned.
 	 *
+	 * We only use PHP_BINARY if it's set to a file in the path PHP_BINDIR.
+	 * This is because PHP_BINARY might, for example, be "/opt/local/sbin/php54-fpm"
+	 * while PHP_BINDIR contains "/opt/local/bin" and the actual CLI binary is "/opt/local/bin/php".
+	 *
 	 * @return string
 	 */
 	protected function detectPhpBinaryPathAndFilename() {
-		if (defined('PHP_BINARY') && PHP_BINARY !== '') {
+		if (defined('PHP_BINARY') && PHP_BINARY !== '' && dirname(PHP_BINARY) === PHP_BINDIR) {
 			return PHP_BINARY;
 		}
+
 		$environmentPaths = explode(PATH_SEPARATOR, getenv('PATH'));
 		$environmentPaths[] = PHP_BINDIR;
 		foreach ($environmentPaths as $path) {
