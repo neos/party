@@ -33,7 +33,7 @@ class SipAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValid
 	 * @api
 	 */
 	protected function isValid($value) {
-		if (!is_string($value) || preg_match('(sip:)?(+?[0-9]+)@.+', $value) !== 1) {
+		if (!is_string($value) || preg_match('/^sip\:(?P<number>[0-9]+)@(.*)$/', $value) !== 1) {
 			$this->addError('Please specify a valid Sip address.', 1343235498);
 		}
 	}

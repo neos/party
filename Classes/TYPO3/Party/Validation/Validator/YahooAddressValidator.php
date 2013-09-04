@@ -25,14 +25,14 @@ class YahooAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractVal
 	 * Checks if the given value is a valid Yahoo address.
 	 *
 	 * The Yahoo address has the following structure:
-	 * "name@yahoo.com"
+	 * "name@yahoo.*"
 	 *
 	 * @param mixed $value The value that should be validated
 	 * @return void
 	 * @api
 	 */
 	protected function isValid($value) {
-		if (!is_string($value) || preg_match('^[a-z0-9._%+-]+@(?yahoo)(?:[a-z0-9.-]+\.?)+$', $value) !== 1) {
+		if (!is_string($value) || preg_match('/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[?yahoo]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/', $value) !== 1) {
 			$this->addError('Please specify a valid Yahoo address.', 1343235498);
 		}
 	}

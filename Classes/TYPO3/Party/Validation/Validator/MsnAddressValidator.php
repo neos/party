@@ -24,15 +24,15 @@ class MsnAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValid
 	/**
 	 * Checks if the given value is a valid MSN address.
 	 *
-	 * The Yahoo address has the following structure:
-	 * "name@hotmail.com, name@live.com, name@msn.com"
+	 * The MSN address has the following structure:
+	 * "name@hotmail.com, name@live.com, name@msn.com, name@outlook.com"
 	 *
 	 * @param mixed $value The value that should be validated
 	 * @return void
 	 * @api
 	 */
 	protected function isValid($value) {
-		if (!is_string($value) || preg_match('^[a-z0-9._%+-]+@(?msn|live|hotmail)(?:[a-z0-9.-]+\.?)+$', $value) !== 1) {
+		if (!is_string($value) || preg_match('/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[?msn|live|hotmail|outlook]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/', $value) !== 1) {
 			$this->addError('Please specify a valid MSN address.', 1343235498);
 		}
 	}
