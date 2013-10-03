@@ -49,7 +49,7 @@ class SetupController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	/**
 	 * @return void
 	 */
-	public function initializeAction() {
+	protected function initializeAction() {
 		$this->distributionSettings = $this->configurationSource->load(FLOW_PATH_CONFIGURATION . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
 	}
 
