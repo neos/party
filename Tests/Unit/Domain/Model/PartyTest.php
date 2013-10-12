@@ -29,4 +29,3 @@ class AbstractPartyTest extends \TYPO3\Flow\Tests\UnitTestCase {
 		$party->addAccount($mockAccount);
 	}
 }
-?>

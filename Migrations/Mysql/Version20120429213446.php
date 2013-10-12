@@ -29,5 +29,3 @@ class Version20120429213446 extends AbstractMigration {
 		$this->addSql("DROP INDEX flow3_identity_typo3_party_domain_model_electronicaddress ON typo3_party_domain_model_electronicaddress");
 	}
 }
-
-?>

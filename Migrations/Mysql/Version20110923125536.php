@@ -45,5 +45,3 @@ class Version20110923125536 extends AbstractMigration {
 		$this->addSql("CREATE INDEX IDX_72AAAA2FB06BD60D ON typo3_party_domain_model_person (party_electronicaddress)");
 	}
 }
-
-?>

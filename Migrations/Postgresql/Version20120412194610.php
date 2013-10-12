@@ -51,5 +51,3 @@ class Version20120412194610 extends AbstractMigration {
 		$this->addSql("DROP TABLE typo3_party_domain_model_personname");
 	}
 }
-
-?>

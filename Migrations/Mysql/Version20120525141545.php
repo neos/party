@@ -29,5 +29,3 @@ class Version20120525141545 extends AbstractMigration {
 		$this->addSql("ALTER TABLE typo3_party_domain_model_electronicaddress CHANGE usagetype usagetype VARCHAR(20) NOT NULL");
 	}
 }
-
-?>

@@ -29,5 +29,3 @@ class Version20120525141546 extends AbstractMigration {
 		$this->addSql("ALTER TABLE typo3_party_domain_model_electronicaddress ALTER usagetype SET NOT NULL");
 	}
 }
-
-?>

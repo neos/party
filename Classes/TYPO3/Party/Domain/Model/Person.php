@@ -135,5 +135,3 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 		return $this->primaryElectronicAddress;
 	}
 }
-
-?>

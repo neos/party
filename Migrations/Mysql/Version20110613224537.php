@@ -49,5 +49,3 @@ class Version20110613224537 extends AbstractMigration {
 		$this->addSql("DROP TABLE party_personname");
 	}
 }
-
-?>

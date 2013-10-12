@@ -37,5 +37,3 @@ class MsnAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValid
 		}
 	}
 }
-
-?>

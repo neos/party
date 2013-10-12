@@ -38,5 +38,3 @@ class SipAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValid
 		}
 	}
 }
-
-?>

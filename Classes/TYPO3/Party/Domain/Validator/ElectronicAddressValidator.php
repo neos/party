@@ -64,4 +64,3 @@ class ElectronicAddressValidator extends \TYPO3\Flow\Validation\Validator\Generi
 	}
 
 }
-?>

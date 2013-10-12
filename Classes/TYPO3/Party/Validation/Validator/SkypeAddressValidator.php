@@ -44,5 +44,3 @@ class SkypeAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractVal
 		}
 	}
 }
-
-?>

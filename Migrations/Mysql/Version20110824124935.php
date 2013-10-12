@@ -37,5 +37,3 @@ class Version20110824124935 extends AbstractMigration {
 		$this->addSql("RENAME TABLE typo3_party_domain_model_personname TO party_personname");
 	}
 }
-
-?>

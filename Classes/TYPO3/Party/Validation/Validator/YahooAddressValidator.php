@@ -37,5 +37,3 @@ class YahooAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractVal
 		}
 	}
 }
-
-?>

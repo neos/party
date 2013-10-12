@@ -38,5 +38,3 @@ class JabberAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractVa
 		}
 	}
 }
-
-?>

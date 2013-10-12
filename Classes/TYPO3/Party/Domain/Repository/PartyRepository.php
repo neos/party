@@ -23,5 +23,3 @@ class PartyRepository extends \TYPO3\Flow\Persistence\Repository {
 	const ENTITY_CLASSNAME = 'TYPO3\Party\Domain\Model\AbstractParty';
 
 }
-
-?>

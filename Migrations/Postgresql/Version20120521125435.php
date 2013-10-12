@@ -29,5 +29,3 @@ class Version20120521125435 extends AbstractMigration {
 		$this->addSql("CREATE UNIQUE INDEX flow3_identity_typo3_party_domain_model_electronicaddress ON typo3_party_domain_model_electronicaddress (identifier, type, usagetype)");
 	}
 }
-
-?>

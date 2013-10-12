@@ -236,4 +236,3 @@ class PersonName {
 		return $this->fullName;
 	}
 }
-?>

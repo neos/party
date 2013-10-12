@@ -87,5 +87,3 @@ class PersonTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 		$this->assertEquals($foundPerson->getPrimaryElectronicAddress()->getIdentifier(), $emailAddress);
 	}
 }
-
-?>

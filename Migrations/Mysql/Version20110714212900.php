@@ -29,5 +29,3 @@ class Version20110714212900 extends AbstractMigration {
 		$this->addSql("UPDATE party_abstractparty SET dtype=CONCAT('f3_', SUBSTR(dtype, 4)) WHERE dtype LIKE 'typo3_%'");
 	}
 }
-
-?>

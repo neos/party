@@ -31,5 +31,3 @@ class Version20120329220341 extends AbstractMigration {
 		$this->addSql("ALTER TABLE typo3_party_domain_model_personname CHANGE title title VARCHAR(255) DEFAULT NULL, CHANGE firstname firstname VARCHAR(255) DEFAULT NULL, CHANGE middlename middlename VARCHAR(255) DEFAULT NULL, CHANGE lastname lastname VARCHAR(255) DEFAULT NULL, CHANGE othername othername VARCHAR(255) DEFAULT NULL, CHANGE alias alias VARCHAR(255) DEFAULT NULL, CHANGE fullname fullname VARCHAR(255) DEFAULT NULL");
 	}
 }
-
-?>

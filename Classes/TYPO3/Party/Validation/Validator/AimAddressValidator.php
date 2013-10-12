@@ -38,5 +38,3 @@ class AimAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValid
 		}
 	}
 }
-
-?>

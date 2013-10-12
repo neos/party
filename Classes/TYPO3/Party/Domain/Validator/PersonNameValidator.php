@@ -34,4 +34,3 @@ class PersonNameValidator extends \TYPO3\Flow\Validation\Validator\GenericObject
 	}
 
 }
-?>
