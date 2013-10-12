@@ -52,4 +52,3 @@ class DatabaseSelectorViewHelper extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 		return $this->initiateSubRequest();
 	}
 }
-?>

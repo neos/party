@@ -54,4 +54,3 @@ interface StepInterface {
 	public function isOptional();
 
 }
-?>

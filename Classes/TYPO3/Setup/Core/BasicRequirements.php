@@ -176,4 +176,3 @@ class BasicRequirements {
 		return NULL;
 	}
 }
-?>

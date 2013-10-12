@@ -34,4 +34,3 @@ class DatabaseConnectionCondition extends AbstractCondition {
 	}
 
 }
-?>

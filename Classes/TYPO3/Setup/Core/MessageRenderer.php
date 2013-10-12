@@ -110,4 +110,3 @@ class MessageRenderer {
 		exit(0);
 	}
 }
-?>

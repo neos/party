@@ -78,5 +78,3 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 		}
 	}
 }
-
-?>

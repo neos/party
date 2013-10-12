@@ -40,4 +40,3 @@ abstract class AbstractCondition implements ConditionInterface {
 	}
 
 }
-?>

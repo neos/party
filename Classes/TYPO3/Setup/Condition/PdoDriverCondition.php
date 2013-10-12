@@ -31,4 +31,3 @@ class PdoDriverCondition extends AbstractCondition {
 	}
 
 }
-?>

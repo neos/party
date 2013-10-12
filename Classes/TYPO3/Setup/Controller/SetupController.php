@@ -172,4 +172,3 @@ class SetupController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	}
 
 }
-?>

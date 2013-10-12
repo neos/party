@@ -16,4 +16,3 @@ namespace TYPO3\Setup;
  */
 class Exception extends \TYPO3\Flow\Exception {
 }
-?>

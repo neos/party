@@ -188,4 +188,3 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 		return NULL;
 	}
 }
-?>
