@@ -85,6 +85,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	/**
 	 * @param integer $step The requested setup step
 	 * @return void
+	 * @Flow\SkipCsrfProtection
 	 */
 	public function authenticateAction($step) {
 		try {
