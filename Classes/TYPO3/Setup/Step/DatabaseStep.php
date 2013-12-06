@@ -26,6 +26,12 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	protected $configurationSource;
 
 	/**
+	 * @var \TYPO3\Flow\Security\Policy\PolicyService
+	 * @Flow\Inject
+	 */
+	protected $policyService;
+
+	/**
 	 * Returns the form definitions for the step
 	 *
 	 * @param \TYPO3\Form\Core\Model\FormDefinition $formDefinition
@@ -110,6 +116,15 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		if ($migrationExecuted !== TRUE) {
 			throw new \TYPO3\Setup\Exception(sprintf('Could not execute database migrations. Please check the permissions for user "%s" and execute "./flow typo3.flow:doctrine:migrate" manually.', $formValues['user']), 1346759486);
 		}
+
+		$this->resetPolicyRolesCacheAfterDatabaseChanges();
+	}
+
+	/**
+	 * A changed database needs to resynchronize the roles
+	 */
+	public function resetPolicyRolesCacheAfterDatabaseChanges() {
+		$this->policyService->reset();
 	}
 
 	/**
