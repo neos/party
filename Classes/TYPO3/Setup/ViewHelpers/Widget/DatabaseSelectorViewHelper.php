@@ -46,9 +46,10 @@ class DatabaseSelectorViewHelper extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 	 * @param string $dbNameTextFieldId id of the input field for the db name (fallback)
 	 * @param string $dbNameDropdownFieldId id of the select field for the fetched db names (this is hidden by default)
 	 * @param string $statusContainerId id of the element displaying AJAX status (gets class "loading", "success" or "error" depending on the state)
+	 * @param string $metadataStatusContainerId id of the element displaying status information of the selected database (gets class "loading", "success" or "error" depending on the state)
 	 * @return string
 	 */
-	public function render($userFieldId, $passwordFieldId, $hostFieldId, $dbNameTextFieldId, $dbNameDropdownFieldId, $statusContainerId) {
+	public function render($userFieldId, $passwordFieldId, $hostFieldId, $dbNameTextFieldId, $dbNameDropdownFieldId, $statusContainerId, $metadataStatusContainerId) {
 		return $this->initiateSubRequest();
 	}
 }

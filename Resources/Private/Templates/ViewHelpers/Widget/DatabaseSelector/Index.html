@@ -8,7 +8,9 @@
 			passwordField = $('#{passwordFieldId}'),
 			hostField = $('#{hostFieldId}'),
 			statusContainer = $('#{statusContainerId}'),
-			ajaxEndpoint = "{f:widget.uri(action:'checkConnection', ajax: 1, includeWidgetContext: 1)}";
+			metadataStatusContainer = $('#{metadataStatusContainerId}'),
+			ajaxEndpoint = "{f:widget.uri(action:'checkConnection', ajax: true, includeWidgetContext: true)}",
+			ajaxDatabaseMetadataEndpoint = "{f:widget.uri(action:'getMetadata', ajax: true, includeWidgetContext: true)}";
 
 		/* <![CDATA[ */
 
@@ -39,6 +41,7 @@
 			}
 			statusContainer.removeClass('db-success error').addClass('loading').html('<div class="alert alert-info"><span class="loading"></span>Connecting ...</div>');
 			dbNameDropdownField.hide();
+			metadataStatusContainer.hide();
 			dbNameTextField.hide();
 			xhr = $.ajax({
 				url: ajaxEndpoint,
@@ -86,13 +89,37 @@
 
 		detectChanges($('#{userFieldId}, #{passwordFieldId}, #{hostFieldId}'), checkDatabaseConnection);
 		dbNameDropdownField.change(function(event, target) {
-			if ($(this).val() === '__new__') {
+			var selectedValue = $(this).val();
+			metadataStatusContainer.hide();
+			if (selectedValue === '__new__') {
 				disableDatabaseSelector();
 				dbNameTextField.focus();
 				dbNameTextField.blur(function() {
 					if ($(this).val() === '') {
 						enableDatabaseSelector();
 					}
+				});
+			} else if (selectedValue !== '') {
+				metadataStatusContainer.show().removeClass('error').addClass('loading').html('<div class="alert alert-info"><span class="loading"></span>Checking metadata...</div>');
+				$.ajax({
+					url: ajaxDatabaseMetadataEndpoint,
+					data: {
+						user: userField.val(),
+						password: passwordField.val(),
+						host: hostField.val(),
+						databaseName: selectedValue
+					},
+					dataType: 'json',
+					cache: false
+				}).done(function(result) {
+					metadataStatusContainer.removeClass('loading');
+					if (result.level === 'ok') {
+						metadataStatusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="icon-ok"></span>' + result.message + '</div>');
+					} else {
+						metadataStatusContainer.addClass('error').html('<div class="alert">' + result.message + '</div>');
+					}
+				}).error(function() {
+					metadataStatusContainer.removeClass('loading').addClass('error').text('Unexpected error');
 				});
 			}
 		});

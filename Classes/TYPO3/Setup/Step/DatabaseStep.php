@@ -11,8 +11,16 @@ namespace TYPO3\Setup\Step;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow,
-	TYPO3\Form\Core\Model\FormDefinition;
+use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Configuration\ConfigurationManager;
+use TYPO3\Flow\Core\Booting\Scripts;
+use TYPO3\Flow\Utility\Arrays;
+use TYPO3\Flow\Validation\Validator\NotEmptyValidator;
+use TYPO3\Setup\Exception as SetupException;
+use TYPO3\Form\Core\Model\FormDefinition;
 
 /**
  * @Flow\Scope("singleton")
@@ -34,10 +42,10 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	/**
 	 * Returns the form definitions for the step
 	 *
-	 * @param \TYPO3\Form\Core\Model\FormDefinition $formDefinition
+	 * @param FormDefinition $formDefinition
 	 * @return void
 	 */
-	protected function buildForm(\TYPO3\Form\Core\Model\FormDefinition $formDefinition) {
+	protected function buildForm(FormDefinition $formDefinition) {
 		$page1 = $formDefinition->createPage('page1');
 
 		$introduction = $page1->createElement('introduction', 'TYPO3.Form:StaticText');
@@ -48,21 +56,21 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 
 		$databaseUser = $connectionSection->createElement('user', 'TYPO3.Form:SingleLineText');
 		$databaseUser->setLabel('DB Username');
-		$databaseUser->setDefaultValue(\TYPO3\Flow\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.user'));
-		$databaseUser->addValidator(new \TYPO3\Flow\Validation\Validator\NotEmptyValidator());
+		$databaseUser->setDefaultValue(Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.user'));
+		$databaseUser->addValidator(new NotEmptyValidator());
 
 		$databasePassword = $connectionSection->createElement('password', 'TYPO3.Form:Password');
 		$databasePassword->setLabel('DB Password');
-		$databasePassword->setDefaultValue(\TYPO3\Flow\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.password'));
+		$databasePassword->setDefaultValue(Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.password'));
 
 		$databaseHost = $connectionSection->createElement('host', 'TYPO3.Form:SingleLineText');
 		$databaseHost->setLabel('DB Host');
-		$defaultHost = \TYPO3\Flow\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.host');
+		$defaultHost = Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.host');
 		if ($defaultHost === NULL) {
 			$defaultHost = '127.0.0.1';
 		}
 		$databaseHost->setDefaultValue($defaultHost);
-		$databaseHost->addValidator(new \TYPO3\Flow\Validation\Validator\NotEmptyValidator());
+		$databaseHost->addValidator(new NotEmptyValidator());
 
 		$databaseSection = $page1->createElement('databaseSection', 'TYPO3.Form:Section');
 		$databaseSection->setLabel('Database');
@@ -72,8 +80,8 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$databaseName->setProperty('userFieldId', $databaseUser->getUniqueIdentifier());
 		$databaseName->setProperty('passwordFieldId', $databasePassword->getUniqueIdentifier());
 		$databaseName->setProperty('hostFieldId', $databaseHost->getUniqueIdentifier());
-		$databaseName->setDefaultValue(\TYPO3\Flow\Utility\Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.dbname'));
-		$databaseName->addValidator(new \TYPO3\Flow\Validation\Validator\NotEmptyValidator());
+		$databaseName->setDefaultValue(Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.dbname'));
+		$databaseName->addValidator(new NotEmptyValidator());
 	}
 
 	/**
@@ -83,15 +91,15 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 * @return void
 	 */
 	public function postProcessFormValues(array $formValues) {
-		$this->distributionSettings = \TYPO3\Flow\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.dbname', $formValues['dbname']);
-		$this->distributionSettings = \TYPO3\Flow\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.user', $formValues['user']);
-		$this->distributionSettings = \TYPO3\Flow\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.password', $formValues['password']);
-		$this->distributionSettings = \TYPO3\Flow\Utility\Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.host', $formValues['host']);
-		$this->configurationSource->save(FLOW_PATH_CONFIGURATION . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $this->distributionSettings);
+		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.dbname', $formValues['dbname']);
+		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.user', $formValues['user']);
+		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.password', $formValues['password']);
+		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.host', $formValues['host']);
+		$this->configurationSource->save(FLOW_PATH_CONFIGURATION . ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $this->distributionSettings);
 
 		$this->configurationManager->flushConfigurationCache();
 
-		$settings = $this->configurationManager->getConfiguration(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
+		$settings = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
 		$connectionSettings = $settings['persistence']['backendOptions'];
 		try {
 			$this->connectToDatabase($connectionSettings);
@@ -99,22 +107,22 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 			try {
 				$this->createDatabase($connectionSettings, $formValues['dbname']);
 			} catch (\Doctrine\DBAL\DBALException $exception) {
-				throw new \TYPO3\Setup\Exception(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000841, $exception);
+				throw new SetupException(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000841, $exception);
 			} catch (\PDOException $exception) {
-				throw new \TYPO3\Setup\Exception(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758663, $exception);
+				throw new SetupException(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758663, $exception);
 			}
 			try {
 				$this->connectToDatabase($connectionSettings);
 			} catch (\Doctrine\DBAL\DBALException $exception) {
-				throw new \TYPO3\Setup\Exception(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000864);
+				throw new SetupException(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000864);
 			} catch (\PDOException $exception) {
-				throw new \TYPO3\Setup\Exception(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758737);
+				throw new SetupException(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758737);
 			}
 		}
 
-		$migrationExecuted = \TYPO3\Flow\Core\Booting\Scripts::executeCommand('typo3.flow:doctrine:migrate', $settings, FALSE);
+		$migrationExecuted = Scripts::executeCommand('typo3.flow:doctrine:migrate', $settings, FALSE);
 		if ($migrationExecuted !== TRUE) {
-			throw new \TYPO3\Setup\Exception(sprintf('Could not execute database migrations. Please check the permissions for user "%s" and execute "./flow typo3.flow:doctrine:migrate" manually.', $formValues['user']), 1346759486);
+			throw new SetupException(sprintf('Could not execute database migrations. Please check the permissions for user "%s" and execute "./flow typo3.flow:doctrine:migrate" manually.', $formValues['user']), 1346759486);
 		}
 
 		$this->resetPolicyRolesCacheAfterDatabaseChanges();
@@ -122,6 +130,8 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 
 	/**
 	 * A changed database needs to resynchronize the roles
+	 *
+	 * @return void
 	 */
 	public function resetPolicyRolesCacheAfterDatabaseChanges() {
 		$this->policyService->reset();
@@ -135,7 +145,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 * @throws \PDOException if the connection fails
 	 */
 	protected function connectToDatabase(array $connectionSettings) {
-		$connection = \Doctrine\DBAL\DriverManager::getConnection($connectionSettings);
+		$connection = DriverManager::getConnection($connectionSettings);
 		$connection->connect();
 	}
 
@@ -145,14 +155,21 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 *
 	 * @param array $connectionSettings array in the format array('user' => 'dbuser', 'password' => 'dbpassword', 'host' => 'dbhost', 'dbname' => 'dbname')
 	 * @param string $databaseName name of the database to create
+	 * @throws \TYPO3\Setup\Exception
 	 * @return void
-	 * @throws \PDOException if creation of database failed
 	 */
 	protected function createDatabase(array $connectionSettings, $databaseName) {
 		unset($connectionSettings['dbname']);
-		$connection = \Doctrine\DBAL\DriverManager::getConnection($connectionSettings);
-		$databaseName = $connection->getSchemaManager()->getDatabasePlatform()->quoteIdentifier($databaseName);
-		$connection->getSchemaManager()->createDatabase($databaseName);
+		$connection = DriverManager::getConnection($connectionSettings);
+		$databasePlatform = $connection->getSchemaManager()->getDatabasePlatform();
+		$databaseName = $databasePlatform->quoteIdentifier($databaseName);
+		if ($databasePlatform instanceof MySqlPlatform) {
+			$connection->executeUpdate(sprintf('CREATE DATABASE %s CHARACTER SET utf8 COLLATE utf8_unicode_ci', $databaseName));
+		} elseif ($databasePlatform instanceof PostgreSqlPlatform) {
+			$connection->executeUpdate(sprintf('CREATE DATABASE %s WITH ENCODING = %s', $databaseName, "'UTF8'"));
+		} else {
+			throw new SetupException(sprintf('The given database platform "%s" is not supported.', $databasePlatform->getName()), 1386454885);
+		}
 		$connection->close();
 	}
 }
