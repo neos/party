@@ -15,6 +15,7 @@ use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Http\Request;
 use TYPO3\Flow\Http\Response;
 use TYPO3\Flow\Error\Message;
+use TYPO3\Flow\Utility\Files;
 
 /**
  * A request handler which can handle HTTP requests.
@@ -146,7 +147,12 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 	protected function checkPhpBinary($phpBinaryPathAndFilename) {
 		$phpVersion = NULL;
 		if (file_exists($phpBinaryPathAndFilename) && is_file($phpBinaryPathAndFilename)) {
-			$phpVersion = trim(exec(escapeshellcmd($phpBinaryPathAndFilename) . ' -r "echo PHP_VERSION;"'));
+			if (DIRECTORY_SEPARATOR === '/') {
+				$phpCommand = '"' . escapeshellcmd(Files::getUnixStylePath($phpBinaryPathAndFilename)) . '"';
+			} else {
+				$phpCommand = escapeshellarg(Files::getUnixStylePath($phpBinaryPathAndFilename));
+			}
+			$phpVersion = trim(exec($phpCommand . ' -r "echo PHP_VERSION;"'));
 			if ($phpVersion === PHP_VERSION) {
 				return TRUE;
 			}
