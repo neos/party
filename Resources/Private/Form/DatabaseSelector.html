@@ -6,6 +6,7 @@
 	<f:form.textfield property="{element.identifier}" id="{element.uniqueIdentifier}" class="{element.properties.elementClassAttribute}" placeholder="{element.properties.placeholder}" errorClass="{element.properties.elementErrorClassAttribute}" />
 	<div class="status" id="{element.uniqueIdentifier}-metadata-status"></div>
 	<setup:widget.databaseSelector
+		driverDropdownFieldId="{element.properties.driverDropdownFieldId}"
 		userFieldId="{element.properties.userFieldId}"
 		passwordFieldId="{element.properties.passwordFieldId}"
 		hostFieldId="{element.properties.hostFieldId}"

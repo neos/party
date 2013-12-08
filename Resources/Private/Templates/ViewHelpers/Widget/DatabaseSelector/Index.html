@@ -4,6 +4,7 @@
 		var xhr,
 			dbNameDropdownField = $('#{dbNameDropdownFieldId}'),
 			dbNameTextField = $('#{dbNameTextFieldId}'),
+			driverDropdownField = $('#{driverDropdownFieldId}'),
 			userField = $('#{userFieldId}'),
 			passwordField = $('#{passwordFieldId}'),
 			hostField = $('#{hostFieldId}'),
@@ -46,6 +47,7 @@
 			xhr = $.ajax({
 				url: ajaxEndpoint,
 				data: {
+					driver: driverDropdownField.val(),
 					user: userField.val(),
 					password: passwordField.val(),
 					host: hostField.val()
@@ -88,6 +90,9 @@
 		/* ]]> */
 
 		detectChanges($('#{userFieldId}, #{passwordFieldId}, #{hostFieldId}'), checkDatabaseConnection);
+		driverDropdownField.change(function(event, target) {
+			checkDatabaseConnection();
+		});
 		dbNameDropdownField.change(function(event, target) {
 			var selectedValue = $(this).val();
 			metadataStatusContainer.hide();
@@ -104,6 +109,7 @@
 				$.ajax({
 					url: ajaxDatabaseMetadataEndpoint,
 					data: {
+						driver: driverDropdownField.val(),
 						user: userField.val(),
 						password: passwordField.val(),
 						host: hostField.val(),

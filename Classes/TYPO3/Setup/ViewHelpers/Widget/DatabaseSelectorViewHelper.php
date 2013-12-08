@@ -40,6 +40,7 @@ class DatabaseSelectorViewHelper extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 
 	/**
 	 *
+	 * @param string $driverDropdownFieldId id of the DB driver input field
 	 * @param string $userFieldId id of the DB username input field
 	 * @param string $passwordFieldId id of the DB password input field
 	 * @param string $hostFieldId id of the DB host input field
@@ -49,7 +50,7 @@ class DatabaseSelectorViewHelper extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 	 * @param string $metadataStatusContainerId id of the element displaying status information of the selected database (gets class "loading", "success" or "error" depending on the state)
 	 * @return string
 	 */
-	public function render($userFieldId, $passwordFieldId, $hostFieldId, $dbNameTextFieldId, $dbNameDropdownFieldId, $statusContainerId, $metadataStatusContainerId) {
+	public function render($driverDropdownFieldId, $userFieldId, $passwordFieldId, $hostFieldId, $dbNameTextFieldId, $dbNameDropdownFieldId, $statusContainerId, $metadataStatusContainerId) {
 		return $this->initiateSubRequest();
 	}
 }

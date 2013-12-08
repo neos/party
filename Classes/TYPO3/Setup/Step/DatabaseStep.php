@@ -54,6 +54,12 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$connectionSection = $page1->createElement('connectionSection', 'TYPO3.Form:Section');
 		$connectionSection->setLabel('Connection');
 
+		$databaseDriver = $connectionSection->createElement('driver', 'TYPO3.Form:SingleSelectDropdown');
+		$databaseDriver->setLabel('DB Driver');
+		$databaseDriver->setProperty('options', array('pdo_mysql' => 'MySQL/MariaDB via PDO', 'pdo_pgsql' => 'PostgreSQL via PDO'));
+		$databaseDriver->setDefaultValue(Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.driver'));
+		$databaseDriver->addValidator(new NotEmptyValidator());
+
 		$databaseUser = $connectionSection->createElement('user', 'TYPO3.Form:SingleLineText');
 		$databaseUser->setLabel('DB Username');
 		$databaseUser->setDefaultValue(Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.user'));
@@ -77,6 +83,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 
 		$databaseName = $databaseSection->createElement('dbname', 'TYPO3.Setup:DatabaseSelector');
 		$databaseName->setLabel('DB Name');
+		$databaseName->setProperty('driverDropdownFieldId', $databaseDriver->getUniqueIdentifier());
 		$databaseName->setProperty('userFieldId', $databaseUser->getUniqueIdentifier());
 		$databaseName->setProperty('passwordFieldId', $databasePassword->getUniqueIdentifier());
 		$databaseName->setProperty('hostFieldId', $databaseHost->getUniqueIdentifier());
@@ -91,6 +98,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 * @return void
 	 */
 	public function postProcessFormValues(array $formValues) {
+		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.driver', $formValues['driver']);
 		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.dbname', $formValues['dbname']);
 		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.user', $formValues['user']);
 		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.password', $formValues['password']);

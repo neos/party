@@ -31,6 +31,7 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 	 * @return void
 	 */
 	public function indexAction() {
+		$this->view->assign('driverDropdownFieldId', $this->widgetConfiguration['driverDropdownFieldId']);
 		$this->view->assign('userFieldId', $this->widgetConfiguration['userFieldId']);
 		$this->view->assign('passwordFieldId', $this->widgetConfiguration['passwordFieldId']);
 		$this->view->assign('hostFieldId', $this->widgetConfiguration['hostFieldId']);
@@ -41,14 +42,15 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 	}
 
 	/**
+	 * @param string $driver
 	 * @param string $user
 	 * @param string $password
 	 * @param string $host
 	 * @return string
 	 */
-	public function checkConnectionAction($user, $password, $host) {
+	public function checkConnectionAction($driver, $user, $password, $host) {
 		$this->response->setHeader('Content-Type', 'application/json');
-		$connectionSettings = $this->buildConnectionSettingsArray($user, $password, $host);
+		$connectionSettings = $this->buildConnectionSettingsArray($driver, $user, $password, $host);
 		try {
 			$connection = $this->getConnectionAndConnect($connectionSettings);
 			$databases = $connection->getSchemaManager()->listDatabases();
@@ -65,15 +67,16 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 	 * This fetches information about the database provided, in particular the charset being used.
 	 * Depending on whether it is utf8 or not, the (JSON-) response is layed out accordingly.
 	 *
+	 * @param string $driver
 	 * @param string $user
 	 * @param string $password
 	 * @param string $host
 	 * @param string $databaseName
 	 * @return string
 	 */
-	public function getMetadataAction($user, $password, $host, $databaseName) {
+	public function getMetadataAction($driver, $user, $password, $host, $databaseName) {
 		$this->response->setHeader('Content-Type', 'application/json');
-		$connectionSettings = $this->buildConnectionSettingsArray($user, $password, $host);
+		$connectionSettings = $this->buildConnectionSettingsArray($driver, $user, $password, $host);
 		$connectionSettings['dbname'] = $databaseName;
 		try {
 			$connection = $this->getConnectionAndConnect($connectionSettings);
@@ -106,14 +109,16 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 	}
 
 	/**
+	 * @param string $driver
 	 * @param string $user
 	 * @param string $password
 	 * @param string $host
 	 * @return mixed
 	 */
-	protected function buildConnectionSettingsArray($user, $password, $host) {
+	protected function buildConnectionSettingsArray($driver, $user, $password, $host) {
 		$settings = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
 		$connectionSettings = $settings['persistence']['backendOptions'];
+		$connectionSettings['driver'] = $driver;
 		$connectionSettings['user'] = $user;
 		$connectionSettings['password'] = $password;
 		$connectionSettings['host'] = $host;
