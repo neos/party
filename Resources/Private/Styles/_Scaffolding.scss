@@ -1,0 +1,33 @@
+body {
+	@include font();
+	background-color: #141414;
+	color: #FFF;
+	margin: 0;
+}
+
+.well {
+	position: relative;
+	background: #222;
+	margin-top: 10px;
+	padding: 50px 0px;
+	border: 0px none;
+	min-height: 500px;
+}
+
+.logo {
+	background: transparent inline-image('TYPO3_logo.png') top right no-repeat;
+	height: 60px;
+	width: 100%;
+}
+
+.login-box {
+	max-width: 380px;
+	margin: 0px auto;
+	padding: 25px 0px 50px 0px;
+}
+
+@media (min-width: 768px) {
+	.container {
+		max-width: 750px;
+	}
+}

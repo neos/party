@@ -44,6 +44,9 @@ TYPO3:
         title: 'Setup Elements'
         parentPreset: 'default'
         formElementTypes:
+          'TYPO3.Form:Base':
+            renderingOptions:
+              layoutPathPattern: 'resource://TYPO3.Setup/Private/Form/Layouts/{@type}.html'
           'TYPO3.Form:Form':
             renderingOptions:
               templatePathPattern: 'resource://TYPO3.Setup/Private/Form/{@type}.html'
@@ -55,3 +58,28 @@ TYPO3:
               href: ''
           'TYPO3.Setup:DatabaseSelector':
             superTypes: ['TYPO3.Form:FormElement']
+            properties:
+              elementClassAttribute: 'form-control'
+          'TYPO3.Form:SingleLineText':
+            properties:
+              elementClassAttribute: 'form-control'
+          'TYPO3.Form:Password':
+            properties:
+              elementClassAttribute: 'form-control'
+          'TYPO3.Form:PasswordWithConfirmation':
+            renderingOptions:
+              templatePathPattern: 'resource://TYPO3.Setup/Private/Form/{@type}.html'
+            properties:
+              elementClassAttribute: 'form-control'
+              confirmationClassAttribute: 'form-control'
+          'TYPO3.Form:Checkbox':
+            renderingOptions:
+              templatePathPattern: 'resource://TYPO3.Setup/Private/Form/{@type}.html'
+            properties:
+              elementClassAttribute: 'checkbox'
+          'TYPO3.Form:MultipleSelectDropdown':
+            properties:
+              elementClassAttribute: 'form-control'
+          'TYPO3.Form:SingleSelectDropdown':
+            renderingOptions:
+              templatePathPattern: 'resource://TYPO3.Setup/Private/Form/{@type}.html'

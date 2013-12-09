@@ -1,32 +1,51 @@
 <f:layout name="Default" />
 
 <f:section name="content">
-	<h1>{settings.view.title} <small>Login</small></h1>
-	<div class="row t3-module-container indented">
-		<f:render partial="Flashmessages" />
+	<div class="t3-module-container indented">
 		<f:form action="authenticate">
+			<h1 class="text-center">Login</h1>
 			<fieldset>
-				<legend>Enter the setup password to continue:</legend>
-				<div class="control-group">
-					<label class="control-label" for="password">Password</label>
-					<div class="controls">
-						<f:form.textfield class="active" id="password" type="password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][PasswordToken][password]" additionalAttributes="{autofocus: 'autofocus'}" />
+				<legend class="text-center">Enter the setup password to continue:</legend>
+				<div class="login-box">
+					<div class="form-group">
+						<f:form.textfield class="form-control" id="password" type="password" name="__authentication[TYPO3][Flow][Security][Authentication][Token][PasswordToken][password]" additionalAttributes="{autofocus: 'autofocus'}" placeholder="Password" />
 					</div>
-					<div class="controls">
-						<f:form.hidden name="step" value="{step}" />
-						<f:form.button class="btn btn-primary" type="submit">
-							<i class="icon-lock icon-white"></i> Login
-						</f:form.button>
+					<div class="form-group">
+						<div class="controls">
+							<f:form.hidden name="step" value="{step}" />
+							<f:form.button class="btn btn-full-width btn-primary" type="submit">
+								<span class="glyphicon glyphicon-lock"></span> Login
+							</f:form.button>
+						</div>
 					</div>
+					<f:flashMessages as="flashMessages">
+						<f:for each="{flashMessages}" as="flashMessage">
+							<f:if condition="{0: flashMessage.severity} == {0: 'OK'}">
+								<div class="tooltip tooltip-success">
+							</f:if>
+							<f:if condition="{0: flashMessage.severity} == {0: 'Notice'}">
+								<div class="tooltip tooltip-info">
+							</f:if>
+							<f:if condition="{0: flashMessage.severity} == {0: 'Warning'}">
+								<div class="tooltip tooltip-warning">
+							</f:if>
+							<f:if condition="{0: flashMessage.severity} == {0: 'Error'}">
+								<div class="tooltip tooltip-error">
+							</f:if>
+								<div class="tooltip-arrow tooltip-arrow-top"></div>
+								<div class="tooltip-inner">{flashMessage.message -> f:format.raw()}</div>
+							</div>
+						</f:for>
+					</f:flashMessages>
 				</div>
 			</fieldset>
 		</f:form>
 		<f:if condition="{initialPasswordFile}">
 			<f:then>
-				<div class="alert alert-info"><strong>Initial Password:</strong> The initial password for accessing the setup can be found at:<br /><code>{initialPasswordFile}</code></div>
+				<div class="alert alert-success"><span class="glyphicon glyphicon-exclamation-sign"></span><strong>Initial Password:</strong> The initial password for accessing the setup can be found in the file<br /><strong>{initialPasswordFile}</strong></div>
 			</f:then>
 			<f:else>
-				<div class="alert alert-info">If you have forgotten your password, delete the file<br /><code>{existingPasswordFile}</code><br />and reload this page to generate a new password.</div>
+				<div class="alert alert-success"><span class="glyphicon glyphicon-exclamation-sign"></span>If you have forgotten your password, delete the file<br /><strong>{existingPasswordFile}</strong><br />and reload this page to generate a new password.</div>
 			</f:else>
 		</f:if>
 	</div>

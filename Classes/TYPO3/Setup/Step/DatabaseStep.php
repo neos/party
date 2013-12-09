@@ -47,6 +47,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 */
 	protected function buildForm(FormDefinition $formDefinition) {
 		$page1 = $formDefinition->createPage('page1');
+		$page1->setRenderingOption('header', 'Configure database');
 
 		$introduction = $page1->createElement('introduction', 'TYPO3.Form:StaticText');
 		$introduction->setProperty('text', 'Please enter database details below:');

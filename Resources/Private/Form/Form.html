@@ -1,30 +1,49 @@
 {namespace form=TYPO3\Form\ViewHelpers}
+
+<h1>{form.currentPage.renderingOptions.header}</h1>
+
+<div class="row t3-module-container indented">
+	<f:flashMessages class="alert alert-error" as="errors">
+		<f:for each="{errors}" as="error">
+			<div class="alert alert-{error.severity}">
+				<a class="close" data-dismiss="alert">×</a>
+				<f:if condition="{error.title">
+					<h4 class="alert-heading">{error.title}</h4>
+				</f:if>
+				{error}
+			</div>
+		</f:for>
+	</f:flashMessages>
+</div>
+
 <form:form action="index" object="{form}" method="post" id="{form.identifier}" enctype="multipart/form-data" class="form-element">
 	<form:renderRenderable renderable="{form.currentPage}" />
 	<f:if condition="{form.renderingOptions.finalStep} == {false}">
 		<div class="form-footer">
-			<f:if condition="{form.renderingOptions.previousStepUri}">
-				<a href="{form.renderingOptions.previousStepUri}" class="btn pull-left">
-					<i class="icon-chevron-left icon-white"></i> Back
-				</a>
-			</f:if>
-			<f:if condition="{form.nextPage}">
-				<f:then>
-					<f:form.button name="__currentPage" value="{form.nextPage.index}" class="btn btn-primary pull-right">
-						Next <i class="icon-chevron-right icon-white"></i>
-					</f:form.button>
-				</f:then>
-				<f:else>
-					<f:form.button name="__currentPage" value="{form.pages -> f:count()}" class="btn btn-primary pull-right">
-						Next <i class="icon-chevron-right icon-white"></i>
-					</f:form.button>
-				</f:else>
-			</f:if>
-			<f:if condition="{form.renderingOptions.nextStepUri}">
-				<a {f:if(condition: form.renderingOptions.skipStepNotice, then: 'title="{form.renderingOptions.skipStepNotice}"')} rel="tooltip" href="{form.renderingOptions.nextStepUri}" class="btn pull-right skip">
-					Skip <i class="icon-share-alt icon-white"></i>
-				</a>
-			</f:if>
+			<div class="container">
+				<f:if condition="{form.renderingOptions.previousStepUri}">
+					<a href="{form.renderingOptions.previousStepUri}" class="btn pull-left">
+						<i class="glyphicon glyphicon-chevron-left"></i> Back
+					</a>
+				</f:if>
+				<f:if condition="{form.nextPage}">
+					<f:then>
+						<f:form.button name="__currentPage" value="{form.nextPage.index}" class="btn btn-primary pull-right">
+							Next <i class="glyphicon glyphicon-chevron-right"></i>
+						</f:form.button>
+					</f:then>
+					<f:else>
+						<f:form.button name="__currentPage" value="{form.pages -> f:count()}" class="btn btn-primary pull-right">
+							Next <i class="glyphicon glyphicon-chevron-right"></i>
+						</f:form.button>
+					</f:else>
+				</f:if>
+				<f:if condition="{form.renderingOptions.nextStepUri}">
+					<a {f:if(condition: form.renderingOptions.skipStepNotice, then: 'title="{form.renderingOptions.skipStepNotice}"')} rel="tooltip" href="{form.renderingOptions.nextStepUri}" class="btn pull-right skip">
+						Skip <i class="glyphicon glyphicon-share-alt"></i>
+					</a>
+				</f:if>
+			</div>
 		</div>
 	</f:if>
 </form:form>

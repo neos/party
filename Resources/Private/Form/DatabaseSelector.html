@@ -2,8 +2,10 @@
 <f:layout name="TYPO3.Form:Field" />
 <f:section name="field">
 	<div class="status" id="{element.uniqueIdentifier}-status"></div>
-	<f:form.select property="{element.identifier}" id="{element.uniqueIdentifier}-dropdown" options="{element.properties.options}" class="xlarge" errorClass="{element.properties.elementErrorClassAttribute}" disabled="true" style="display: none" />
-	<f:form.textfield property="{element.identifier}" id="{element.uniqueIdentifier}" class="{element.properties.elementClassAttribute}" placeholder="{element.properties.placeholder}" errorClass="{element.properties.elementErrorClassAttribute}" />
+	<div class="select">
+		<f:form.select property="{element.identifier}" id="{element.uniqueIdentifier}-dropdown" options="{element.properties.options}" class="xlarge" errorClass="{element.properties.elementErrorClassAttribute}" disabled="true" style="display: none" />
+	</div>
+	<f:form.textfield property="{element.identifier}" id="{element.uniqueIdentifier}" class="form-control {element.properties.elementClassAttribute}" placeholder="{element.properties.placeholder}" errorClass="{element.properties.elementErrorClassAttribute}" />
 	<div class="status" id="{element.uniqueIdentifier}-metadata-status"></div>
 	<setup:widget.databaseSelector
 		driverDropdownFieldId="{element.properties.driverDropdownFieldId}"
