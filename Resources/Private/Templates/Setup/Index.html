@@ -2,15 +2,9 @@
 <f:layout name="Default" />
 
 <f:section name="content">
-	<div class="well-header">
-		<f:link.action controller="Login" action="logout" class="btn pull-right logout btn-mini">
-			<i class="icon-off icon-white"></i>
-			Logout
-		</f:link.action>
-	</div>
-	<h1>{settings.view.title}</h1>
-	<div class="row t3-module-container indented">
-		<f:render partial="Flashmessages" />
-	</div>
+	<f:link.action controller="Login" action="logout" class="btn pull-right logout btn-mini">
+		<span class="glyphicon glyphicon-off"></span>
+		Logout
+	</f:link.action>
 	{form -> f:format.raw()}
 </f:section>

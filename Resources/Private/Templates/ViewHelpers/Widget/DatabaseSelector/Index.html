@@ -40,7 +40,7 @@
 			if (xhr && xhr.readyState !== 4) {
 				xhr.abort();
 			}
-			statusContainer.removeClass('db-success error').addClass('loading').html('<div class="alert alert-info"><span class="loading"></span>Connecting ...</div>');
+			statusContainer.removeClass('db-success error').addClass('loading').html('<div class="alert alert-info"><span class="glyphicon glyphicon-refresh glyphicon-spin"></span><span>Connecting ...</span></div>');
 			dbNameDropdownField.hide();
 			metadataStatusContainer.hide();
 			dbNameTextField.hide();
@@ -57,11 +57,11 @@
 			}).done(function(result) {
 				statusContainer.removeClass('loading').attr('title', result.errorMessage);
 				if (result.success) {
-					statusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="icon-ok"></span>Connection established</div>');
+					statusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span>Connection established</div>');
 					fillDatabaseSelector(result.databases);
 					enableDatabaseSelector();
 				} else {
-					statusContainer.addClass('error').html('<div class="alert alert-error">Could not connect to database</div>');
+					statusContainer.addClass('error').html('<div class="alert alert-error"><span class="glyphicon glyphicon-exclamation-sign"></span><span>Could not connect to database</span></div>');
 					disableDatabaseSelector();
 				}
 			}).error(function() {
@@ -105,7 +105,7 @@
 					}
 				});
 			} else if (selectedValue !== '') {
-				metadataStatusContainer.show().removeClass('error').addClass('loading').html('<div class="alert alert-info"><span class="loading"></span>Checking metadata...</div>');
+				metadataStatusContainer.show().removeClass('error').addClass('loading').html('<div class="alert alert-info"><span class="glyphicon glyphicon-refresh glyphicon-spin"></span>Checking metadata...</div>');
 				$.ajax({
 					url: ajaxDatabaseMetadataEndpoint,
 					data: {
@@ -120,7 +120,7 @@
 				}).done(function(result) {
 					metadataStatusContainer.removeClass('loading');
 					if (result.level === 'ok') {
-						metadataStatusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="icon-ok"></span>' + result.message + '</div>');
+						metadataStatusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span>' + result.message + '</div>');
 					} else {
 						metadataStatusContainer.addClass('error').html('<div class="alert">' + result.message + '</div>');
 					}

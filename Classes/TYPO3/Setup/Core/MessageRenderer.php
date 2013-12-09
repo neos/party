@@ -49,17 +49,16 @@ class MessageRenderer {
 	 * @return void This method never returns.
 	 */
 	public function showMessage(Message $message, $extraHeaderHtml = '') {
+		/** @var \TYPO3\Flow\Package\PackageManagerInterface $packageManager */
 		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\Flow\Package\PackageManagerInterface');
 
 		$css = '';
 		if ($packageManager->isPackageAvailable('TYPO3.Twitter.Bootstrap')) {
-			$css .= file_get_contents($packageManager->getPackage('TYPO3.Twitter.Bootstrap')->getResourcesPath() . 'Public/2/css/bootstrap.min.css');
+			$css .= file_get_contents($packageManager->getPackage('TYPO3.Twitter.Bootstrap')->getResourcesPath() . 'Public/3/css/bootstrap.min.css');
+			$css = str_replace('url(\'../', 'url(\'_Resources/Static/Packages/TYPO3.Twitter.Bootstrap/3.0/', $css);
 		}
 		if ($packageManager->isPackageAvailable('TYPO3.Setup')) {
-			$css .= file_get_contents($packageManager->getPackage('TYPO3.Setup')->getResourcesPath() . 'Public/StyleSheet/Setup.css');
-
-			$logoImage = file_get_contents($packageManager->getPackage('TYPO3.Setup')->getResourcesPath() . 'Public/Images/TYPO3_logo.png');
-			$css = str_replace('url(\'../Images/TYPO3_logo.png\')', 'url(data:image/png;base64,'. base64_encode($logoImage) .')', $css);
+			$css .= file_get_contents($packageManager->getPackage('TYPO3.Setup')->getResourcesPath() . 'Public/Styles/Setup.css');
 		}
 
 		echo '<html>';
@@ -94,12 +93,16 @@ class MessageRenderer {
 		}
 
 		echo sprintf('
-			<span class="logo">TYPO3 Setup</span>
+			<div class="logo"></div>
 			<div class="well">
-				<h1>%s</h1>
-				<div class="row t3-module-container indented">
-					<div class="indented">
+				<div class="container">
+					<ul class="breadcrumb">
+						<li><a class="active">TYPO3 Setup</a></li>
+					</ul>
+					<h3>%s</h3>
+					<div class="t3-module-container indented">
 						<div class="alert alert-%s">
+							<span class="glyphicon glyphicon-refresh glyphicon-spin"></span>
 							%s
 						</div>
 					</div>

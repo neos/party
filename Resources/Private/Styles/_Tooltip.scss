@@ -1,0 +1,85 @@
+.tooltip {
+	position: relative;
+	left: auto;
+	top: auto;
+	width: 380px;
+	clear: both;
+	float: none;
+	@include opacity(100);
+	margin-bottom: 10px;
+	margin-top: -5px;
+}
+
+.tooltip-inner {
+	max-width: 100%;
+	padding: 8px;
+	font-size: 13px;
+	@include border-radius(0px);
+}
+
+.tooltip-arrow {
+	content: '';
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	width: 0;
+	height: 0;
+	margin-left: -8px;
+	border-width: 8px 8px 0px 8px;
+	border-bottom-color: #000;
+
+	&.tooltip-arrow-top {
+		bottom: auto;
+		top: -8px;
+		border-width: 0px 8px 8px 8px;
+		border-top-color: #000;
+	}
+}
+
+.tooltip-error {
+	.tooltip-arrow {
+		border-bottom-color: $warning;
+		&.tooltip-arrow-top {
+			border-top-color: $warning;
+		}
+	}
+	.tooltip-inner {
+		background-color: $warning;
+	}
+}
+
+.tooltip-success {
+	.tooltip-arrow {
+		border-bottom-color: $green;
+		&.tooltip-arrow-top {
+			border-top-color: $green;
+		}
+	}
+	.tooltip-inner {
+		background-color: $green;
+	}
+}
+
+.tooltip-warning {
+	.tooltip-arrow {
+		border-bottom-color: $orange;
+		&.tooltip-arrow-top {
+			border-top-color: $orange;
+		}
+	}
+	.tooltip-inner {
+		background-color: $orange;
+	}
+}
+
+.tooltip-info {
+	.tooltip-arrow {
+		border-bottom-color: $blue;
+		&.tooltip-arrow-top {
+			border-top-color: $blue;
+		}
+	}
+	.tooltip-inner {
+		background-color: $blue;
+	}
+}

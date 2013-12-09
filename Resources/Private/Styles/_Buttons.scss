@@ -1,0 +1,101 @@
+button,
+.btn {
+	display: inline-block;
+	padding: 0 $defaultMargin;
+	margin: 0;
+	@include font;
+	color: #fff;
+	font-size: $generalFontSize;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	width: auto;
+	height: $unit;
+	line-height: $unit;
+	background-color: $grayLight;
+	background-image: none;
+	border: none;
+	@include text-shadow(none);
+	@include box-shadow(none);
+	@include box-sizing(border-box);
+	@include transition(all 0 ease 0);
+	@include border-radius(0px);
+
+	&.btn-small {
+		height: $defaultMargin + $relatedMargin;
+		line-height: $defaultMargin + $relatedMargin;
+		font-size: 12px;
+		padding: 0 $relatedMargin;
+	}
+
+	&:not([disabled]),
+	&:not(.neos-disabled) {
+		&:hover,
+		&:active {
+			color: #fff;
+			background-color: $blue;
+			text-decoration: none;
+			outline: none;
+		}
+	}
+
+	// Focus state for keyboard and accessibility
+	&:focus {
+		outline: none;
+	}
+
+	// Disabled state
+	&.neos-disabled,
+	&[disabled] {
+		cursor: not-allowed;
+		@include opacity(.65);
+	}
+
+	&[class^="icon-"],
+	&[class*=" icon-"] {
+		font-family: FontAwesome;
+	}
+
+	&.btn-primary {
+		background-color: $blue;
+	}
+
+	&.btn-success {
+		background-color: $green;
+
+		&:hover,
+		&:active {
+			background-color: $green;
+		}
+	}
+
+	&.btn-warning {
+		background-color: $orange;
+
+		&:hover,
+		&:active {
+			background-color: $orange;
+		}
+	}
+
+	&.btn-danger {
+		background-color: $warning;
+
+		&:hover,
+		&:active {
+			background-color: $warning;
+		}
+	}
+
+	&.btn-full-width {
+		width: 100%;
+	}
+
+	span {
+		margin-top: 3px;
+	}
+
+	&.skip {
+		margin-right: $defaultMargin;
+	}
+}

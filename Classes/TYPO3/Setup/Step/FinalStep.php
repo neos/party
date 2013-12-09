@@ -27,6 +27,7 @@ class FinalStep extends \TYPO3\Setup\Step\AbstractStep {
 	 */
 	protected function buildForm(\TYPO3\Form\Core\Model\FormDefinition $formDefinition) {
 		$page1 = $formDefinition->createPage('page1');
+		$page1->setRenderingOption('header', 'Setup complete');
 
 		$title = $page1->createElement('connectionSection', 'TYPO3.Form:Section');
 		$title->setLabel('Congratulations');

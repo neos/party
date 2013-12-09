@@ -1,0 +1,13 @@
+.breadcrumb {
+	background-color: rgba(0, 0, 0, 0);
+	padding: 0;
+	border-bottom: 1px solid $grayLight;
+
+	a {
+		text-decoration: none;
+		line-height: 40px;
+		&.active {
+			color: $blue;
+		}
+	}
+}
