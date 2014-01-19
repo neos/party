@@ -84,7 +84,7 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 			if ($databasePlatform instanceof MySqlPlatform) {
 				$queryResult = $connection->executeQuery('SHOW VARIABLES LIKE ?', array('character_set_database'))->fetch();
 				$databaseCharacterSet = strtolower($queryResult['Value']);
-			} else if ($databasePlatform instanceof PostgreSqlPlatform) {
+			} elseif ($databasePlatform instanceof PostgreSqlPlatform) {
 				$queryResult = $connection->executeQuery('SELECT pg_encoding_to_char(encoding) FROM pg_database WHERE datname = ?', array($databaseName))->fetch();
 				$databaseCharacterSet = strtolower($queryResult['pg_encoding_to_char']);
 			} else {
