@@ -19,7 +19,7 @@ TYPO3:
               keyName: 'SetupKey'
               authenticateRoles: ['TYPO3.Setup:Administrator']
             requestPatterns:
-              controllerObjectName: "TYPO3\Setup\Controller\.*|TYPO3\Setup\ViewHelpers\Widget\Controller\.*"
+              controllerObjectName: 'TYPO3\Setup\Controller\.*|TYPO3\Setup\ViewHelpers\Widget\Controller\.*'
             entryPoint: 'WebRedirect'
             entryPointOptions:
               uri: 'setup/login'
