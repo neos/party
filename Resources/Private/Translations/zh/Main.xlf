@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="de">
+  <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="zh-TW">
     <body>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First name</source>
-			<target xml:lang="de">Vorname</target></trans-unit>
+			<target xml:lang="zh-TW">First name</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last name</source>
-			<target xml:lang="de">Nachname</target></trans-unit>
+			<target xml:lang="zh-TW">Last name</target></trans-unit>
     </body>
   </file>
 </xliff>
