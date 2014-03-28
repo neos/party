@@ -2,20 +2,32 @@
 # Security policy for the TYPO3.Setup package                            #
 #                                                                        #
 
-resources:
-  methods:
-    TYPO3_Setup_LoginController: 'method(TYPO3\Setup\Controller\LoginController->(login|authenticate)Action())'
-    TYPO3_Setup_SetupController: 'method(TYPO3\Setup\Controller\SetupController->indexAction()) || method(TYPO3\Setup\Controller\LoginController->logoutAction())'
-    TYPO3_Setup_WidgetControllers: 'method(public TYPO3\Setup\ViewHelpers\Widget\Controller\.+Controller->.+Action())'
+privilegeTargets:
+
+  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+
+    'TYPO3.Setup:LoginController':
+      matcher: method(TYPO3\Setup\Controller\LoginController->(login|authenticate)Action())
+
+    'TYPO3.Setup:SetupController':
+      matcher: 'method(TYPO3\Setup\Controller\SetupController->indexAction()) || method(TYPO3\Setup\Controller\LoginController->logoutAction())'
+
+    'TYPO3.Setup:WidgetControllers':
+      matcher: 'method(public TYPO3\Setup\ViewHelpers\Widget\Controller\.+Controller->.+Action())'
 
 roles:
-  Administrator: []
 
-acls:
-  Everybody:
-    methods:
-      TYPO3_Setup_LoginController: GRANT
-  Administrator:
-    methods:
-      TYPO3_Setup_SetupController: GRANT
-      TYPO3_Setup_WidgetControllers: GRANT
+  'TYPO3.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'TYPO3.Setup:LoginController'
+        permission: GRANT
+
+  'TYPO3.Setup:Administrator':
+    privileges:
+      -
+        privilegeTarget: 'TYPO3.Setup:SetupController'
+        permission: GRANT
+      -
+        privilegeTarget: 'TYPO3.Setup:WidgetControllers'
+        permission: GRANT
