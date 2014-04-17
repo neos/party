@@ -11,21 +11,57 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Doctrine\Common\Collections\Collection;
+use TYPO3\Flow\Security\Account;
+use TYPO3\Flow\Tests\UnitTestCase;
+use TYPO3\Party\Domain\Model\AbstractParty;
+
 /**
  * Testcase for an abstract party
  *
  */
-class AbstractPartyTest extends \TYPO3\Flow\Tests\UnitTestCase {
+class AbstractPartyTest extends UnitTestCase {
+
+	/**
+	 * @var AbstractParty
+	 */
+	protected $abstractParty;
+
+	/**
+	 * @var Collection|\PHPUnit_Framework_MockObject_MockObject
+	 */
+	protected $mockAccounts;
+
+	public function setUp() {
+		$this->abstractParty = $this->getMockForAbstractClass('TYPO3\Party\Domain\Model\AbstractParty', array('dummy'));
+
+		$this->mockAccounts = $this->getMockBuilder('Doctrine\Common\Collections\Collection')->disableOriginalConstructor()->getMock();
+		$this->inject($this->abstractParty, 'accounts', $this->mockAccounts);
+	}
 
 	/**
 	 * @test
 	 */
-	public function addAccountSetsThePartyPropertyInTheAccountToThisParty() {
-		$party = $this->getMockForAbstractClass('TYPO3\Party\Domain\Model\AbstractParty', array('dummy'));
-
-		$mockAccount = $this->getMock('TYPO3\Flow\Security\Account');
-		$mockAccount->expects($this->once())->method('setParty')->with($party);
-
-		$party->addAccount($mockAccount);
+	public function addAccountAddsAccountToAccountsCollection() {
+		$account = new Account();
+		$this->mockAccounts->expects($this->once())->method('add')->with($account);
+		$this->abstractParty->addAccount($account);
 	}
+
+	/**
+	 * @test
+	 */
+	public function removeAccountRemovesAccountFromAccountsCollection() {
+		$account = new Account();
+		$this->mockAccounts->expects($this->once())->method('removeElement')->with($account);
+		$this->abstractParty->removeAccount($account);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getAccountsReturnsAccounts() {
+		$this->assertSame($this->mockAccounts, $this->abstractParty->getAccounts());
+	}
+
 }
