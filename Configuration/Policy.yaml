@@ -15,7 +15,6 @@ acls:
   Everybody:
     methods:
       TYPO3_Setup_LoginController: GRANT
-
   Administrator:
     methods:
       TYPO3_Setup_SetupController: GRANT
