@@ -34,15 +34,15 @@ class FinalStep extends \TYPO3\Setup\Step\AbstractStep {
 
 		$success = $title->createElement('success', 'TYPO3.Form:StaticText');
 		$success->setProperty('text', 'You successfully completed the setup');
-		$success->setProperty('class', 'alert alert-success');
+		$success->setProperty('elementClassAttribute', 'alert alert-success');
 
 		$link = $title->createElement('link', 'TYPO3.Setup:LinkElement');
 		$link->setLabel('Go to the homepage');
 		$link->setProperty('href', '/');
-		$link->setProperty('class', 'btn btn-large btn-primary');
+		$link->setProperty('elementClassAttribute', 'btn btn-large btn-primary');
 
 		$info = $title->createElement('info', 'TYPO3.Form:StaticText');
 		$info->setProperty('text', 'If the homepage doesn\'t work, you might need configure routing in Configuration/Routes.yaml');
-		$info->setProperty('class', 'alert alert-info');
+		$info->setProperty('elementClassAttribute', 'alert alert-info');
 	}
 }
