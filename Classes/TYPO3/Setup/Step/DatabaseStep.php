@@ -97,6 +97,9 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 *
 	 * @param array $formValues
 	 * @return void
+	 * @throws \TYPO3\Flow\Configuration\Exception
+	 * @throws \TYPO3\Flow\Core\Booting\Exception\SubProcessException
+	 * @throws \TYPO3\Setup\Exception
 	 */
 	public function postProcessFormValues(array $formValues) {
 		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.driver', $formValues['driver']);
