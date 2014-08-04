@@ -36,6 +36,43 @@
 			dbNameTextField.show().attr('disabled', false);
 		};
 
+		var checkDatabaseSelection = function() {
+			var selectedValue = dbNameDropdownField.val();
+			metadataStatusContainer.hide();
+			if (selectedValue === '__new__') {
+				disableDatabaseSelector();
+				dbNameTextField.focus();
+				dbNameTextField.blur(function() {
+					if ($(this).val() === '') {
+						enableDatabaseSelector();
+					}
+				});
+			} else if (selectedValue !== '') {
+				metadataStatusContainer.show().removeClass('error db-success').addClass('loading').html('<div class="alert alert-info"><span class="glyphicon glyphicon-refresh glyphicon-spin"></span>Checking metadata...</div>');
+				$.ajax({
+					url: ajaxDatabaseMetadataEndpoint,
+					data: {
+						driver: driverDropdownField.val(),
+						user: userField.val(),
+						password: passwordField.val(),
+						host: hostField.val(),
+						databaseName: selectedValue
+					},
+					dataType: 'json',
+					cache: false
+				}).done(function(result) {
+					metadataStatusContainer.removeClass('loading');
+					if (result.level === 'ok') {
+						metadataStatusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span>' + result.message + '</div>');
+					} else {
+						metadataStatusContainer.addClass('error').html('<div class="alert">' + result.message + '</div>');
+					}
+				}).error(function() {
+					metadataStatusContainer.removeClass('loading').addClass('error').text('Unexpected error');
+				});
+			}
+		};
+
 		var checkDatabaseConnection = function() {
 			if (xhr && xhr.readyState !== 4) {
 				xhr.abort();
@@ -60,6 +97,7 @@
 					statusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span>Connection established</div>');
 					fillDatabaseSelector(result.databases);
 					enableDatabaseSelector();
+					checkDatabaseSelection();
 				} else {
 					statusContainer.addClass('error').html('<div class="alert alert-error"><span class="glyphicon glyphicon-exclamation-sign"></span><span>Could not connect to database</span></div>');
 					disableDatabaseSelector();
@@ -94,40 +132,7 @@
 			checkDatabaseConnection();
 		});
 		dbNameDropdownField.change(function(event, target) {
-			var selectedValue = $(this).val();
-			metadataStatusContainer.hide();
-			if (selectedValue === '__new__') {
-				disableDatabaseSelector();
-				dbNameTextField.focus();
-				dbNameTextField.blur(function() {
-					if ($(this).val() === '') {
-						enableDatabaseSelector();
-					}
-				});
-			} else if (selectedValue !== '') {
-				metadataStatusContainer.show().removeClass('error').addClass('loading').html('<div class="alert alert-info"><span class="glyphicon glyphicon-refresh glyphicon-spin"></span>Checking metadata...</div>');
-				$.ajax({
-					url: ajaxDatabaseMetadataEndpoint,
-					data: {
-						driver: driverDropdownField.val(),
-						user: userField.val(),
-						password: passwordField.val(),
-						host: hostField.val(),
-						databaseName: selectedValue
-					},
-					dataType: 'json',
-					cache: false
-				}).done(function(result) {
-					metadataStatusContainer.removeClass('loading');
-					if (result.level === 'ok') {
-						metadataStatusContainer.addClass('db-success').html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span>' + result.message + '</div>');
-					} else {
-						metadataStatusContainer.addClass('error').html('<div class="alert">' + result.message + '</div>');
-					}
-				}).error(function() {
-					metadataStatusContainer.removeClass('loading').addClass('error').text('Unexpected error');
-				});
-			}
+			checkDatabaseSelection();
 		});
 		checkDatabaseConnection();
 	});
