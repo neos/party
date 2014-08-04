@@ -233,5 +233,6 @@ input[type="number"],
 }
 
 .section-separator {
+	margin: $defaultMargin 0;
 	border-bottom: 1px solid white;
 }
