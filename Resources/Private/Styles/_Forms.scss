@@ -64,6 +64,7 @@ input[type="number"],
 .select {
 	position: relative;
 	background-color: $grayLight;
+	overflow: hidden;
 
 	&:focus {
 		outline: none;
@@ -82,21 +83,22 @@ input[type="number"],
 		top: 0px;
 		font-family: Arial;
 		font-size: 17px;
-		width: 40px;
-		line-height: $unit;
+		width: $unit;
+		line-height: $unit - 4px;
 		content: "▾";
 		text-align: center;
+		border-left: 1px solid $grayDark;
+		@include box-sizing(content-box);
 	}
 
 	&:before {
-		top: -4px;
+		top: -1px;
+		right: -1px;
 		@include rotate(180deg);
 	}
 
 	&:after {
-		top: 0px;
-		padding-top: 4px;
-		border-left: 1px solid $grayDark
+		padding-top: 6px;
 	}
 
 	select {
@@ -104,11 +106,13 @@ input[type="number"],
 		-o-appearance: window;
 		-moz-appearance: window;
 		background-color: transparent;
-		line-height: 1;
-		padding: 7px 14px;
+		line-height: 18px;
+		padding: 3px 14px;
 		width: 100%;
 		position: relative;
 		z-index: 1;
+		border: none;
+		cursor: pointer;
 
 		&:focus {
 			color: #fff;
