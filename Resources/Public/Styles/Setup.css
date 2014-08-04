@@ -290,6 +290,7 @@ input[type="number"].neos-modified,
 .select {
   position: relative;
   background-color: #3f3f3f;
+  overflow: hidden;
 }
 .select:focus {
   outline: none;
@@ -305,12 +306,17 @@ input[type="number"].neos-modified,
   font-family: Arial;
   font-size: 17px;
   width: 40px;
-  line-height: 40px;
+  line-height: 36px;
   content: "▾";
   text-align: center;
+  border-left: 1px solid #222222;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
 }
 .select:before {
-  top: -4px;
+  top: -1px;
+  right: -1px;
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -318,9 +324,7 @@ input[type="number"].neos-modified,
   transform: rotate(180deg);
 }
 .select:after {
-  top: 0px;
-  padding-top: 4px;
-  border-left: 1px solid #222222;
+  padding-top: 6px;
 }
 .select select {
   -webkit-appearance: none;
@@ -329,11 +333,13 @@ input[type="number"].neos-modified,
   -o-appearance: window;
   -moz-appearance: window;
   background-color: transparent;
-  line-height: 1;
-  padding: 7px 14px;
+  line-height: 18px;
+  padding: 3px 14px;
   width: 100%;
   position: relative;
   z-index: 1;
+  border: none;
+  cursor: pointer;
 }
 .select select:focus {
   color: #fff;
