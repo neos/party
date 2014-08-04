@@ -88,14 +88,14 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 				$queryResult = $connection->executeQuery('SELECT pg_encoding_to_char(encoding) FROM pg_database WHERE datname = ?', array($databaseName))->fetch();
 				$databaseCharacterSet = strtolower($queryResult['pg_encoding_to_char']);
 			} else {
-				$result = array('level' => 'notice', 'message' => sprintf('Only MySQL/MariaDB and PostgreSQL are supported, the selected database is "%s".',  $databasePlatform->getName()));
+				$result = array('level' => 'error', 'message' => sprintf('Only MySQL/MariaDB and PostgreSQL are supported, the selected database is "%s".',  $databasePlatform->getName()));
 			}
 			if (isset($databaseCharacterSet)) {
 				if ($databaseCharacterSet === 'utf8') {
-					$result = array('level' => 'ok', 'message' => 'The selected database\'s character set is set to "utf8" which is the recommended setting.');
+					$result = array('level' => 'notice', 'message' => 'The selected database\'s character set is set to "utf8" which is the recommended setting.');
 				} else {
 					$result = array(
-						'level' => 'notice',
+						'level' => 'warning',
 						'message' => sprintf('The selected database\'s character set is "%s", however changing it to "utf8" is urgently recommended. This setup tool won\'t do this up for you.', $databaseCharacterSet)
 					);
 				}
