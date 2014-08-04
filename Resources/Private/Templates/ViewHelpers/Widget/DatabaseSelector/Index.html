@@ -99,7 +99,7 @@
 					enableDatabaseSelector();
 					checkDatabaseSelection();
 				} else {
-					statusContainer.addClass('error').html('<div class="alert alert-error"><span class="glyphicon glyphicon-exclamation-sign"></span><span>Could not connect to database</span></div>');
+					statusContainer.addClass('error').html('<div class="alert alert-error"><span class="glyphicon glyphicon-ban-circle"></span><span>Could not connect to database</span></div>');
 					disableDatabaseSelector();
 				}
 			}).error(function() {

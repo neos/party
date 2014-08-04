@@ -20,16 +20,16 @@
 					</div>
 					<f:flashMessages as="flashMessages">
 						<f:for each="{flashMessages}" as="flashMessage">
-							<f:if condition="{0: flashMessage.severity} == {0: 'OK'}">
+							<f:if condition="{flashMessage.severity} == 'OK'">
 								<div class="tooltip tooltip-success">
 							</f:if>
-							<f:if condition="{0: flashMessage.severity} == {0: 'Notice'}">
+							<f:if condition="{flashMessage.severity} == 'Notice'">
 								<div class="tooltip tooltip-info">
 							</f:if>
-							<f:if condition="{0: flashMessage.severity} == {0: 'Warning'}">
+							<f:if condition="{flashMessage.severity} == 'Warning'">
 								<div class="tooltip tooltip-warning">
 							</f:if>
-							<f:if condition="{0: flashMessage.severity} == {0: 'Error'}">
+							<f:if condition="{flashMessage.severity} == 'Error'">
 								<div class="tooltip tooltip-error">
 							</f:if>
 								<div class="tooltip-arrow tooltip-arrow-top"></div>
@@ -42,10 +42,10 @@
 		</f:form>
 		<f:if condition="{initialPasswordFile}">
 			<f:then>
-				<div class="alert alert-success"><span class="glyphicon glyphicon-exclamation-sign"></span><strong>Initial Password:</strong> The initial password for accessing the setup can be found in the file<br /><strong>{initialPasswordFile}</strong></div>
+				<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span><strong>Initial Password:</strong> The initial password for accessing the setup can be found in the file<br /><strong>{initialPasswordFile}</strong></div>
 			</f:then>
 			<f:else>
-				<div class="alert alert-success"><span class="glyphicon glyphicon-exclamation-sign"></span>If you have forgotten your password, delete the file<br /><strong>{existingPasswordFile}</strong><br />and reload this page to generate a new password.</div>
+				<div class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span>If you have forgotten your password, delete the file<br /><strong>{existingPasswordFile}</strong><br />and reload this page to generate a new password.</div>
 			</f:else>
 		</f:if>
 	</div>
