@@ -134,7 +134,7 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 			}
 			return TRUE;
 		} else {
-			return new \TYPO3\Flow\Error\Error('The path to your PHP binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
+			return new \TYPO3\Flow\Error\Error('The path to your PHP (cli) binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
 		}
 	}
 
@@ -152,8 +152,13 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 			} else {
 				$phpCommand = escapeshellarg(Files::getUnixStylePath($phpBinaryPathAndFilename));
 			}
-			$phpVersion = trim(exec($phpCommand . ' -r "echo PHP_VERSION;"'));
-			if ($phpVersion === PHP_VERSION) {
+
+			exec($phpCommand . ' -v', $phpVersionString);
+			if (!isset($phpVersionString[0]) || strpos($phpVersionString[0], '(cli)') === FALSE) {
+				return new \TYPO3\Flow\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect or not a PHP command line (cli) version.', 1341839376, array(), 'Environment requirements not fulfilled');
+			}
+			$versionStringParts = explode(' ', $phpVersionString[0]);
+			if (isset($versionStringParts[1]) && trim($versionStringParts[1]) === PHP_VERSION) {
 				return TRUE;
 			}
 		}
