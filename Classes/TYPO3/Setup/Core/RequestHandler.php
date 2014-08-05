@@ -12,9 +12,16 @@ namespace TYPO3\Setup\Core;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Configuration\ConfigurationManager;
 use TYPO3\Flow\Http\Request;
+use TYPO3\Flow\Http\RequestHandler as FlowRequestHandler;
 use TYPO3\Flow\Http\Response;
 use TYPO3\Flow\Error\Message;
+use TYPO3\Flow\Http\Uri;
+use TYPO3\Flow\Mvc\ActionRequest;
+use TYPO3\Flow\Mvc\Dispatcher;
+use TYPO3\Flow\Mvc\Routing\Router;
+use TYPO3\Flow\Security\Context;
 use TYPO3\Flow\Utility\Files;
 
 /**
@@ -22,12 +29,22 @@ use TYPO3\Flow\Utility\Files;
  *
  * @Flow\Scope("singleton")
  */
-class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
+class RequestHandler extends FlowRequestHandler {
 
 	/**
-	 * @var \TYPO3\Flow\Http\Response
+	 * @var Dispatcher
 	 */
-	protected $response;
+	protected $dispatcher;
+
+	/**
+	 * @var Router
+	 */
+	protected $router;
+
+	/**
+	 * @var Context
+	 */
+	protected $securityContext;
 
 	/**
 	 * This request handler can handle any web request.
@@ -62,16 +79,26 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 
 		$this->boot();
 		$this->resolveDependencies();
-		$this->request->injectSettings($this->settings);
+		if (isset($this->settings['http']['baseUri'])) {
+			$this->request->setBaseUri(new Uri($this->settings['http']['baseUri']));
+		}
 
+		$objectManager = $this->bootstrap->getObjectManager();
 		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\Flow\Package\PackageManagerInterface');
-		$configurationSource = $this->bootstrap->getObjectManager()->get('TYPO3\Flow\Configuration\Source\YamlSource');
+		$configurationSource = $objectManager->get('TYPO3\Flow\Configuration\Source\YamlSource');
 
-		$this->router->setRoutesConfiguration($configurationSource->load($packageManager->getPackage('TYPO3.Setup')->getConfigurationPath() . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_ROUTES));
-		$actionRequest = $this->router->route($this->request);
+		$actionRequest = new ActionRequest($this->request);
+		$this->router = $objectManager->get('TYPO3\Flow\Mvc\Routing\Router');
+		$this->router->setRoutesConfiguration($configurationSource->load($packageManager->getPackage('TYPO3.Setup')->getConfigurationPath() . ConfigurationManager::CONFIGURATION_TYPE_ROUTES));
+		$matchResults = $this->router->route($this->request);
+		if ($matchResults !== NULL) {
+			$actionRequest->setArguments($matchResults);
+		}
 
+		$this->securityContext = $objectManager->get('TYPO3\Flow\Security\Context');
 		$this->securityContext->setRequest($actionRequest);
 
+		$this->dispatcher = $objectManager->get('TYPO3\Flow\Mvc\Dispatcher');
 		$this->dispatcher->dispatch($actionRequest, $this->response);
 
 		$this->response->makeStandardsCompliant($this->request);
@@ -118,7 +145,7 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 	 */
 	protected function checkAndSetPhpBinaryIfNeeded() {
 		$configurationSource = new \TYPO3\Flow\Configuration\Source\YamlSource();
-		$distributionSettings = $configurationSource->load(FLOW_PATH_CONFIGURATION . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
+		$distributionSettings = $configurationSource->load(FLOW_PATH_CONFIGURATION . ConfigurationManager::CONFIGURATION_TYPE_SETTINGS);
 		if (isset($distributionSettings['TYPO3']['Flow']['core']['phpBinaryPathAndFilename'])) {
 			return $this->checkPhpBinary($distributionSettings['TYPO3']['Flow']['core']['phpBinaryPathAndFilename']);
 		}
@@ -130,7 +157,7 @@ class RequestHandler extends \TYPO3\Flow\Http\RequestHandler {
 			}
 			if ($phpBinaryPathAndFilename !== $defaultPhpBinaryPathAndFilename) {
 				$distributionSettings = \TYPO3\Flow\Utility\Arrays::setValueByPath($distributionSettings, 'TYPO3.Flow.core.phpBinaryPathAndFilename', $phpBinaryPathAndFilename);
-				$configurationSource->save(FLOW_PATH_CONFIGURATION . \TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $distributionSettings);
+				$configurationSource->save(FLOW_PATH_CONFIGURATION . ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $distributionSettings);
 			}
 			return TRUE;
 		} else {
