@@ -44,5 +44,9 @@ class FinalStep extends \TYPO3\Setup\Step\AbstractStep {
 		$info = $title->createElement('info', 'TYPO3.Form:StaticText');
 		$info->setProperty('text', 'If the homepage doesn\'t work, you might need configure routing in Configuration/Routes.yaml');
 		$info->setProperty('elementClassAttribute', 'alert alert-info');
+
+		$loggedOut = $page1->createElement('loggedOut', 'TYPO3.Form:StaticText');
+		$loggedOut->setProperty('text', 'You have automatically been logged out for security reasons since this is the final step. Refresh the page to log in again if you missed something.');
+		$loggedOut->setProperty('elementClassAttribute', 'alert alert-info');
 	}
 }
