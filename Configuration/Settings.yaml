@@ -38,6 +38,15 @@ TYPO3:
       # The title will be shown in the header of the setup wizard
       title: 'TYPO3 Setup'
 
+    # These settings override the main HTTP component chain from TYPO3.Flow.http.chain when being inside the setup
+    http:
+      chain:
+        'preprocess':
+          chain:
+            configureRouting:
+              position: start
+              component: TYPO3\Setup\Core\ConfigureRoutingComponent
+
   Form:
     presets:
       'typo3.setup':

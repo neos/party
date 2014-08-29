@@ -13,15 +13,13 @@ namespace TYPO3\Setup\Core;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Configuration\ConfigurationManager;
+use TYPO3\Flow\Http\Component\ComponentContext;
 use TYPO3\Flow\Http\Request;
 use TYPO3\Flow\Http\RequestHandler as FlowRequestHandler;
 use TYPO3\Flow\Http\Response;
 use TYPO3\Flow\Error\Message;
 use TYPO3\Flow\Http\Uri;
-use TYPO3\Flow\Mvc\ActionRequest;
-use TYPO3\Flow\Mvc\Dispatcher;
-use TYPO3\Flow\Mvc\Routing\Router;
-use TYPO3\Flow\Security\Context;
+use TYPO3\Flow\Utility\Arrays;
 use TYPO3\Flow\Utility\Files;
 
 /**
@@ -30,21 +28,6 @@ use TYPO3\Flow\Utility\Files;
  * @Flow\Scope("singleton")
  */
 class RequestHandler extends FlowRequestHandler {
-
-	/**
-	 * @var Dispatcher
-	 */
-	protected $dispatcher;
-
-	/**
-	 * @var Router
-	 */
-	protected $router;
-
-	/**
-	 * @var Context
-	 */
-	protected $securityContext;
 
 	/**
 	 * This request handler can handle any web request.
@@ -83,25 +66,9 @@ class RequestHandler extends FlowRequestHandler {
 			$this->request->setBaseUri(new Uri($this->settings['http']['baseUri']));
 		}
 
-		$objectManager = $this->bootstrap->getObjectManager();
-		$packageManager = $this->bootstrap->getEarlyInstance('TYPO3\Flow\Package\PackageManagerInterface');
-		$configurationSource = $objectManager->get('TYPO3\Flow\Configuration\Source\YamlSource');
+		$componentContext = new ComponentContext($this->request, $this->response);
+		$this->baseComponentChain->handle($componentContext);
 
-		$actionRequest = new ActionRequest($this->request);
-		$this->router = $objectManager->get('TYPO3\Flow\Mvc\Routing\Router');
-		$this->router->setRoutesConfiguration($configurationSource->load($packageManager->getPackage('TYPO3.Setup')->getConfigurationPath() . ConfigurationManager::CONFIGURATION_TYPE_ROUTES));
-		$matchResults = $this->router->route($this->request);
-		if ($matchResults !== NULL) {
-			$actionRequest->setArguments($matchResults);
-		}
-
-		$this->securityContext = $objectManager->get('TYPO3\Flow\Security\Context');
-		$this->securityContext->setRequest($actionRequest);
-
-		$this->dispatcher = $objectManager->get('TYPO3\Flow\Mvc\Dispatcher');
-		$this->dispatcher->dispatch($actionRequest, $this->response);
-
-		$this->response->makeStandardsCompliant($this->request);
 		$this->response->send();
 
 		$this->bootstrap->shutdown('Runtime');
@@ -131,6 +98,22 @@ class RequestHandler extends FlowRequestHandler {
 			$redirectUri = ($currentUri === 'setup/' ? 'index': 'setup/index');
 			$messageRenderer->showMessage(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as TYPO3 Flow needs to build up various caches.', NULL, array(), 'Your environment is suited for installing TYPO3 Flow!'), '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
 		}
+	}
+
+	/**
+	 * Create a HTTP component chain that adds our own routing configuration component
+	 * only for this request handler.
+	 *
+	 * @return void
+	 */
+	protected function resolveDependencies() {
+		$objectManager = $this->bootstrap->getObjectManager();
+		$componentChainFactory = $objectManager->get('TYPO3\Flow\Http\Component\ComponentChainFactory');
+		$configurationManager = $objectManager->get('TYPO3\Flow\Configuration\ConfigurationManager');
+		$this->settings = $configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
+		$setupSettings = $configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Setup');
+		$httpChainSettings = Arrays::arrayMergeRecursiveOverrule($this->settings['http']['chain'], $setupSettings['http']['chain']);
+		$this->baseComponentChain = $componentChainFactory->create($httpChainSettings);
 	}
 
 	/**
