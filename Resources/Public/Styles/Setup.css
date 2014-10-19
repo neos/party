@@ -6,30 +6,26 @@
   font-family: 'Noto Sans';
   font-style: normal;
   font-weight: 400;
-  src: local("Noto Sans"), local("NotoSans"), url('../Fonts/NotoSans/NotoSans-Regular.ttf') format('truetype');
+  src: local("Noto Sans"), local("NotoSans"), url('../Fonts/NotoSans/NotoSans-Regular.ttf?1408190077') format('truetype');
 }
-
 @font-face {
   font-family: 'Noto Sans';
   font-style: normal;
   font-weight: 700;
-  src: local("Noto Sans Bold"), local("NotoSans-Bold"), url('../Fonts/NotoSans/NotoSans-Bold.ttf') format('truetype');
+  src: local("Noto Sans Bold"), local("NotoSans-Bold"), url('../Fonts/NotoSans/NotoSans-Bold.ttf?1408190077') format('truetype');
 }
-
 @font-face {
   font-family: 'Noto Sans';
   font-style: italic;
   font-weight: 400;
-  src: local("Noto Sans Italic"), local("NotoSans-Italic"), url('../Fonts/NotoSans/NotoSans-Italic.ttf') format('truetype');
+  src: local("Noto Sans Italic"), local("NotoSans-Italic"), url('../Fonts/NotoSans/NotoSans-Italic.ttf?1408190077') format('truetype');
 }
-
 @font-face {
   font-family: 'Noto Sans';
   font-style: italic;
   font-weight: 700;
-  src: local("Noto Sans Bold Italic"), local("NotoSans-BoldItalic"), url('../Fonts/NotoSans/NotoSans-BoldItalic.ttf') format('truetype');
+  src: local("Noto Sans Bold Italic"), local("NotoSans-BoldItalic"), url('../Fonts/NotoSans/NotoSans-BoldItalic.ttf?1408190077') format('truetype');
 }
-
 body {
   font-family: 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -83,21 +79,18 @@ button,
   background-image: none;
   border: none;
   text-shadow: none;
-  -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   box-shadow: none;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-transition: all 0 ease;
-  -webkit-transition-delay: 0;
-  -moz-transition: all 0 ease 0;
-  -o-transition: all 0 ease 0;
-  transition: all 0 ease 0;
-  -webkit-border-radius: 0px;
+  -moz-transition: all 0;
+  -o-transition: all 0;
+  -webkit-transition: all 0;
+  transition: all 0;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-radius: 0px;
 }
 button.btn-small,
@@ -216,26 +209,24 @@ input[type="number"],
   line-height: 36px;
   border: 2px solid #3f3f3f;
   background-color: #3f3f3f;
-  color: white;
+  color: #fff;
   font-size: 14px;
   padding: 0 14px;
   margin: 0;
   font-family: 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   box-shadow: none;
-  -webkit-transition: none;
   -moz-transition: none;
   -o-transition: none;
+  -webkit-transition: none;
   transition: none;
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-radius: 0px;
 }
 select:focus,
@@ -261,8 +252,8 @@ input[type="number"]:focus,
   border: 2px solid #fff;
   color: #252525;
   outline: none;
-  -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   box-shadow: none;
 }
 select.neos-modified,
@@ -309,27 +300,25 @@ input[type="number"].neos-modified,
   line-height: 36px;
   content: "▾";
   text-align: center;
-  border-left: 1px solid #222222;
-  -webkit-box-sizing: content-box;
+  border-left: 1px solid #222;
   -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
 .select:before {
   top: -1px;
   right: -1px;
-  -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .select:after {
   padding-top: 6px;
 }
 .select select {
-  -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none;
   -o-appearance: window;
   -moz-appearance: window;
   background-color: transparent;
@@ -346,6 +335,9 @@ input[type="number"].neos-modified,
   background-color: transparent;
   border-color: transparent;
 }
+.select select option {
+  background-color: #3f3f3f;
+}
 
 .form-footer {
   position: absolute;
@@ -358,8 +350,8 @@ input[type="number"].neos-modified,
 
 .has-error .form-control {
   border-color: #ff460d;
-  -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-box-shadow: none;
   box-shadow: none;
 }
 .has-error .control-label,
@@ -460,7 +452,7 @@ input[type="number"].neos-modified,
 }
 
 .breadcrumb {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   padding: 0;
   border-bottom: 1px solid #3f3f3f;
 }
@@ -483,16 +475,14 @@ input[type="number"].neos-modified,
   padding: 10px 16px 10px 56px;
   border: none;
   min-height: 40px;
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.15);
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-radius: 0px;
 }
 .alert::after {
@@ -569,52 +559,42 @@ p.alert.alert-info::before {
   0% {
     -moz-transform: rotate(0deg);
   }
-
   100% {
     -moz-transform: rotate(359deg);
   }
 }
-
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
   }
-
   100% {
     -webkit-transform: rotate(359deg);
   }
 }
-
 @-o-keyframes spin {
   0% {
     -o-transform: rotate(0deg);
   }
-
   100% {
     -o-transform: rotate(359deg);
   }
 }
-
 @-ms-keyframes spin {
   0% {
     -ms-transform: rotate(0deg);
   }
-
   100% {
     -ms-transform: rotate(359deg);
   }
 }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(359deg);
   }
 }
-
 .tooltip {
   position: relative;
   left: auto;
@@ -632,10 +612,8 @@ p.alert.alert-info::before {
   max-width: 100%;
   padding: 8px;
   font-size: 13px;
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
+  -webkit-border-radius: 0px;
   border-radius: 0px;
 }
 

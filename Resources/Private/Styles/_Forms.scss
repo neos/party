@@ -119,6 +119,10 @@ input[type="number"],
 			background-color: transparent;
 			border-color: transparent;
 		}
+
+		option {
+		        background-color: $grayLight;
+		}
 	}
 }
 
