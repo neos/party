@@ -17,7 +17,7 @@ TYPO3:
             provider: 'FileBasedSimpleKeyProvider'
             providerOptions:
               keyName: 'SetupKey'
-              authenticateRoles: ['TYPO3.Setup:Administrator']
+              authenticateRoles: ['TYPO3.Setup:SetupUser']
             requestPatterns:
               controllerObjectName: 'TYPO3\Setup\Controller\.*|TYPO3\Setup\ViewHelpers\Widget\Controller\.*'
             entryPoint: 'WebRedirect'

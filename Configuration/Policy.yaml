@@ -23,7 +23,7 @@ roles:
         privilegeTarget: 'TYPO3.Setup:LoginController'
         permission: GRANT
 
-  'TYPO3.Setup:Administrator':
+  'TYPO3.Setup:SetupUser':
     privileges:
       -
         privilegeTarget: 'TYPO3.Setup:SetupController'
