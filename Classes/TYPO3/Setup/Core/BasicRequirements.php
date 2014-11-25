@@ -72,7 +72,7 @@ class BasicRequirements {
 	/**
 	 * Ensure that the environment and file permission requirements are fulfilled.
 	 *
-	 * @return TYPO3\Flow\Error\Error if requirements are fulfilled, NULL is returned. else, an Error object is returned.
+	 * @return \TYPO3\Flow\Error\Error if requirements are fulfilled, NULL is returned. else, an Error object is returned.
 	 */
 	public function findError() {
 		$requiredEnvironmentError = $this->ensureRequiredEnvironment();
@@ -108,11 +108,8 @@ class BasicRequirements {
 		if (version_compare(phpversion(), \TYPO3\Flow\Core\Bootstrap::MINIMUM_PHP_VERSION, '<')) {
 			return new Error('Flow requires PHP version %s or higher but your installed version is currently %s.', 1172215790, array(\TYPO3\Flow\Core\Bootstrap::MINIMUM_PHP_VERSION, phpversion()));
 		}
-		if (version_compare(PHP_VERSION, \TYPO3\Flow\Core\Bootstrap::MAXIMUM_PHP_VERSION, '>')) {
-			return new Error('Flow requires PHP version %s or lower but your installed version is currently %s.', 1172215792, array(\TYPO3\Flow\Core\Bootstrap::MAXIMUM_PHP_VERSION, phpversion()));
-		}
-		if (version_compare(PHP_VERSION, '6.0.0', '<') && !extension_loaded('mbstring')) {
-			return new Error('Flow requires the PHP extension "mbstring" to be available for PHP versions below 6.0.0', 1207148809);
+		if (!extension_loaded('mbstring')) {
+			return new Error('Flow requires the PHP extension "mbstring" to be available', 1207148809);
 		}
 		if (DIRECTORY_SEPARATOR !== '/' && PHP_WINDOWS_VERSION_MAJOR < 6) {
 			return new Error('Flow does not support Windows versions older than Windows Vista or Windows Server 2008, because they lack proper support for symbolic links.', 1312463704);
@@ -137,15 +134,6 @@ class BasicRequirements {
 		}
 
 		set_time_limit(0);
-
-		if (version_compare(PHP_VERSION, '5.4', '<')) {
-			if (get_magic_quotes_gpc() === 1) {
-				return new Error('Flow requires the PHP setting "magic_quotes_gpc" set to off', 1224003190);
-			}
-			if (ini_get('register_globals')) {
-				return new Error('Flow requires the PHP setting "register_globals" set to off.', 1224003190);
-			}
-		}
 
 		if (ini_get('session.auto_start')) {
 			return new Error('Flow requires the PHP setting "session.auto_start" set to off.', 1224003190);
