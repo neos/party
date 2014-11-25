@@ -13,6 +13,7 @@ namespace TYPO3\Setup\Core;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Configuration\ConfigurationManager;
+use TYPO3\Flow\Error\Error;
 use TYPO3\Flow\Http\Component\ComponentContext;
 use TYPO3\Flow\Http\Request;
 use TYPO3\Flow\Http\RequestHandler as FlowRequestHandler;
@@ -84,19 +85,25 @@ class RequestHandler extends FlowRequestHandler {
 		$messageRenderer = new MessageRenderer($this->bootstrap);
 		$basicRequirements = new BasicRequirements();
 		$result = $basicRequirements->findError();
-		if ($result instanceof \TYPO3\Flow\Error\Error) {
-			$messageRenderer->showMessage($result);
+		if ($result instanceof Error) {
+			$messageRenderer->showMessages(array($result));
+			return;
 		}
 
-		$result = $this->checkAndSetPhpBinaryIfNeeded();
-		if ($result instanceof \TYPO3\Flow\Error\Error) {
-			$messageRenderer->showMessage($result);
+		$phpBinaryDetectionMessage = $this->checkAndSetPhpBinaryIfNeeded();
+		if ($phpBinaryDetectionMessage instanceof Error) {
+			$messageRenderer->showMessages(array($phpBinaryDetectionMessage));
+			return;
 		}
 
 		$currentUri = substr($this->request->getUri(), strlen($this->request->getBaseUri()));
 		if ($currentUri === 'setup' || $currentUri === 'setup/') {
 			$redirectUri = ($currentUri === 'setup/' ? 'index': 'setup/index');
-			$messageRenderer->showMessage(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as TYPO3 Flow needs to build up various caches.', NULL, array(), 'Your environment is suited for installing TYPO3 Flow!'), '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
+			$messages = array(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as TYPO3 Flow needs to build up various caches.', NULL, array(), 'Your environment is suited for installing TYPO3 Flow!'));
+			if ($phpBinaryDetectionMessage !== NULL) {
+				array_unshift($messages, $phpBinaryDetectionMessage);
+			}
+			$messageRenderer->showMessages($messages, '<meta http-equiv="refresh" content="2;URL=\'' . $redirectUri . '\'">');
 		}
 	}
 
@@ -124,7 +131,7 @@ class RequestHandler extends FlowRequestHandler {
 	 * Once found, the binary will be written to the configuration, if it is not the default one
 	 * (PHP_BINARY or in PHP_BINDIR).
 	 *
-	 * @return boolean|\TYPO3\Flow\Error\Error TRUE on success, otherwise an instance of \TYPO3\Flow\Error\Error
+	 * @return Message An error or warning message or NULL if PHP was detected successfully
 	 */
 	protected function checkAndSetPhpBinaryIfNeeded() {
 		$configurationSource = new \TYPO3\Flow\Configuration\Source\YamlSource();
@@ -132,7 +139,7 @@ class RequestHandler extends FlowRequestHandler {
 		if (isset($distributionSettings['TYPO3']['Flow']['core']['phpBinaryPathAndFilename'])) {
 			return $this->checkPhpBinary($distributionSettings['TYPO3']['Flow']['core']['phpBinaryPathAndFilename']);
 		}
-		$phpBinaryPathAndFilename = $this->detectPhpBinaryPathAndFilename();
+		list($phpBinaryPathAndFilename, $message) = $this->detectPhpBinaryPathAndFilename();
 		if ($phpBinaryPathAndFilename !== NULL) {
 			$defaultPhpBinaryPathAndFilename = PHP_BINDIR . '/php';
 			if (DIRECTORY_SEPARATOR !== '/') {
@@ -142,17 +149,15 @@ class RequestHandler extends FlowRequestHandler {
 				$distributionSettings = \TYPO3\Flow\Utility\Arrays::setValueByPath($distributionSettings, 'TYPO3.Flow.core.phpBinaryPathAndFilename', $phpBinaryPathAndFilename);
 				$configurationSource->save(FLOW_PATH_CONFIGURATION . ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, $distributionSettings);
 			}
-			return TRUE;
-		} else {
-			return new \TYPO3\Flow\Error\Error('The path to your PHP (cli) binary could not be detected. Please set it manually in Configuration/Settings.yaml.', 1341499159, array(), 'Environment requirements not fulfilled');
 		}
+		return $message;
 	}
 
 	/**
 	 * Checks if the given PHP binary is executable and of the same version as the currently running one.
 	 *
 	 * @param string $phpBinaryPathAndFilename
-	 * @return boolean|\TYPO3\Flow\Error\Error
+	 * @return Message An error or warning message or NULL if the PHP binary was detected successfully
 	 */
 	protected function checkPhpBinary($phpBinaryPathAndFilename) {
 		$phpVersion = NULL;
@@ -165,17 +170,23 @@ class RequestHandler extends FlowRequestHandler {
 
 			exec($phpCommand . ' -v', $phpVersionString);
 			if (!isset($phpVersionString[0]) || strpos($phpVersionString[0], '(cli)') === FALSE) {
-				return new \TYPO3\Flow\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect or not a PHP command line (cli) version.', 1341839376, array(), 'Environment requirements not fulfilled');
+				return new Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect or not a PHP command line (cli) version.', 1341839376, array(), 'Environment requirements not fulfilled');
 			}
 			$versionStringParts = explode(' ', $phpVersionString[0]);
-			if (isset($versionStringParts[1]) && trim($versionStringParts[1]) === PHP_VERSION) {
-				return TRUE;
+			$phpVersion = isset($versionStringParts[1]) ? trim($versionStringParts[1]) : NULL;
+			if ($phpVersion === PHP_VERSION) {
+				return NULL;
 			}
 		}
 		if ($phpVersion === NULL) {
-			return new \TYPO3\Flow\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect.', 1341839376, array(), 'Environment requirements not fulfilled');
+			return new Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect.', 1341839376, array(), 'Environment requirements not fulfilled');
 		} else {
-			return new \TYPO3\Flow\Error\Error('The specified path to your PHP binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not the same version as is currently running ("%s").', 1341839377, array($phpVersion, PHP_VERSION), 'Environment requirements not fulfilled');
+			$phpMinorVersionMatch = array_slice(explode('.', $phpVersion), 0, 2) === array_slice(explode('.', PHP_VERSION), 0, 2);
+			if ($phpMinorVersionMatch) {
+				return new \TYPO3\Flow\Error\Warning('The specified path to your PHP binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not the exact same version as is currently running ("%s").', 1416913501, array($phpVersion, PHP_VERSION), 'Possible PHP version mismatch');
+			} else {
+				return new Error('The specified path to your PHP binary (see Configuration/Settings.yaml) points to a PHP binary with the version "%s". This is not compatible to the version that is currently running ("%s").', 1341839377, array($phpVersion, PHP_VERSION), 'Environment requirements not fulfilled');
+			}
 		}
 	}
 
@@ -187,25 +198,27 @@ class RequestHandler extends FlowRequestHandler {
 	 * This is because PHP_BINARY might, for example, be "/opt/local/sbin/php54-fpm"
 	 * while PHP_BINDIR contains "/opt/local/bin" and the actual CLI binary is "/opt/local/bin/php".
 	 *
-	 * @return string
+	 * @return array PHP binary path as string or NULL if not found and a possible Message
 	 */
 	protected function detectPhpBinaryPathAndFilename() {
 		if (defined('PHP_BINARY') && PHP_BINARY !== '' && dirname(PHP_BINARY) === PHP_BINDIR) {
-			return PHP_BINARY;
+			return array(PHP_BINARY, NULL);
 		}
 
 		$environmentPaths = explode(PATH_SEPARATOR, getenv('PATH'));
 		$environmentPaths[] = PHP_BINDIR;
+		$lastCheckMessage = NULL;
 		foreach ($environmentPaths as $path) {
 			$path = rtrim(str_replace('\\', '/', $path), '/');
 			if (strlen($path) === 0) {
 				continue;
 			}
 			$phpBinaryPathAndFilename = $path . '/php' . (DIRECTORY_SEPARATOR !== '/' ? '.exe' : '');
-			if ($this->checkPhpBinary($phpBinaryPathAndFilename) === TRUE) {
-				return $phpBinaryPathAndFilename;
+			$lastCheckMessage = $this->checkPhpBinary($phpBinaryPathAndFilename);
+			if (!$lastCheckMessage instanceof Error) {
+				return array($phpBinaryPathAndFilename, $lastCheckMessage);
 			}
 		}
-		return NULL;
+		return array(NULL, $lastCheckMessage);
 	}
 }
