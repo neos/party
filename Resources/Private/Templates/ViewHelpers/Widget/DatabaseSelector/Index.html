@@ -10,8 +10,8 @@
 			hostField = $('#{hostFieldId}'),
 			statusContainer = $('#{statusContainerId}'),
 			metadataStatusContainer = $('#{metadataStatusContainerId}'),
-			ajaxEndpoint = "{f:widget.uri(action:'checkConnection', ajax: true, includeWidgetContext: true)}",
-			ajaxDatabaseMetadataEndpoint = "{f:widget.uri(action:'getMetadata', ajax: true, includeWidgetContext: true)}";
+			ajaxEndpoint = "{f:widget.uri(action:'checkConnection', ajax: true, includeWidgetContext: true) -> f:format.raw()}",
+			ajaxDatabaseMetadataEndpoint = "{f:widget.uri(action:'getMetadata', ajax: true, includeWidgetContext: true) -> f:format.raw()}";
 
 		/* <![CDATA[ */
 

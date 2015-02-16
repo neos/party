@@ -58,7 +58,7 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 		} catch(\PDOException $e) {
 			$result = array('success' => FALSE, 'errorMessage' => $e->getMessage(), 'errorCode' => $e->getCode());
 		} catch(\Exception $e) {
-			$result = array('success' => FALSE, 'errorMessage' => 'Unexpected exception', 'errorCode' => $e->getCode());
+			$result = array('success' => FALSE, 'errorMessage' => 'Unexpected exception (check logs)', 'errorCode' => $e->getCode());
 		}
 		return json_encode($result);
 	}
