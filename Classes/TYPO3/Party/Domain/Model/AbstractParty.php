@@ -32,7 +32,7 @@ abstract class AbstractParty {
 	 *
 	 * @var Collection<\TYPO3\Flow\Security\Account>
 	 * @ORM\ManyToMany
-	 * @ORM\JoinTable(inverseJoinColumns={@ORM\JoinColumn(unique=true)})
+	 * @ORM\JoinTable(inverseJoinColumns={@ORM\JoinColumn(unique=true, onDelete="CASCADE")})
 	 */
 	protected $accounts;
 
