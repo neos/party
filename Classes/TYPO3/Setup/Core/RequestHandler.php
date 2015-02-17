@@ -167,8 +167,13 @@ class RequestHandler extends FlowRequestHandler {
 			} else {
 				$phpCommand = escapeshellarg(Files::getUnixStylePath($phpBinaryPathAndFilename));
 			}
-
+			// If the tested binary is a CGI binary that also runs the current request the SCRIPT_FILENAME would take precedence and create an endless recursion.
+			$possibleScriptFilenameValue = getenv('SCRIPT_FILENAME');
+			putenv('SCRIPT_FILENAME');
 			exec($phpCommand . ' -v', $phpVersionString);
+			if ($possibleScriptFilenameValue !== FALSE) {
+				putenv('SCRIPT_FILENAME=' . (string)$possibleScriptFilenameValue);
+			}
 			if (!isset($phpVersionString[0]) || strpos($phpVersionString[0], '(cli)') === FALSE) {
 				return new Error('The specified path to your PHP binary (see Configuration/Settings.yaml) is incorrect or not a PHP command line (cli) version.', 1341839376, array(), 'Environment requirements not fulfilled');
 			}
@@ -202,7 +207,9 @@ class RequestHandler extends FlowRequestHandler {
 	 */
 	protected function detectPhpBinaryPathAndFilename() {
 		if (defined('PHP_BINARY') && PHP_BINARY !== '' && dirname(PHP_BINARY) === PHP_BINDIR) {
-			return array(PHP_BINARY, NULL);
+			if ($this->checkPhpBinary(PHP_BINARY) === NULL) {
+				return array(PHP_BINARY, NULL);
+			}
 		}
 
 		$environmentPaths = explode(PATH_SEPARATOR, getenv('PATH'));
