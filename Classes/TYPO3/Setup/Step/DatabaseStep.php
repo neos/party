@@ -11,6 +11,7 @@ namespace TYPO3\Setup\Step;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
@@ -97,9 +98,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 	 *
 	 * @param array $formValues
 	 * @return void
-	 * @throws \TYPO3\Flow\Configuration\Exception
-	 * @throws \TYPO3\Flow\Core\Booting\Exception\SubProcessException
-	 * @throws \TYPO3\Setup\Exception
+	 * @throws \Exception
 	 */
 	public function postProcessFormValues(array $formValues) {
 		$this->distributionSettings = Arrays::setValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.driver', $formValues['driver']);
@@ -115,17 +114,20 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$connectionSettings = $settings['persistence']['backendOptions'];
 		try {
 			$this->connectToDatabase($connectionSettings);
-		} catch (\PDOException $exception) {
+		} catch (\Exception $exception) {
+			if (!$exception instanceof DBALException && !$exception instanceof \PDOException) {
+				throw $exception;
+			}
 			try {
 				$this->createDatabase($connectionSettings, $formValues['dbname']);
-			} catch (\Doctrine\DBAL\DBALException $exception) {
+			} catch (DBALException $exception) {
 				throw new SetupException(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000841, $exception);
 			} catch (\PDOException $exception) {
 				throw new SetupException(sprintf('Database "%s" could not be created. Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758663, $exception);
 			}
 			try {
 				$this->connectToDatabase($connectionSettings);
-			} catch (\Doctrine\DBAL\DBALException $exception) {
+			} catch (DBALException $exception) {
 				throw new SetupException(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". DBAL Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1351000864);
 			} catch (\PDOException $exception) {
 				throw new SetupException(sprintf('Could not connect to database "%s". Please check the permissions for user "%s". PDO Exception: "%s"', $formValues['dbname'], $formValues['user'], $exception->getMessage()), 1346758737);
