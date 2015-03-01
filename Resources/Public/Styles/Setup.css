@@ -674,3 +674,9 @@ p.alert.alert-info::before {
 .tooltip-info .tooltip-inner {
   background-color: #00b5ff;
 }
+
+.step-tracker {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+}
