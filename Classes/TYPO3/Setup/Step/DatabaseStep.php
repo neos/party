@@ -58,7 +58,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 
 		$databaseDriver = $connectionSection->createElement('driver', 'TYPO3.Form:SingleSelectDropdown');
 		$databaseDriver->setLabel('DB Driver');
-		$databaseDriver->setProperty('options', array('pdo_mysql' => 'MySQL/MariaDB via PDO', 'pdo_pgsql' => 'PostgreSQL via PDO'));
+		$databaseDriver->setProperty('options', $this->getAvailableDrivers());
 		$databaseDriver->setDefaultValue(Arrays::getValueByPath($this->distributionSettings, 'TYPO3.Flow.persistence.backendOptions.driver'));
 		$databaseDriver->addValidator(new NotEmptyValidator());
 
@@ -177,6 +177,7 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 		$connection = DriverManager::getConnection($connectionSettings);
 		$databasePlatform = $connection->getSchemaManager()->getDatabasePlatform();
 		$databaseName = $databasePlatform->quoteIdentifier($databaseName);
+		// we are not using $databasePlatform->getCreateDatabaseSQL() below since we want to specify charset and collation
 		if ($databasePlatform instanceof MySqlPlatform) {
 			$connection->executeUpdate(sprintf('CREATE DATABASE %s CHARACTER SET utf8 COLLATE utf8_unicode_ci', $databaseName));
 		} elseif ($databasePlatform instanceof PostgreSqlPlatform) {
@@ -185,5 +186,29 @@ class DatabaseStep extends \TYPO3\Setup\Step\AbstractStep {
 			throw new SetupException(sprintf('The given database platform "%s" is not supported.', $databasePlatform->getName()), 1386454885);
 		}
 		$connection->close();
+	}
+
+	/**
+	 * Return an array with driver.
+	 *
+	 * This is built on supported drivers (those we actually provide migration for in Flow and Neos), filtered to show
+	 * only available options (needed extension loaded, actually usable in current setup).
+	 *
+	 * @return array
+	 */
+	protected function getAvailableDrivers() {
+		$supportedDrivers = array(
+			'pdo_mysql' => 'MySQL/MariaDB via PDO',
+			'mysqli' => 'MySQL/MariaDB via mysqli',
+			'pdo_pgsql' => 'PostgreSQL via PDO'
+		);
+
+		$availableDrivers = array();
+		foreach ($supportedDrivers as $driver => $label) {
+			if (extension_loaded($driver)) {
+				$availableDrivers[$driver] = $label;
+			}
+		}
+		return $availableDrivers;
 	}
 }

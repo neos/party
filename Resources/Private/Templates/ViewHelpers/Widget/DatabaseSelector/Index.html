@@ -116,11 +116,11 @@
 					enableDatabaseSelector();
 					checkDatabaseSelection();
 				} else {
-					statusContainer.addClass('error').html('<div class="alert alert-error"><span class="glyphicon glyphicon-ban-circle"></span><span>Could not connect to database</span></div>');
+					statusContainer.addClass('error').html('<div class="alert alert-error"><span class="glyphicon glyphicon-ban-circle"></span><span>Could not connect to database</span><br /><small>' + result.errorMessage + '</small></div>');
 					disableDatabaseSelector();
 				}
 			}).error(function() {
-				statusContainer.removeClass('loading').addClass('error').text('Unexpected error');
+				statusContainer.removeClass('loading').addClass('error').html('<div class="alert alert-error"><span class="glyphicon glyphicon-ban-circle"></span><span>Unexpected error</span><br /><small>' + result.errorMessage + '</small></div>');
 				disableDatabaseSelector();
 			});
 		};

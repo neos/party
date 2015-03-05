@@ -57,6 +57,8 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 			$result = array('success' => TRUE, 'databases' => $databases);
 		} catch(\PDOException $e) {
 			$result = array('success' => FALSE, 'errorMessage' => $e->getMessage(), 'errorCode' => $e->getCode());
+		} catch(\Doctrine\DBAL\DBALException $e) {
+			$result = array('success' => FALSE, 'errorMessage' => $e->getMessage(), 'errorCode' => $e->getCode());
 		} catch(\Exception $e) {
 			$result = array('success' => FALSE, 'errorMessage' => 'Unexpected exception (check logs)', 'errorCode' => $e->getCode());
 		}
@@ -82,7 +84,7 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 			$connection = $this->getConnectionAndConnect($connectionSettings);
 			$databasePlatform = $connection->getDatabasePlatform();
 			if ($databasePlatform instanceof MySqlPlatform) {
-				$queryResult = $connection->executeQuery('SHOW VARIABLES LIKE ?', array('character_set_database'))->fetch();
+				$queryResult = $connection->executeQuery('SHOW VARIABLES LIKE \'character_set_database\'')->fetch();
 				$databaseCharacterSet = strtolower($queryResult['Value']);
 			} elseif ($databasePlatform instanceof PostgreSqlPlatform) {
 				$queryResult = $connection->executeQuery('SELECT pg_encoding_to_char(encoding) FROM pg_database WHERE datname = ?', array($databaseName))->fetch();
@@ -96,11 +98,13 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 				} else {
 					$result = array(
 						'level' => 'warning',
-						'message' => sprintf('The selected database\'s character set is "%s", however changing it to "utf8" is urgently recommended. This setup tool won\'t do this up for you.', $databaseCharacterSet)
+						'message' => sprintf('The selected database\'s character set is "%s", however changing it to "utf8" is urgently recommended. This setup tool won\'t do this for you.', $databaseCharacterSet)
 					);
 				}
 			}
 		} catch(\PDOException $e) {
+			$result = array('level' => 'error', 'message' => $e->getMessage(), 'errorCode' => $e->getCode());
+		} catch(\Doctrine\DBAL\DBALException $e) {
 			$result = array('level' => 'error', 'message' => $e->getMessage(), 'errorCode' => $e->getCode());
 		} catch(\Exception $e) {
 			$result = array('level' => 'error', 'message' => 'Unexpected exception', 'errorCode' => $e->getCode());
@@ -113,7 +117,7 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 	 * @param string $user
 	 * @param string $password
 	 * @param string $host
-	 * @return mixed
+	 * @return array
 	 */
 	protected function buildConnectionSettingsArray($driver, $user, $password, $host) {
 		$settings = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
