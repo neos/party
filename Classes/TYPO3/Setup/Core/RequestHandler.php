@@ -99,7 +99,7 @@ class RequestHandler extends FlowRequestHandler {
 		$currentUri = substr($this->request->getUri(), strlen($this->request->getBaseUri()));
 		if ($currentUri === 'setup' || $currentUri === 'setup/') {
 			$redirectUri = ($currentUri === 'setup/' ? 'index': 'setup/index');
-			$messages = array(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> as TYPO3 Flow needs to build up various caches.', NULL, array(), 'Your environment is suited for installing TYPO3 Flow!'));
+			$messages = array(new Message('We are now redirecting you to the setup. <b>This might take 10-60 seconds on the first run,</b> because the application needs to build up various caches.', NULL, array(), 'Initialising Setup ...'));
 			if ($phpBinaryDetectionMessage !== NULL) {
 				array_unshift($messages, $phpBinaryDetectionMessage);
 			}

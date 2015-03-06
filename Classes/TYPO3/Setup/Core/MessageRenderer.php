@@ -83,7 +83,7 @@ class MessageRenderer {
 			<div class="well">
 				<div class="container">
 					<ul class="breadcrumb">
-						<li><a class="active">TYPO3 Setup</a></li>
+						<li><a class="active">Setup</a></li>
 					</ul>
 					<h3>%s</h3>
 					<div class="t3-module-container indented">

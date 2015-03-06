@@ -36,7 +36,7 @@ TYPO3:
         className: 'TYPO3\Setup\Step\FinalStep'
     view:
       # The title will be shown in the header of the setup wizard
-      title: 'TYPO3 Setup'
+      title: 'Setup'
 
     # These settings override the main HTTP component chain from TYPO3.Flow.http.chain when being inside the setup
     http:

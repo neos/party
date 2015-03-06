@@ -518,6 +518,10 @@ input[type="number"].neos-modified,
   margin-top: -20px;
 }
 
+.alert a {
+   color: #ffffff;
+}
+
 p.alert::before {
   content: "";
   position: absolute;

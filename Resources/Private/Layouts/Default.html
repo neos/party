@@ -12,7 +12,7 @@
 		<div class="logo"></div>
 		<div class="well">
 			<div class="container">
-				<div class="pull-right step-tracker">Step {currentStepNumber} of {totalAmountOfSteps}</div>
+				<div class="pull-right step-tracker"><f:if condition="{currentStepNumber}">Step {currentStepNumber} of {totalAmountOfSteps}</f:if></div>
 				<ul class="breadcrumb">
 					<li><a class="active">{settings.view.title}</a></li>
 				</ul>

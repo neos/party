@@ -102,6 +102,22 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	}
 
 	/**
+	 * Removes the existing password and starts over by generating a new one.
+	 *
+	 * @param integer $step The requested setup step
+	 * @return void
+	 * @Flow\SkipCsrfProtection
+	 */
+	public function generateNewPasswordAction($step = 0) {
+		$existingPasswordFile = \TYPO3\Flow\Utility\Files::concatenatePaths(array(FLOW_PATH_DATA, 'Persistent', 'FileBasedSimpleKeyService', $this->keyName));
+		if (file_exists($existingPasswordFile)) {
+			unlink($existingPasswordFile);
+			$this->addFlashMessage('A new password has been generated.', 'Password Reset', \TYPO3\Flow\Error\Message::SEVERITY_OK);
+		}
+		$this->redirect('login', NULL, NULL, array('step' => $step));
+	}
+
+	/**
 	 * Logout all active authentication tokens.
 	 *
 	 * @return void
