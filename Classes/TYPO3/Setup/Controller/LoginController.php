@@ -12,6 +12,8 @@ namespace TYPO3\Setup\Controller;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Error\Message;
+use TYPO3\Flow\Utility\Files;
 
 /**
  * @Flow\Scope("singleton")
@@ -71,13 +73,10 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 			$result = file_put_contents($this->settings['initialPasswordFile'], $initialPasswordFileContents);
 			if ($result === FALSE) {
-				$this->addFlashMessage('It was not possible to save the initial setup password to file "%s". Check file permissions and re-try.', 'Password Generation Failure', \TYPO3\Flow\Error\Message::SEVERITY_ERROR, array($this->settings['initialPasswordFile']));
+				$this->addFlashMessage('It was not possible to save the initial setup password to file "%s". Check file permissions and retry.', 'Password Generation Failure', Message::SEVERITY_ERROR, array($this->settings['initialPasswordFile']));
 			} else {
 				$this->view->assign('initialPasswordFile', $this->settings['initialPasswordFile']);
 			}
-		} else {
-			$existingPasswordFile = \TYPO3\Flow\Utility\Files::concatenatePaths(array(FLOW_PATH_DATA, 'Persistent', 'FileBasedSimpleKeyService', $this->keyName));
-			$this->view->assign('existingPasswordFile', $existingPasswordFile);
 		}
 		$this->view->assign('step', $step);
 	}
@@ -96,7 +95,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 			}
 			$this->redirect('index', 'Setup', NULL, array('step' => $step));
 		} catch (\TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception) {
-			$this->addFlashMessage('Sorry, you were not able to authenticate.', 'Authentication error', \TYPO3\Flow\Error\Message::SEVERITY_ERROR);
+			$this->addFlashMessage('Sorry, you were not able to authenticate.', 'Authentication error', Message::SEVERITY_ERROR);
 			$this->redirect('login', NULL, NULL, array('step' => $step));
 		}
 	}
@@ -109,10 +108,10 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 * @Flow\SkipCsrfProtection
 	 */
 	public function generateNewPasswordAction($step = 0) {
-		$existingPasswordFile = \TYPO3\Flow\Utility\Files::concatenatePaths(array(FLOW_PATH_DATA, 'Persistent', 'FileBasedSimpleKeyService', $this->keyName));
+		$existingPasswordFile = Files::concatenatePaths(array(FLOW_PATH_DATA, 'Persistent', 'FileBasedSimpleKeyService', $this->keyName));
 		if (file_exists($existingPasswordFile)) {
 			unlink($existingPasswordFile);
-			$this->addFlashMessage('A new password has been generated.', 'Password Reset', \TYPO3\Flow\Error\Message::SEVERITY_OK);
+			$this->addFlashMessage('A new password has been generated.', 'Password reset');
 		}
 		$this->redirect('login', NULL, NULL, array('step' => $step));
 	}
@@ -124,7 +123,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 */
 	public function logoutAction() {
 		$this->authenticationManager->logout();
-		$this->addFlashMessage('Successfully logged out.', 'Logged out', \TYPO3\Flow\Error\Message::SEVERITY_OK);
+		$this->addFlashMessage('Successfully logged out.', 'Logged out');
 		$this->redirect('login');
 	}
 

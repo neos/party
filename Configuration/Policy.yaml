@@ -7,7 +7,7 @@ privilegeTargets:
   'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
 
     'TYPO3.Setup:LoginController':
-      matcher: method(TYPO3\Setup\Controller\LoginController->(login|authenticate)Action())
+      matcher: method(TYPO3\Setup\Controller\LoginController->(login|authenticate|generateNewPassword)Action())
 
     'TYPO3.Setup:SetupController':
       matcher: 'method(TYPO3\Setup\Controller\SetupController->indexAction()) || method(TYPO3\Setup\Controller\LoginController->logoutAction())'
