@@ -31,7 +31,7 @@ class Version20150216124451 extends AbstractMigration {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "postgresql");
 		$this->abortIf($this->isCorrespondingFlowMigrationExecuted(), 'Revert the corresponding Flow Migration version 20150206114820 first.');
 
-		$this->addSql("UPDATE typo3_flow_security_account account LEFT JOIN typo3_party_domain_model_abstractparty_accounts_join accountsjoin ON account.persistence_object_identifier = accountsjoin.flow_security_account SET account.party = accountsjoin.party_abstractparty");
+		$this->addSql("UPDATE typo3_flow_security_account AS a SET party = j.party_abstractparty FROM typo3_party_domain_model_abstractparty_accounts_join AS j WHERE a.party = j.party_abstractparty");
 		$this->addSql("DROP TABLE typo3_party_domain_model_abstractparty_accounts_join");
 	}
 
