@@ -16,7 +16,7 @@
 		/* <![CDATA[ */
 
 		var fillDatabaseSelector = function(databases) {
-			dbNameDropdownField.html('<option value=""></option><option value="__new__">[New Database]</option>');
+			dbNameDropdownField.html('<option disabled value="">Select an option</option><option value="__new__">[New Database]</option>');
 			$.each(databases, function(index, databaseName) {
 				dbNameDropdownField
 					.append($('<option></option>')
