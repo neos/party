@@ -79,7 +79,12 @@ class SetupController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		}
 		$response = new \TYPO3\Flow\Http\Response($this->response);
 		$form = $formDefinition->bind($this->request, $response);
-		$this->view->assign('form', $form->render());
+		try {
+			$this->view->assign('form', $form->render());
+		} catch (\TYPO3\Setup\Exception $exception) {
+			$this->addFlashMessage($exception->getMessage(), 'Exception while executing setup step', \TYPO3\Flow\Error\Message::SEVERITY_ERROR);
+			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex));
+		}
 	}
 
 	/**
@@ -99,7 +104,7 @@ class SetupController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 			if ($this->currentStepIndex === 0) {
 				throw new \TYPO3\Setup\Exception('Not all requirements are met for the first setup step, aborting setup', 1332169088);
 			}
-			$this->addFlashMessage('Not all requirements are met for step "%s"', '', \TYPO3\Flow\Error\Message::SEVERITY_WARNING, array($stepOrder[$this->currentStepIndex]));
+			$this->addFlashMessage('Not all requirements are met for step "%s"', '', \TYPO3\Flow\Error\Message::SEVERITY_ERROR, array($stepOrder[$this->currentStepIndex]));
 			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex - 1));
 		};
 	}
@@ -165,7 +170,7 @@ class SetupController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		try {
 			$currentStep->postProcessFormValues($formValues);
 		} catch (\TYPO3\Setup\Exception $exception) {
-			$this->addFlashMessage($exception->getMessage(), 'Exception while executing setup step', \TYPO3\Flow\Error\Message::SEVERITY_WARNING);
+			$this->addFlashMessage($exception->getMessage(), 'Exception while executing setup step', \TYPO3\Flow\Error\Message::SEVERITY_ERROR);
 			$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex));
 		}
 		$this->redirect('index', NULL, NULL, array('step' => $this->currentStepIndex + 1));
