@@ -55,12 +55,12 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 			$connection = $this->getConnectionAndConnect($connectionSettings);
 			$databases = $connection->getSchemaManager()->listDatabases();
 			$result = array('success' => TRUE, 'databases' => $databases);
-		} catch(\PDOException $e) {
-			$result = array('success' => FALSE, 'errorMessage' => $e->getMessage(), 'errorCode' => $e->getCode());
-		} catch(\Doctrine\DBAL\DBALException $e) {
-			$result = array('success' => FALSE, 'errorMessage' => $e->getMessage(), 'errorCode' => $e->getCode());
-		} catch(\Exception $e) {
-			$result = array('success' => FALSE, 'errorMessage' => 'Unexpected exception (check logs)', 'errorCode' => $e->getCode());
+		} catch (\PDOException $exception) {
+			$result = array('success' => FALSE, 'errorMessage' => $exception->getMessage(), 'errorCode' => $exception->getCode());
+		} catch (\Doctrine\DBAL\DBALException $exception) {
+			$result = array('success' => FALSE, 'errorMessage' => $exception->getMessage(), 'errorCode' => $exception->getCode());
+		} catch (\Exception $exception) {
+			$result = array('success' => FALSE, 'errorMessage' => 'Unexpected exception (check logs)', 'errorCode' => $exception->getCode());
 		}
 		return json_encode($result);
 	}
@@ -90,7 +90,7 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 				$queryResult = $connection->executeQuery('SELECT pg_encoding_to_char(encoding) FROM pg_database WHERE datname = ?', array($databaseName))->fetch();
 				$databaseCharacterSet = strtolower($queryResult['pg_encoding_to_char']);
 			} else {
-				$result = array('level' => 'error', 'message' => sprintf('Only MySQL/MariaDB and PostgreSQL are supported, the selected database is "%s".',  $databasePlatform->getName()));
+				$result = array('level' => 'error', 'message' => sprintf('Only MySQL/MariaDB and PostgreSQL are supported, the selected database is "%s".', $databasePlatform->getName()));
 			}
 			if (isset($databaseCharacterSet)) {
 				if ($databaseCharacterSet === 'utf8') {
@@ -102,12 +102,12 @@ class DatabaseSelectorController extends \TYPO3\Fluid\Core\Widget\AbstractWidget
 					);
 				}
 			}
-		} catch(\PDOException $e) {
-			$result = array('level' => 'error', 'message' => $e->getMessage(), 'errorCode' => $e->getCode());
-		} catch(\Doctrine\DBAL\DBALException $e) {
-			$result = array('level' => 'error', 'message' => $e->getMessage(), 'errorCode' => $e->getCode());
-		} catch(\Exception $e) {
-			$result = array('level' => 'error', 'message' => 'Unexpected exception', 'errorCode' => $e->getCode());
+		} catch (\PDOException $exception) {
+			$result = array('level' => 'error', 'message' => $exception->getMessage(), 'errorCode' => $exception->getCode());
+		} catch (\Doctrine\DBAL\DBALException $exception) {
+			$result = array('level' => 'error', 'message' => $exception->getMessage(), 'errorCode' => $exception->getCode());
+		} catch (\Exception $exception) {
+			$result = array('level' => 'error', 'message' => 'Unexpected exception', 'errorCode' => $exception->getCode());
 		}
 		return json_encode($result);
 	}

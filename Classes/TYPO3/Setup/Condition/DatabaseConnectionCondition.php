@@ -27,7 +27,7 @@ class DatabaseConnectionCondition extends AbstractCondition {
 		$settings = $this->configurationManager->getConfiguration(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.Flow');
 		try {
 			\Doctrine\DBAL\DriverManager::getConnection($settings['persistence']['backendOptions'])->connect();
-		} catch(\PDOException $e) {
+		} catch (\PDOException $exception) {
 			return FALSE;
 		}
 		return TRUE;

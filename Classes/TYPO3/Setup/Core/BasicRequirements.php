@@ -153,7 +153,7 @@ class BasicRequirements {
 			if (!is_dir($folderPath) && !\TYPO3\Flow\Utility\Files::is_link($folderPath)) {
 				try {
 					\TYPO3\Flow\Utility\Files::createDirectoryRecursively($folderPath);
-				} catch(\TYPO3\Flow\Utility\Exception $e) {
+				} catch (\TYPO3\Flow\Utility\Exception $exception) {
 					return new Error('Unable to create folder "%s". Check your file permissions (did you use flow:core:setfilepermissions?).', 1330363887, array($folderPath));
 				}
 			}
