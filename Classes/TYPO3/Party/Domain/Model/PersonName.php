@@ -18,6 +18,7 @@ use TYPO3\Flow\Annotations as Flow;
  * A person name
  *
  * @Flow\Entity
+ * @ORM\InheritanceType("SINGLE_TABLE")
  */
 class PersonName {
 
