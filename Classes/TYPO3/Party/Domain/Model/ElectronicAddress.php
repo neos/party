@@ -18,6 +18,7 @@ use TYPO3\Flow\Annotations as Flow;
  * An electronic address
  *
  * @Flow\Entity
+ * @ORM\InheritanceType("SINGLE_TABLE")
  */
 class ElectronicAddress {
 
