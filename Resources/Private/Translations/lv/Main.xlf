@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="lv">
+    <body>
+      <trans-unit id="personName.firstName" xml:space="preserve">
+				<source>First name</source>
+			<target xml:lang="lv" state="translated">Vārds</target></trans-unit>
+      <trans-unit id="personName.lastName" xml:space="preserve">
+				<source>Last name</source>
+			<target xml:lang="lv" state="translated">Uzvārds</target></trans-unit>
+    </body>
+  </file>
+</xliff>
