@@ -2,12 +2,12 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="cs">
     <body>
-      <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
+      <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First name</source>
-			<target xml:lang="cs">Křestní Jméno</target></trans-unit>
-      <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
+			<target xml:lang="cs" state="translated">Křestní Jméno</target></trans-unit>
+      <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last name</source>
-			<target xml:lang="cs">Příjmení</target></trans-unit>
+			<target xml:lang="cs" state="translated">Příjmení</target></trans-unit>
     </body>
   </file>
 </xliff>
