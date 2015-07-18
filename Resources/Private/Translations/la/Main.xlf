@@ -4,10 +4,10 @@
     <body>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First name</source>
-			<target xml:lang="la-LA" state="translated">crwdns170:0crwdne170:0</target></trans-unit>
+			<target xml:lang="la-LA" state="needs-translation">crwdns170:0crwdne170:0</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last name</source>
-			<target xml:lang="la-LA" state="translated">crwdns171:0crwdne171:0</target></trans-unit>
+			<target xml:lang="la-LA" state="needs-translation">crwdns171:0crwdne171:0</target></trans-unit>
     </body>
   </file>
 </xliff>
