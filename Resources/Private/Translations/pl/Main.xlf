@@ -10,13 +10,13 @@
 			<target xml:lang="pl" state="translated">Imię</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="pl" state="needs-translation">Middle Name</target></trans-unit>
+			<target xml:lang="pl" state="translated">Drugie imię</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
 			<target xml:lang="pl" state="translated">Nazwisko</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="pl" state="needs-translation">Other Name</target></trans-unit>
+			<target xml:lang="pl" state="translated">Inna nazwa</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
 			<target xml:lang="pl" state="translated">Typ</target></trans-unit>
@@ -28,7 +28,7 @@
 			<target xml:lang="pl" state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="pl" state="needs-translation">Primary</target></trans-unit>
+			<target xml:lang="pl" state="translated">Główny</target></trans-unit>
     </body>
   </file>
 </xliff>
