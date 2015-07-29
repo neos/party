@@ -19,7 +19,7 @@
 			<target xml:lang="fi" state="needs-translation">Other Name</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="fi" state="needs-translation">Type</target></trans-unit>
+			<target xml:lang="fi" state="translated">Tyyppi</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
 			<target xml:lang="fi" state="needs-translation">Usage</target></trans-unit>
