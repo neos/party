@@ -22,7 +22,7 @@
 			<target xml:lang="pl" state="translated">Typ</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="pl" state="needs-translation">Usage</target></trans-unit>
+			<target xml:lang="pl" state="translated">Użycie</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
 			<target xml:lang="pl" state="needs-translation">Identifier</target></trans-unit>
