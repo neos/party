@@ -25,7 +25,7 @@
 			<target xml:lang="fi" state="translated">Käyttö</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="fi" state="needs-translation">Identifier</target></trans-unit>
+			<target xml:lang="fi" state="translated">Tunniste</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
 			<target xml:lang="fi" state="translated">Ensisijainen</target></trans-unit>
