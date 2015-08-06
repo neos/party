@@ -2,9 +2,9 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="ru">
     <body>
-      <trans-unit id="personName.title" xml:space="preserve">
+      <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="ru" state="translated">Название</target></trans-unit>
+			<target xml:lang="ru">Название</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
 			<target xml:lang="ru" state="translated">Имя</target></trans-unit>
@@ -17,9 +17,9 @@
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
 			<target xml:lang="ru" state="translated">Другая часть имени</target></trans-unit>
-      <trans-unit id="electronicAddress.type" xml:space="preserve">
+      <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="ru" state="translated">Тип</target></trans-unit>
+			<target xml:lang="ru">Тип</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
 			<target xml:lang="ru" state="translated">Использование</target></trans-unit>
@@ -28,7 +28,7 @@
 			<target xml:lang="ru" state="translated">Идентификатор</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="ru" state="translated">Основное</target><alt-trans><target xml:lang="ru">Основной</target></alt-trans></trans-unit>
+			<target xml:lang="ru" state="translated">Основной</target><alt-trans><target xml:lang="ru">Основное</target></alt-trans></trans-unit>
     </body>
   </file>
 </xliff>
