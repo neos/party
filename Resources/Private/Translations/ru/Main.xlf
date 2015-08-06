@@ -5,30 +5,30 @@
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
 			<target xml:lang="ru">Название</target></trans-unit>
-      <trans-unit id="personName.firstName" xml:space="preserve">
+      <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target xml:lang="ru" state="translated">Имя</target></trans-unit>
-      <trans-unit id="personName.middleName" xml:space="preserve">
+			<target xml:lang="ru">Имя</target></trans-unit>
+      <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target xml:lang="ru" state="translated">Отчество</target></trans-unit>
-      <trans-unit id="personName.lastName" xml:space="preserve">
+			<target xml:lang="ru">Отчество</target></trans-unit>
+      <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target xml:lang="ru" state="translated">Фамилия</target></trans-unit>
-      <trans-unit id="personName.otherName" xml:space="preserve">
+			<target xml:lang="ru">Фамилия</target></trans-unit>
+      <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target xml:lang="ru" state="translated">Другая часть имени</target></trans-unit>
+			<target xml:lang="ru">Другая часть имени</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
 			<target xml:lang="ru">Тип</target></trans-unit>
-      <trans-unit id="electronicAddress.usage" xml:space="preserve">
+      <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target xml:lang="ru" state="translated">Использование</target></trans-unit>
+			<target xml:lang="ru">Использование</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
 			<target xml:lang="ru">Идентификатор</target></trans-unit>
-      <trans-unit id="electronicAddress.primary" xml:space="preserve">
+      <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target xml:lang="ru" state="translated">Основной</target><alt-trans><target xml:lang="ru">Основное</target></alt-trans></trans-unit>
+			<target xml:lang="ru">Основной</target><alt-trans><target xml:lang="ru">Основное</target></alt-trans></trans-unit>
     </body>
   </file>
 </xliff>
