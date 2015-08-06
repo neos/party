@@ -23,9 +23,9 @@
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
 			<target xml:lang="pl">Użycie</target></trans-unit>
-      <trans-unit id="electronicAddress.identifier" xml:space="preserve">
+      <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target xml:lang="pl" state="translated">Identyfikator</target></trans-unit>
+			<target xml:lang="pl">Identyfikator</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
 			<target xml:lang="pl">Główny</target></trans-unit>
