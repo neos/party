@@ -10,25 +10,25 @@
 			<target xml:lang="lv" state="translated">Vārds</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="lv" state="needs-translation">Middle Name</target></trans-unit>
+			<target xml:lang="lv" state="translated">Tēvvārds</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
 			<target xml:lang="lv" state="translated">Uzvārds</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="lv" state="needs-translation">Other Name</target></trans-unit>
+			<target xml:lang="lv" state="translated">Cits nosaukums</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
 			<target xml:lang="lv" state="translated">Veids</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="lv" state="needs-translation">Usage</target></trans-unit>
+			<target xml:lang="lv" state="translated">Lietojums</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
 			<target xml:lang="lv" state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="lv" state="needs-translation">Primary</target></trans-unit>
+			<target xml:lang="lv" state="translated">Galvenais</target></trans-unit>
     </body>
   </file>
 </xliff>
