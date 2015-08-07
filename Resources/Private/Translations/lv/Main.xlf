@@ -25,7 +25,7 @@
 			<target xml:lang="lv" state="translated">Lietojums</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="lv" state="needs-translation">Identifier</target></trans-unit>
+			<target xml:lang="lv" state="translated">Identifikators</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
 			<target xml:lang="lv" state="translated">Galvenais</target></trans-unit>
