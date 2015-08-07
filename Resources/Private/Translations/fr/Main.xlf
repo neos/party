@@ -25,7 +25,7 @@
 			<target xml:lang="fr" state="translated">Utilisation</target><alt-trans><target xml:lang="fr">Usage</target></alt-trans></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="fr" state="needs-translation">Identifier</target></trans-unit>
+			<target xml:lang="fr" state="translated">Identifiant</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
 			<target xml:lang="fr">Principal</target></trans-unit>
