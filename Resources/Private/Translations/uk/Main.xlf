@@ -7,16 +7,16 @@
 			<target xml:lang="uk" state="translated">Назва</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="uk" state="needs-translation">First Name</target></trans-unit>
+			<target xml:lang="uk" state="translated">Ім'я</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="uk" state="needs-translation">Middle Name</target></trans-unit>
+			<target xml:lang="uk" state="translated">По батькові</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="uk" state="needs-translation">Last Name</target></trans-unit>
+			<target xml:lang="uk" state="translated">Прізвище</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="uk" state="needs-translation">Other Name</target></trans-unit>
+			<target xml:lang="uk" state="translated">Інші назви</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
 			<target xml:lang="uk" state="translated">Тип</target></trans-unit>
@@ -28,7 +28,7 @@
 			<target xml:lang="uk" state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="uk" state="needs-translation">Primary</target></trans-unit>
+			<target xml:lang="uk" state="translated">Первинний</target></trans-unit>
     </body>
   </file>
 </xliff>
