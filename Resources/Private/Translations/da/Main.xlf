@@ -26,9 +26,9 @@
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
 			<target xml:lang="da" state="translated">Identifikator</target></trans-unit>
-      <trans-unit id="electronicAddress.primary" xml:space="preserve">
+      <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target xml:lang="da" state="translated">Primær</target></trans-unit>
+			<target xml:lang="da">Primær</target></trans-unit>
     </body>
   </file>
 </xliff>
