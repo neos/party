@@ -2,27 +2,27 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="da">
     <body>
-      <trans-unit id="personName.title" xml:space="preserve">
+      <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="da" state="translated">Titel</target></trans-unit>
-      <trans-unit id="personName.firstName" xml:space="preserve">
+			<target xml:lang="da">Titel</target></trans-unit>
+      <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target xml:lang="da" state="translated">Fornavn</target></trans-unit>
-      <trans-unit id="personName.middleName" xml:space="preserve">
+			<target xml:lang="da">Fornavn</target></trans-unit>
+      <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target xml:lang="da" state="translated">Mellemnavn</target></trans-unit>
-      <trans-unit id="personName.lastName" xml:space="preserve">
+			<target xml:lang="da">Mellemnavn</target></trans-unit>
+      <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target xml:lang="da" state="translated">Efternavn</target></trans-unit>
-      <trans-unit id="personName.otherName" xml:space="preserve">
+			<target xml:lang="da">Efternavn</target></trans-unit>
+      <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target xml:lang="da" state="translated">Andet navn</target></trans-unit>
-      <trans-unit id="electronicAddress.type" xml:space="preserve">
+			<target xml:lang="da">Andet navn</target></trans-unit>
+      <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="da" state="translated">Type</target></trans-unit>
-      <trans-unit id="electronicAddress.usage" xml:space="preserve">
+			<target xml:lang="da">Type</target></trans-unit>
+      <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target xml:lang="da" state="translated">Brug</target></trans-unit>
+			<target xml:lang="da">Brug</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
 			<target xml:lang="da" state="translated">Identifikator</target></trans-unit>
