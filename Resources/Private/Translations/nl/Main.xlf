@@ -2,9 +2,9 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="nl">
     <body>
-      <trans-unit id="personName.title" xml:space="preserve">
+      <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="nl" state="translated">Titel</target></trans-unit>
+			<target xml:lang="nl">Titel</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
 			<target xml:lang="nl" state="translated">Voornaam</target></trans-unit>
@@ -17,9 +17,9 @@
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
 			<target xml:lang="nl" state="translated">Andere naam</target></trans-unit>
-      <trans-unit id="electronicAddress.type" xml:space="preserve">
+      <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="nl" state="translated">Type</target></trans-unit>
+			<target xml:lang="nl">Type</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
 			<target xml:lang="nl" state="translated">Gebruik</target></trans-unit>
