@@ -19,13 +19,13 @@
 			<target xml:lang="es-ES" state="needs-translation">Other Name</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="es-ES" state="needs-translation">Type</target></trans-unit>
+			<target xml:lang="es-ES" state="translated">Tipo</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
 			<target xml:lang="es-ES" state="needs-translation">Usage</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="es-ES" state="needs-translation">Identifier</target></trans-unit>
+			<target xml:lang="es-ES" state="translated">Identificador</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
 			<target xml:lang="es-ES" state="needs-translation">Primary</target></trans-unit>
