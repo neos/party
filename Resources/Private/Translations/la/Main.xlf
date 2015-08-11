@@ -2,33 +2,33 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="la-LA">
     <body>
-      <trans-unit id="personName.title" xml:space="preserve">
+      <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns475:0crwdne475:0</target></trans-unit>
-      <trans-unit id="personName.firstName" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns475:0crwdne475:0</target></trans-unit>
+      <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns170:0crwdne170:0</target></trans-unit>
-      <trans-unit id="personName.middleName" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns170:0crwdne170:0</target></trans-unit>
+      <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns476:0crwdne476:0</target></trans-unit>
-      <trans-unit id="personName.lastName" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns476:0crwdne476:0</target></trans-unit>
+      <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns171:0crwdne171:0</target></trans-unit>
-      <trans-unit id="personName.otherName" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns171:0crwdne171:0</target></trans-unit>
+      <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns477:0crwdne477:0</target></trans-unit>
-      <trans-unit id="electronicAddress.type" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns477:0crwdne477:0</target></trans-unit>
+      <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns478:0crwdne478:0</target></trans-unit>
-      <trans-unit id="electronicAddress.usage" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns478:0crwdne478:0</target></trans-unit>
+      <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns479:0crwdne479:0</target></trans-unit>
-      <trans-unit id="electronicAddress.identifier" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns479:0crwdne479:0</target></trans-unit>
+      <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns480:0crwdne480:0</target></trans-unit>
-      <trans-unit id="electronicAddress.primary" xml:space="preserve">
+			<target xml:lang="la-LA">crwdns480:0crwdne480:0</target></trans-unit>
+      <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target xml:lang="la-LA" state="needs-translation">crwdns481:0crwdne481:0</target></trans-unit>
+			<target xml:lang="la-LA">crwdns481:0crwdne481:0</target></trans-unit>
     </body>
   </file>
 </xliff>
