@@ -10,25 +10,25 @@
 			<target xml:lang="pt-BR" state="translated">Primeiro nome</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="pt-BR" state="needs-translation">Middle Name</target></trans-unit>
+			<target xml:lang="pt-BR" state="translated">Nome do meio</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
 			<target xml:lang="pt-BR" state="translated">Sobrenome</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="pt-BR" state="needs-translation">Other Name</target></trans-unit>
+			<target xml:lang="pt-BR" state="translated">Outro nome</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
 			<target xml:lang="pt-BR" state="translated">Tipo</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="pt-BR" state="needs-translation">Usage</target></trans-unit>
+			<target xml:lang="pt-BR" state="translated">Uso</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
 			<target xml:lang="pt-BR" state="translated">Identificador</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="pt-BR" state="needs-translation">Primary</target></trans-unit>
+			<target xml:lang="pt-BR" state="translated">Primário</target></trans-unit>
     </body>
   </file>
 </xliff>
