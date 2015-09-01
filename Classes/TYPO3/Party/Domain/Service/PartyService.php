@@ -58,9 +58,7 @@ class PartyService {
 		$party->addAccount($account);
 
 		$accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
-		if (!isset($this->accountsInPartyRuntimeCache[$accountIdentifier])) {
-			$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
-		}
+		$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
 	}
 
 	/**
@@ -71,9 +69,11 @@ class PartyService {
 	 */
 	public function getAssignedPartyOfAccount(Account $account) {
 		$accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
-		if (isset($this->accountsInPartyRuntimeCache[$accountIdentifier])) {
-			return $this->accountsInPartyRuntimeCache[$accountIdentifier];
+		if (!isset($this->accountsInPartyRuntimeCache[$accountIdentifier])) {
+			$party = $this->partyRepository->findOneHavingAccount($account);
+			$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
 		}
-		return $this->partyRepository->findOneHavingAccount($account);
+
+		return $this->accountsInPartyRuntimeCache[$accountIdentifier];
 	}
 }
