@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Tests\Unit\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow framework.                       *
+ * This script belongs to the TYPO3 Flow package "Party".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -12,8 +12,7 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
  *                                                                        */
 
 /**
- * Testcase for a personName
- *
+ * Testcase for the person name entity
  */
 class PersonNameTest extends \TYPO3\Flow\Tests\UnitTestCase {
 

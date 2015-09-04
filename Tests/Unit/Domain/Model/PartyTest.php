@@ -2,7 +2,7 @@
 namespace TYPO3\Party\Tests\Unit\Domain\Model;
 
 /*                                                                        *
- * This script belongs to the TYPO3 Flow framework.                       *
+ * This script belongs to the TYPO3 Flow package "Party".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
  * the terms of the GNU Lesser General Public License, either version 3   *
@@ -18,7 +18,6 @@ use TYPO3\Party\Domain\Model\AbstractParty;
 
 /**
  * Testcase for an abstract party
- *
  */
 class AbstractPartyTest extends UnitTestCase {
 
