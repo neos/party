@@ -7,28 +7,28 @@
 			<target xml:lang="km" state="translated">ចំណងជើង</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="km" state="needs-translation">First Name</target></trans-unit>
+			<target xml:lang="km" state="translated">ឈ្មោះ</target><alt-trans><target xml:lang="km">គោត្តនាម</target></alt-trans></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="km" state="needs-translation">Middle Name</target></trans-unit>
+			<target xml:lang="km" state="translated">េឈ​្មោះហៅក្រៅ</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="km" state="needs-translation">Last Name</target></trans-unit>
+			<target xml:lang="km" state="translated">នាមត្រកូល</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="km" state="needs-translation">Other Name</target></trans-unit>
+			<target xml:lang="km" state="translated">ឈ្មោះ ផ្សេងទៀត</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="km" state="needs-translation">Type</target></trans-unit>
+			<target xml:lang="km" state="translated">ប្រភេទ</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="km" state="needs-translation">Usage</target></trans-unit>
+			<target xml:lang="km" state="translated">ការប្រើប្រាស់</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="km" state="needs-translation">Identifier</target></trans-unit>
+			<target xml:lang="km" state="translated">អត្តសញ្ញាណ</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="km" state="needs-translation">Primary</target></trans-unit>
+			<target xml:lang="km" state="translated">ចម្បង</target></trans-unit>
     </body>
   </file>
 </xliff>
