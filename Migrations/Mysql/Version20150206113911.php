@@ -23,7 +23,7 @@ class Version20150206113911 extends AbstractMigration {
 		$this->addSql("ALTER TABLE typo3_party_domain_model_abstractparty_accounts_join ADD CONSTRAINT FK_1EEEBC2F58842EFC FOREIGN KEY (flow_security_account) REFERENCES typo3_flow_security_account (persistence_object_identifier)");
 
 		if ($this->partyColumnInFlowSecurityAccountExists()) {
-			$this->addSql("INSERT INTO typo3_party_domain_model_abstractparty_accounts_join (flow_security_account, party_abstractparty) SELECT persistence_object_identifier, party FROM typo3_flow_security_account");
+			$this->addSql("INSERT INTO typo3_party_domain_model_abstractparty_accounts_join (flow_security_account, party_abstractparty) SELECT persistence_object_identifier, party FROM typo3_flow_security_account WHERE party != NULL");
 		}
 	}
 
