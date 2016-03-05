@@ -7,28 +7,28 @@
 			<target xml:lang="el" state="needs-translation">Title</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="el" state="needs-translation">First Name</target></trans-unit>
+			<target xml:lang="el" state="translated">Όνομα</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="el" state="needs-translation">Middle Name</target></trans-unit>
+			<target xml:lang="el" state="translated">Μεσαίο όνομα</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="el" state="needs-translation">Last Name</target></trans-unit>
+			<target xml:lang="el" state="translated">Επώνυμο</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="el" state="needs-translation">Other Name</target></trans-unit>
+			<target xml:lang="el" state="translated">Άλλο όνομα</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="el" state="needs-translation">Type</target></trans-unit>
+			<target xml:lang="el" state="translated">Τύπος</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="el" state="needs-translation">Usage</target></trans-unit>
+			<target xml:lang="el" state="translated">Χρήση</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
 			<target xml:lang="el" state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="el" state="needs-translation">Primary</target></trans-unit>
+			<target xml:lang="el" state="translated">Κύριο</target></trans-unit>
     </body>
   </file>
 </xliff>
