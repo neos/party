@@ -25,7 +25,7 @@
 			<target xml:lang="vi" state="translated">Sử dụng</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="vi" state="needs-translation">Identifier</target></trans-unit>
+			<target xml:lang="vi" state="translated">Định danh</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
 			<target xml:lang="vi" state="translated">Khóa chính</target></trans-unit>
