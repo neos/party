@@ -47,8 +47,8 @@ class PartyServiceTest extends UnitTestCase {
 	protected $party;
 
 	protected function setUp() {
-		$this->mockPartyRepository = $this->getMock(PartyRepository::class);
-		$this->mockPersistenceManager = $this->getMock(PersistenceManagerInterface::class);
+		$this->mockPartyRepository = $this->createMock(PartyRepository::class);
+		$this->mockPersistenceManager = $this->createMock(PersistenceManagerInterface::class);
 
 		$this->partyService = new PartyService();
 		$this->inject($this->partyService, 'partyRepository', $this->mockPartyRepository);
