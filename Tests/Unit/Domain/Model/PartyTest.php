@@ -19,48 +19,51 @@ use TYPO3\Party\Domain\Model\AbstractParty;
 /**
  * Testcase for an abstract party
  */
-class AbstractPartyTest extends UnitTestCase {
+class AbstractPartyTest extends UnitTestCase
+{
+    /**
+     * @var AbstractParty
+     */
+    protected $abstractParty;
 
-	/**
-	 * @var AbstractParty
-	 */
-	protected $abstractParty;
+    /**
+     * @var Collection|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $mockAccounts;
 
-	/**
-	 * @var Collection|\PHPUnit_Framework_MockObject_MockObject
-	 */
-	protected $mockAccounts;
+    public function setUp()
+    {
+        $this->abstractParty = $this->getMockForAbstractClass(AbstractParty::class, ['dummy']);
 
-	public function setUp() {
-		$this->abstractParty = $this->getMockForAbstractClass(AbstractParty::class, array('dummy'));
+        $this->mockAccounts = $this->getMockBuilder(Collection::class)->disableOriginalConstructor()->getMock();
+        $this->inject($this->abstractParty, 'accounts', $this->mockAccounts);
+    }
 
-		$this->mockAccounts = $this->getMockBuilder(Collection::class)->disableOriginalConstructor()->getMock();
-		$this->inject($this->abstractParty, 'accounts', $this->mockAccounts);
-	}
+    /**
+     * @test
+     */
+    public function addAccountAddsAccountToAccountsCollection()
+    {
+        $account = new Account();
+        $this->mockAccounts->expects($this->once())->method('add')->with($account);
+        $this->abstractParty->addAccount($account);
+    }
 
-	/**
-	 * @test
-	 */
-	public function addAccountAddsAccountToAccountsCollection() {
-		$account = new Account();
-		$this->mockAccounts->expects($this->once())->method('add')->with($account);
-		$this->abstractParty->addAccount($account);
-	}
+    /**
+     * @test
+     */
+    public function removeAccountRemovesAccountFromAccountsCollection()
+    {
+        $account = new Account();
+        $this->mockAccounts->expects($this->once())->method('removeElement')->with($account);
+        $this->abstractParty->removeAccount($account);
+    }
 
-	/**
-	 * @test
-	 */
-	public function removeAccountRemovesAccountFromAccountsCollection() {
-		$account = new Account();
-		$this->mockAccounts->expects($this->once())->method('removeElement')->with($account);
-		$this->abstractParty->removeAccount($account);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getAccountsReturnsAccounts() {
-		$this->assertSame($this->mockAccounts, $this->abstractParty->getAccounts());
-	}
-
+    /**
+     * @test
+     */
+    public function getAccountsReturnsAccounts()
+    {
+        $this->assertSame($this->mockAccounts, $this->abstractParty->getAccounts());
+    }
 }

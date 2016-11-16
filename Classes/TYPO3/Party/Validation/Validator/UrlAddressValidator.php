@@ -20,18 +20,19 @@ use TYPO3\Flow\Validation\Validator\AbstractValidator;
  * @api
  * @Flow\Scope("singleton")
  */
-class UrlAddressValidator extends AbstractValidator {
-
-	/**
-	 * Checks if the given value is a valid URL.
-	 *
-	 * @param mixed $value The value that should be validated
-	 * @return void
-	 * @api
-	 */
-	protected function isValid($value) {
-		if (!is_string($value) || preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $value) !== 1) {
-			$this->addError('Please specify a valid URL.', 1343235498);
-		}
-	}
+class UrlAddressValidator extends AbstractValidator
+{
+    /**
+     * Checks if the given value is a valid URL.
+     *
+     * @param mixed $value The value that should be validated
+     * @return void
+     * @api
+     */
+    protected function isValid($value)
+    {
+        if (!is_string($value) || preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $value) !== 1) {
+            $this->addError('Please specify a valid URL.', 1343235498);
+        }
+    }
 }

@@ -11,19 +11,20 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
  * source code.
  */
 
+use TYPO3\Flow\Tests\UnitTestCase;
 use TYPO3\Party\Domain\Model\PersonName;
 
 /**
  * Testcase for the person name entity
  */
-class PersonNameTest extends \TYPO3\Flow\Tests\UnitTestCase {
-
-	/**
-	 * @test
-	 */
-	public function fullNameIsBuiltUpRightFromNameParts() {
-		$personName = new PersonName(NULL, 'Sebastian', NULL, 'Michaelsen', '(born Gebhard)');
-		$this->assertEquals('Sebastian Michaelsen (born Gebhard)', $personName->getFullName());
-	}
-
+class PersonNameTest extends UnitTestCase
+{
+    /**
+     * @test
+     */
+    public function fullNameIsBuiltUpRightFromNameParts()
+    {
+        $personName = new PersonName(null, 'Sebastian', null, 'Michaelsen', '(born Gebhard)');
+        $this->assertEquals('Sebastian Michaelsen (born Gebhard)', $personName->getFullName());
+    }
 }

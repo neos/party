@@ -20,22 +20,23 @@ use TYPO3\Flow\Validation\Validator\AbstractValidator;
  * @api
  * @Flow\Scope("singleton")
  */
-class JabberAddressValidator extends AbstractValidator {
-
-	/**
-	 * Checks if the given value is a valid Jabber name.
-	 *
-	 * The Jabber address has the following structure: "name@jabber.org"
-	 * More information is found on:
-	 * http://tracker.phpbb.com/browse/PHPBB3-3832
-	 *
-	 * @param mixed $value The value that should be validated
-	 * @return void
-	 * @api
-	 */
-	protected function isValid($value) {
-		if (!is_string($value) || preg_match('#^[a-z0-9\.\-_\+]+?@(.*?\.)*?[a-z0-9\-_]+?\.[a-z]{2,4}(/.*)?$#i', $value) !== 1) {
-			$this->addError('Please specify a valid Jabber address.', 1343235498);
-		}
-	}
+class JabberAddressValidator extends AbstractValidator
+{
+    /**
+     * Checks if the given value is a valid Jabber name.
+     *
+     * The Jabber address has the following structure: "name@jabber.org"
+     * More information is found on:
+     * http://tracker.phpbb.com/browse/PHPBB3-3832
+     *
+     * @param mixed $value The value that should be validated
+     * @return void
+     * @api
+     */
+    protected function isValid($value)
+    {
+        if (!is_string($value) || preg_match('#^[a-z0-9\.\-_\+]+?@(.*?\.)*?[a-z0-9\-_]+?\.[a-z]{2,4}(/.*)?$#i', $value) !== 1) {
+            $this->addError('Please specify a valid Jabber address.', 1343235498);
+        }
+    }
 }

@@ -23,57 +23,60 @@ use TYPO3\Party\Domain\Repository\PartyRepository;
  *
  * @Flow\Scope("singleton")
  */
-class PartyService {
+class PartyService
+{
+    /**
+     * This is a helper cache to store account identifiers and which party is assigned to which account
+     * because it might be possible that an account is assigned and fetched in the same request.
+     *
+     * @var array
+     */
+    protected $accountsInPartyRuntimeCache = [];
 
-	/**
-	 * This is a helper cache to store account identifiers and which party is assigned to which account
-	 * because it might be possible that an account is assigned and fetched in the same request.
-	 * @var array
-	 */
-	protected $accountsInPartyRuntimeCache = array();
+    /**
+     * @Flow\Inject
+     * @var PartyRepository
+     */
+    protected $partyRepository;
 
-	/**
-	 * @Flow\Inject
-	 * @var PartyRepository
-	 */
-	protected $partyRepository;
+    /**
+     * @Flow\Inject
+     * @var PersistenceManagerInterface
+     */
+    protected $persistenceManager;
 
-	/**
-	 * @Flow\Inject
-	 * @var PersistenceManagerInterface
-	 */
-	protected $persistenceManager;
+    /**
+     * Assigns an Account to a Party
+     *
+     * @param Account $account
+     * @param AbstractParty $party
+     * @return void
+     */
+    public function assignAccountToParty(Account $account, AbstractParty $party)
+    {
+        if ($party->getAccounts()->contains($account)) {
+            return;
+        }
+        $party->addAccount($account);
 
-	/**
-	 * Assigns an Account to a Party
-	 *
-	 * @param Account $account
-	 * @param AbstractParty $party
-	 * @return void
-	 */
-	public function assignAccountToParty(Account $account, AbstractParty $party) {
-		if ($party->getAccounts()->contains($account)) {
-			return;
-		}
-		$party->addAccount($account);
+        $accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
+        $this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
+    }
 
-		$accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
-		$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
-	}
+    /**
+     * Gets the Party having an Account assigned
+     *
+     * @param Account $account
+     * @return AbstractParty
+     */
+    public function getAssignedPartyOfAccount(Account $account)
+    {
+        $accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
+        if (!isset($this->accountsInPartyRuntimeCache[$accountIdentifier])) {
+            $party = $this->partyRepository->findOneHavingAccount($account);
+            $this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
+        }
 
-	/**
-	 * Gets the Party having an Account assigned
-	 *
-	 * @param Account $account
-	 * @return AbstractParty
-	 */
-	public function getAssignedPartyOfAccount(Account $account) {
-		$accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
-		if (!isset($this->accountsInPartyRuntimeCache[$accountIdentifier])) {
-			$party = $this->partyRepository->findOneHavingAccount($account);
-			$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
-		}
-
-		return $this->accountsInPartyRuntimeCache[$accountIdentifier];
-	}
+        return $this->accountsInPartyRuntimeCache[$accountIdentifier];
+    }
 }

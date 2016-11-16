@@ -21,19 +21,20 @@ use TYPO3\Party\Domain\Model\AbstractParty;
  *
  * @Flow\Scope("singleton")
  */
-class PartyRepository extends Repository {
+class PartyRepository extends Repository
+{
+    const ENTITY_CLASSNAME = AbstractParty::class;
 
-	const ENTITY_CLASSNAME = AbstractParty::class;
+    /**
+     * Finds a Party instance, if any, which has the given Account attached.
+     *
+     * @param Account $account
+     * @return AbstractParty
+     */
+    public function findOneHavingAccount(Account $account)
+    {
+        $query = $this->createQuery();
 
-	/**
-	 * Finds a Party instance, if any, which has the given Account attached.
-	 *
-	 * @param Account $account
-	 * @return AbstractParty
-	 */
-	public function findOneHavingAccount(Account $account) {
-		$query = $this->createQuery();
-		return $query->matching($query->contains('accounts', $account))->execute()->getFirst();
-	}
-
+        return $query->matching($query->contains('accounts', $account))->execute()->getFirst();
+    }
 }
