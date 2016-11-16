@@ -12,7 +12,9 @@ namespace TYPO3\Party\Tests\Functional\Domain\Model;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Party\Domain;
+use TYPO3\Flow\Security\AccountFactory;
+use TYPO3\Flow\Security\AccountRepository;
+use TYPO3\Party\Domain\Repository\PartyRepository;
 
 class PersonTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 
@@ -22,17 +24,17 @@ class PersonTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	static protected $testablePersistenceEnabled = TRUE;
 
 	/**
-	* @var \TYPO3\Party\Domain\Repository\PartyRepository
+	* @var PartyRepository
 	*/
 	protected $partyRepository;
 
 	/**
-	* @var \TYPO3\Flow\Security\AccountRepository
+	* @var AccountRepository
 	*/
 	protected $accountRepository;
 
 	/**
-	* @var \TYPO3\Flow\Security\AccountFactory
+	* @var AccountFactory
 	*/
 	protected $accountFactory;
 
@@ -40,9 +42,9 @@ class PersonTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	*/
 	public function setUp() {
 		parent::setUp();
-		$this->partyRepository = $this->objectManager->get('TYPO3\Party\Domain\Repository\PartyRepository');
-		$this->accountRepository = $this->objectManager->get('TYPO3\Flow\Security\AccountRepository');
-		$this->accountFactory = $this->objectManager->get('TYPO3\Flow\Security\AccountFactory');
+		$this->partyRepository = $this->objectManager->get(PartyRepository::class);
+		$this->accountRepository = $this->objectManager->get(AccountRepository::class);
+		$this->accountFactory = $this->objectManager->get(AccountFactory::class);
 	}
 
 	/**

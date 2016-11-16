@@ -23,7 +23,7 @@ use TYPO3\Party\Domain\Model\AbstractParty;
  */
 class PartyRepository extends Repository {
 
-	const ENTITY_CLASSNAME = 'TYPO3\Party\Domain\Model\AbstractParty';
+	const ENTITY_CLASSNAME = AbstractParty::class;
 
 	/**
 	 * Finds a Party instance, if any, which has the given Account attached.

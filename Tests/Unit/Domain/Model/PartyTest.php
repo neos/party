@@ -32,9 +32,9 @@ class AbstractPartyTest extends UnitTestCase {
 	protected $mockAccounts;
 
 	public function setUp() {
-		$this->abstractParty = $this->getMockForAbstractClass('TYPO3\Party\Domain\Model\AbstractParty', array('dummy'));
+		$this->abstractParty = $this->getMockForAbstractClass(AbstractParty::class, array('dummy'));
 
-		$this->mockAccounts = $this->getMockBuilder('Doctrine\Common\Collections\Collection')->disableOriginalConstructor()->getMock();
+		$this->mockAccounts = $this->getMockBuilder(Collection::class)->disableOriginalConstructor()->getMock();
 		$this->inject($this->abstractParty, 'accounts', $this->mockAccounts);
 	}
 
