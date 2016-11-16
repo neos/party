@@ -12,6 +12,7 @@ namespace TYPO3\Party\Validation\Validator;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Validation\Validator\AbstractValidator;
 
 /**
  * Validator for Yahoo addresses.
@@ -19,7 +20,7 @@ use TYPO3\Flow\Annotations as Flow;
  * @api
  * @Flow\Scope("singleton")
  */
-class YahooAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValidator {
+class YahooAddressValidator extends AbstractValidator {
 
 	/**
 	 * Checks if the given value is a valid Yahoo address.

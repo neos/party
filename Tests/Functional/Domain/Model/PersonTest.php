@@ -14,9 +14,13 @@ namespace TYPO3\Party\Tests\Functional\Domain\Model;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Security\AccountFactory;
 use TYPO3\Flow\Security\AccountRepository;
+use TYPO3\Flow\Tests\FunctionalTestCase;
 use TYPO3\Party\Domain\Repository\PartyRepository;
+use TYPO3\Party\Domain\Model\ElectronicAddress;
+use TYPO3\Party\Domain\Model\Person;
+use TYPO3\Party\Domain\Model\PersonName;
 
-class PersonTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
+class PersonTest extends FunctionalTestCase {
 
 	/**
 	* @var boolean
@@ -63,11 +67,11 @@ class PersonTest extends \TYPO3\Flow\Tests\FunctionalTestCase {
 	* @test
 	*/
 	public function personsAndAccountPersistingAndRetrievingWorksCorrectly($firstName, $middleName, $lastName, $emailAddress) {
-		$person = new Domain\Model\Person();
-		$person->setName(new Domain\Model\PersonName('', $firstName, $middleName, $lastName));
+		$person = new Person();
+		$person->setName(new PersonName('', $firstName, $middleName, $lastName));
 
-		$electronicAddress = new Domain\Model\ElectronicAddress();
-		$electronicAddress->setType(Domain\Model\ElectronicAddress::TYPE_EMAIL);
+		$electronicAddress = new ElectronicAddress();
+		$electronicAddress->setType(ElectronicAddress::TYPE_EMAIL);
 		$electronicAddress->setIdentifier($emailAddress);
 		$person->setPrimaryElectronicAddress($electronicAddress);
 

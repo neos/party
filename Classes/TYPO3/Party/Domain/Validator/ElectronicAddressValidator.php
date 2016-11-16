@@ -11,24 +11,28 @@ namespace TYPO3\Party\Domain\Validator;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use TYPO3\Flow\Validation\Validator\GenericObjectValidator;
+use TYPO3\Flow\Validation\ValidatorResolver;
+use TYPO3\Party\Domain\Model\ElectronicAddress;
+
 /**
  * An electronic address validator
  *
  */
-class ElectronicAddressValidator extends \TYPO3\Flow\Validation\Validator\GenericObjectValidator {
+class ElectronicAddressValidator extends GenericObjectValidator {
 
 	/**
-	 * @var \TYPO3\Flow\Validation\ValidatorResolver
+	 * @var ValidatorResolver
 	 */
 	protected $validatorResolver;
 
 	/**
 	 * Injects the validator resolver
 	 *
-	 * @param \TYPO3\Flow\Validation\ValidatorResolver $validatorResolver
+	 * @param ValidatorResolver $validatorResolver
 	 * @return void
 	 */
-	public function injectValidatorResolver(\TYPO3\Flow\Validation\ValidatorResolver $validatorResolver) {
+	public function injectValidatorResolver(ValidatorResolver $validatorResolver) {
 		$this->validatorResolver = $validatorResolver;
 	}
 
@@ -42,7 +46,7 @@ class ElectronicAddressValidator extends \TYPO3\Flow\Validation\Validator\Generi
 	 * @return void
 	 */
 	public function isValid($value) {
-		if ($value instanceof \TYPO3\Party\Domain\Model\ElectronicAddress) {
+		if ($value instanceof ElectronicAddress) {
 
 			$addressType = $value->getType();
 			switch ($addressType) {

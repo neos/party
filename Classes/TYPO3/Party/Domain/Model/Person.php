@@ -11,6 +11,8 @@ namespace TYPO3\Party\Domain\Model;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use TYPO3\Flow\Annotations as Flow;
 
@@ -19,23 +21,23 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @Flow\Entity
  */
-class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
+class Person extends AbstractParty {
 
 	/**
-	 * @var \TYPO3\Party\Domain\Model\PersonName
+	 * @var PersonName
 	 * @ORM\OneToOne
 	 * @Flow\Validate(type="NotEmpty")
 	 */
 	protected $name;
 
 	/**
-	 * @var \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
+	 * @var Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
 	 * @ORM\ManyToMany
 	 */
 	protected $electronicAddresses;
 
 	/**
-	 * @var \TYPO3\Party\Domain\Model\ElectronicAddress
+	 * @var ElectronicAddress
 	 * @ORM\ManyToOne
 	 */
 	protected $primaryElectronicAddress;
@@ -46,23 +48,23 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->electronicAddresses = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->electronicAddresses = new ArrayCollection();
 	}
 
 	/**
 	 * Sets the current name of this person
 	 *
-	 * @param \TYPO3\Party\Domain\Model\PersonName $name Name of this person
+	 * @param PersonName $name Name of this person
 	 * @return void
 	 */
-	public function setName(\TYPO3\Party\Domain\Model\PersonName $name) {
+	public function setName(PersonName $name) {
 		$this->name = $name;
 	}
 
 	/**
 	 * Returns the current name of this person
 	 *
-	 * @return \TYPO3\Party\Domain\Model\PersonName Name of this person
+	 * @return PersonName Name of this person
 	 */
 	public function getName() {
 		return $this->name;
@@ -71,7 +73,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Adds the given electronic address to this person.
 	 *
-	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
+	 * @param ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 */
 	public function addElectronicAddress(ElectronicAddress $electronicAddress) {
@@ -81,7 +83,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Removes the given electronic address from this person.
 	 *
-	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
+	 * @param ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 */
 	public function removeElectronicAddress(ElectronicAddress $electronicAddress) {
@@ -97,7 +99,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @param \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress> $electronicAddresses
 	 * @return void
 	 */
-	public function setElectronicAddresses(\Doctrine\Common\Collections\Collection $electronicAddresses) {
+	public function setElectronicAddresses(Collection $electronicAddresses) {
 		if ($this->primaryElectronicAddress !== NULL && !$this->electronicAddresses->contains($this->primaryElectronicAddress)) {
 			$this->primaryElectronicAddress = NULL;
 		}
@@ -107,7 +109,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Returns all known electronic addresses of this person.
 	 *
-	 * @return \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
+	 * @return Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
 	 */
 	public function getElectronicAddresses() {
 		return clone $this->electronicAddresses;
@@ -116,7 +118,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Sets (and adds if necessary) the primary electronic address of this person.
 	 *
-	 * @param \TYPO3\Party\Domain\Model\ElectronicAddress $electronicAddress The electronic address
+	 * @param ElectronicAddress $electronicAddress The electronic address
 	 * @return void
 	 */
 	public function setPrimaryElectronicAddress(ElectronicAddress $electronicAddress) {
@@ -129,7 +131,7 @@ class Person extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * Returns the primary electronic address, if one has been defined.
 	 *
-	 * @return \TYPO3\Party\Domain\Model\ElectronicAddress The primary electronic address or NULL
+	 * @return ElectronicAddress The primary electronic address or NULL
 	 */
 	public function getPrimaryElectronicAddress() {
 		return $this->primaryElectronicAddress;

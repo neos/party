@@ -9,21 +9,24 @@ namespace TYPO3\Party\Validation\Validator;
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
+
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Validation\Validator\AbstractValidator;
+
 /**
  * Validator for Skype addresses.
  *
  * @api
  * @Flow\Scope("singleton")
  */
-class SkypeAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValidator {
+class SkypeAddressValidator extends AbstractValidator {
 	/**
 	 * Checks if the given value is a valid Skype name.
 	 *
 	 * The Skype website says: "It must be between 6-32 characters, start with
 	 * a letter and contain only letters and numbers (no spaces or special
 	 * characters)."
-	 * 
+	 *
 	 * Nevertheless dash and underscore are allowed as special characters.
 	 * Furthermore, account names can contain a colon if they were auto-created
 	 * trough a connected Microsoft or Facebook profile. In this case, the syntax

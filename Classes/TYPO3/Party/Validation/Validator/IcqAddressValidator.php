@@ -12,6 +12,7 @@ namespace TYPO3\Party\Validation\Validator;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Validation\Validator\AbstractValidator;
 
 /**
  * Validator for ICQ addresses.
@@ -19,7 +20,7 @@ use TYPO3\Flow\Annotations as Flow;
  * @api
  * @Flow\Scope("singleton")
  */
-class IcqAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValidator {
+class IcqAddressValidator extends AbstractValidator {
 
 	/**
 	 * Checks if the given value is a valid ICQ UIN address.
