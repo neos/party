@@ -1,17 +1,18 @@
 <?php
 namespace TYPO3\Party\Validation\Validator;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Party".                 *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License, either version 3   *
- * of the License, or (at your option) any later version.                 *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+/*
+ * This file is part of the TYPO3.Party package.
+ *
+ * (c) Contributors of the Neos Project - www.neos.io
+ *
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Validation\Validator\AbstractValidator;
 
 /**
  * Validator for Sip addresses.
@@ -19,22 +20,23 @@ use TYPO3\Flow\Annotations as Flow;
  * @api
  * @Flow\Scope("singleton")
  */
-class SipAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValidator {
-
-	/**
-	 * Checks if the given value is a valid Sip name.
-	 *
-	 * The Sip address has the following structure: "sip:+4930432343@isp.com"
-	 * More information is found on:
-	 * http://wiki.snom.com/Features/Dial_Plan/Regular_Expressions
-	 *
-	 * @param mixed $value The value that should be validated
-	 * @return void
-	 * @api
-	 */
-	protected function isValid($value) {
-		if (!is_string($value) || preg_match('/^sip\:(?P<number>[0-9]+)@(.*)$/', $value) !== 1) {
-			$this->addError('Please specify a valid Sip address.', 1343235498);
-		}
-	}
+class SipAddressValidator extends AbstractValidator
+{
+    /**
+     * Checks if the given value is a valid Sip name.
+     *
+     * The Sip address has the following structure: "sip:+4930432343@isp.com"
+     * More information is found on:
+     * http://wiki.snom.com/Features/Dial_Plan/Regular_Expressions
+     *
+     * @param mixed $value The value that should be validated
+     * @return void
+     * @api
+     */
+    protected function isValid($value)
+    {
+        if (!is_string($value) || preg_match('/^sip\:(?P<number>[0-9]+)@(.*)$/', $value) !== 1) {
+            $this->addError('Please specify a valid Sip address.', 1343235498);
+        }
+    }
 }
