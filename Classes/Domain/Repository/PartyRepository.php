@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Domain\Repository;
+namespace Neos\Party\Domain\Repository;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -14,7 +14,7 @@ namespace TYPO3\Party\Domain\Repository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Repository;
 use Neos\Flow\Security\Account;
-use TYPO3\Party\Domain\Model\AbstractParty;
+use Neos\Party\Domain\Model\AbstractParty;
 
 /**
  * Repository for parties

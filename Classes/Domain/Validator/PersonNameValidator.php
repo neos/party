@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Domain\Validator;
+namespace Neos\Party\Domain\Validator;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -12,7 +12,7 @@ namespace TYPO3\Party\Domain\Validator;
  */
 
 use Neos\Flow\Validation\Validator\GenericObjectValidator;
-use TYPO3\Party\Domain\Model\PersonName;
+use Neos\Party\Domain\Model\PersonName;
 
 /**
  * A validator for person names

@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Validation\Validator;
+namespace Neos\Party\Validation\Validator;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -15,15 +15,19 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Validation\Validator\AbstractValidator;
 
 /**
- * Validator for URL addresses.
+ * Validator for AIM addresses.
  *
  * @api
  * @Flow\Scope("singleton")
  */
-class UrlAddressValidator extends AbstractValidator
+class AimAddressValidator extends AbstractValidator
 {
     /**
-     * Checks if the given value is a valid URL.
+     * Checks if the given value is a valid AIM name.
+     *
+     * The AIM name has the following requirements: "It must be
+     * between 3 and 16 alphanumeric characters in length and must
+     * begin with a letter."
      *
      * @param mixed $value The value that should be validated
      * @return void
@@ -31,8 +35,8 @@ class UrlAddressValidator extends AbstractValidator
      */
     protected function isValid($value)
     {
-        if (!is_string($value) || preg_match('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/', $value) !== 1) {
-            $this->addError('Please specify a valid URL.', 1343235498);
+        if (!is_string($value) || preg_match('/\w[\w\d]{2,15}/i', $value) !== 1) {
+            $this->addError('Please specify a valid AIM address.', 1343235498);
         }
     }
 }

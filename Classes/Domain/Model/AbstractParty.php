@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Domain\Model;
+namespace Neos\Party\Domain\Model;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *

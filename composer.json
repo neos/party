@@ -1,14 +1,17 @@
 {
-    "name": "typo3/party",
-    "type": "typo3-flow-package",
+    "name": "neos/party",
+    "type": "neos-package",
     "description": "A PHP implementation of the OASIS Customer Information Quality (CIQ) XML Standard.",
     "license": "LGPL-3.0+",
     "require": {
         "typo3/flow": "*"
     },
+    "replace": {
+        "typo3/party": "self.version"
+    },
     "autoload": {
-        "psr-0": {
-            "TYPO3\\Party": "Classes"
+        "psr-4": {
+            "Neos\\Party\\": "Classes"
         }
     },
     "extra": {

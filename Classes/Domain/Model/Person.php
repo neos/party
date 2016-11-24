@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Domain\Model;
+namespace Neos\Party\Domain\Model;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -31,7 +31,7 @@ class Person extends AbstractParty
     protected $name;
 
     /**
-     * @var Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
+     * @var Collection<\Neos\Party\Domain\Model\ElectronicAddress>
      * @ORM\ManyToMany
      */
     protected $electronicAddresses;
@@ -101,7 +101,7 @@ class Person extends AbstractParty
     /**
      * Sets the electronic addresses of this person.
      *
-     * @param \Doctrine\Common\Collections\Collection<\TYPO3\Party\Domain\Model\ElectronicAddress> $electronicAddresses
+     * @param \Doctrine\Common\Collections\Collection<\Neos\Party\Domain\Model\ElectronicAddress> $electronicAddresses
      * @return void
      */
     public function setElectronicAddresses(Collection $electronicAddresses)
@@ -115,7 +115,7 @@ class Person extends AbstractParty
     /**
      * Returns all known electronic addresses of this person.
      *
-     * @return Collection<\TYPO3\Party\Domain\Model\ElectronicAddress>
+     * @return Collection<\Neos\Party\Domain\Model\ElectronicAddress>
      */
     public function getElectronicAddresses()
     {

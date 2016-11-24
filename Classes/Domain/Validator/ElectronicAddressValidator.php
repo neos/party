@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Domain\Validator;
+namespace Neos\Party\Domain\Validator;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -13,7 +13,7 @@ namespace TYPO3\Party\Domain\Validator;
 
 use Neos\Flow\Validation\Validator\GenericObjectValidator;
 use Neos\Flow\Validation\ValidatorResolver;
-use TYPO3\Party\Domain\Model\ElectronicAddress;
+use Neos\Party\Domain\Model\ElectronicAddress;
 
 /**
  * An electronic address validator
@@ -56,7 +56,7 @@ class ElectronicAddressValidator extends GenericObjectValidator
                     $addressValidator = $this->validatorResolver->createValidator('EmailAddress');
                 break;
                 default;
-                    $addressValidator = $this->validatorResolver->createValidator('TYPO3.Party:' . $addressType . 'Address');
+                    $addressValidator = $this->validatorResolver->createValidator('Neos.Party:' . $addressType . 'Address');
             }
             if ($addressValidator === null) {
                 $this->addError('No validator found for electronic address of type "' . $addressType . '".', 1268676030);

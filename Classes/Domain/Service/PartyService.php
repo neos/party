@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Domain\Service;
+namespace Neos\Party\Domain\Service;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -14,8 +14,8 @@ namespace TYPO3\Party\Domain\Service;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Security\Account;
-use TYPO3\Party\Domain\Model\AbstractParty;
-use TYPO3\Party\Domain\Repository\PartyRepository;
+use Neos\Party\Domain\Model\AbstractParty;
+use Neos\Party\Domain\Repository\PartyRepository;
 
 /**
  * This is the Domain Service which acts as a helper for tasks
