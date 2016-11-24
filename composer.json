@@ -53,7 +53,8 @@
             "Neos.Flow-20161115140430",
             "Neos.Flow-20161124204700",
             "Neos.Form-20160601101500",
-            "Neos.Flow-20161124204701"
+            "Neos.Flow-20161124204701",
+            "Neos.Twitter.Bootstrap-20161124204912"
         ]
     }
 }
