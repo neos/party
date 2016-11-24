@@ -18,10 +18,10 @@ class Version20150216124451 extends AbstractMigration {
 
 		$this->addSql("CREATE TABLE typo3_party_domain_model_abstractparty_accounts_join (party_abstractparty VARCHAR(40) NOT NULL, flow_security_account VARCHAR(40) NOT NULL, PRIMARY KEY(party_abstractparty, flow_security_account))");
 		$this->addSql("ALTER TABLE typo3_party_domain_model_abstractparty_accounts_join ADD CONSTRAINT FK_1EEEBC2F38110E12 FOREIGN KEY (party_abstractparty) REFERENCES typo3_party_domain_model_abstractparty (persistence_object_identifier) NOT DEFERRABLE INITIALLY IMMEDIATE");
-		$this->addSql("ALTER TABLE typo3_party_domain_model_abstractparty_accounts_join ADD CONSTRAINT FK_1EEEBC2F58842EFC FOREIGN KEY (flow_security_account) REFERENCES typo3_flow_security_account (persistence_object_identifier) NOT DEFERRABLE INITIALLY IMMEDIATE");
 
-		if ($this->partyColumnInFlowSecurityAccountExists()) {
-			$this->addSql("INSERT INTO typo3_party_domain_model_abstractparty_accounts_join (flow_security_account, party_abstractparty) SELECT persistence_object_identifier, party FROM typo3_flow_security_account WHERE party IS NOT NULL");
+        if ($this->partyColumnInFlowSecurityAccountExists()) {
+            $this->addSql("ALTER TABLE typo3_party_domain_model_abstractparty_accounts_join ADD CONSTRAINT FK_1EEEBC2F58842EFC FOREIGN KEY (flow_security_account) REFERENCES typo3_flow_security_account (persistence_object_identifier) NOT DEFERRABLE INITIALLY IMMEDIATE");
+            $this->addSql("INSERT INTO typo3_party_domain_model_abstractparty_accounts_join (flow_security_account, party_abstractparty) SELECT persistence_object_identifier, party FROM typo3_flow_security_account WHERE party IS NOT NULL");
 		}
 	}
 
