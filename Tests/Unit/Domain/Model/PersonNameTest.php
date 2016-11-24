@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Party\Tests\Unit\Domain\Model;
+namespace Neos\Party\Tests\Unit\Domain\Model;
 
 /*
  * This file is part of the TYPO3.Party package.
@@ -12,7 +12,7 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
  */
 
 use Neos\Flow\Tests\UnitTestCase;
-use TYPO3\Party\Domain\Model\PersonName;
+use Neos\Party\Domain\Model\PersonName;
 
 /**
  * Testcase for the person name entity

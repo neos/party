@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Party\Tests\Unit\Domain\Service;
+namespace Neos\Party\Tests\Unit\Domain\Service;
 
 /*
  * This file is part of the TYPO3.Party package.
@@ -14,10 +14,10 @@ namespace TYPO3\Party\Tests\Unit\Domain\Service;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Tests\UnitTestCase;
-use TYPO3\Party\Domain\Model\AbstractParty;
-use TYPO3\Party\Domain\Model\Person;
-use TYPO3\Party\Domain\Repository\PartyRepository;
-use TYPO3\Party\Domain\Service\PartyService;
+use Neos\Party\Domain\Model\AbstractParty;
+use Neos\Party\Domain\Model\Person;
+use Neos\Party\Domain\Repository\PartyRepository;
+use Neos\Party\Domain\Service\PartyService;
 
 class PartyServiceTest extends UnitTestCase
 {

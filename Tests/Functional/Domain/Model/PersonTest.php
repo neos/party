@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Party\Tests\Functional\Domain\Model;
+namespace Neos\Party\Tests\Functional\Domain\Model;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -15,10 +15,10 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\AccountFactory;
 use Neos\Flow\Security\AccountRepository;
 use Neos\Flow\Tests\FunctionalTestCase;
-use TYPO3\Party\Domain\Model\ElectronicAddress;
-use TYPO3\Party\Domain\Model\Person;
-use TYPO3\Party\Domain\Model\PersonName;
-use TYPO3\Party\Domain\Repository\PartyRepository;
+use Neos\Party\Domain\Model\ElectronicAddress;
+use Neos\Party\Domain\Model\Person;
+use Neos\Party\Domain\Model\PersonName;
+use Neos\Party\Domain\Repository\PartyRepository;
 
 class PersonTest extends FunctionalTestCase
 {

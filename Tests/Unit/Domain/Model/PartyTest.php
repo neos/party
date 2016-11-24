@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Party\Tests\Unit\Domain\Model;
+namespace Neos\Party\Tests\Unit\Domain\Model;
 
 /*
  * This file is part of the TYPO3.Party package.
@@ -14,7 +14,7 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
 use Doctrine\Common\Collections\Collection;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Tests\UnitTestCase;
-use TYPO3\Party\Domain\Model\AbstractParty;
+use Neos\Party\Domain\Model\AbstractParty;
 
 /**
  * Testcase for an abstract party
