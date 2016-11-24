@@ -11,7 +11,7 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
  * source code.
  */
 
-use TYPO3\Flow\Tests\UnitTestCase;
+use Neos\Flow\Tests\UnitTestCase;
 use TYPO3\Party\Domain\Model\PersonName;
 
 /**

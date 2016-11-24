@@ -11,8 +11,8 @@ namespace TYPO3\Party\Domain\Validator;
  * source code.
  */
 
-use TYPO3\Flow\Validation\Validator\GenericObjectValidator;
-use TYPO3\Flow\Validation\ValidatorResolver;
+use Neos\Flow\Validation\Validator\GenericObjectValidator;
+use Neos\Flow\Validation\ValidatorResolver;
 use TYPO3\Party\Domain\Model\ElectronicAddress;
 
 /**

@@ -11,7 +11,7 @@ namespace TYPO3\Party\Domain\Validator;
  * source code.
  */
 
-use TYPO3\Flow\Validation\Validator\GenericObjectValidator;
+use Neos\Flow\Validation\Validator\GenericObjectValidator;
 use TYPO3\Party\Domain\Model\PersonName;
 
 /**

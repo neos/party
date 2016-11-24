@@ -11,9 +11,9 @@ namespace TYPO3\Party\Domain\Service;
  * source code.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Persistence\PersistenceManagerInterface;
-use TYPO3\Flow\Security\Account;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\PersistenceManagerInterface;
+use Neos\Flow\Security\Account;
 use TYPO3\Party\Domain\Model\AbstractParty;
 use TYPO3\Party\Domain\Repository\PartyRepository;
 

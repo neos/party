@@ -12,8 +12,8 @@ namespace TYPO3\Party\Tests\Unit\Domain\Model;
  */
 
 use Doctrine\Common\Collections\Collection;
-use TYPO3\Flow\Security\Account;
-use TYPO3\Flow\Tests\UnitTestCase;
+use Neos\Flow\Security\Account;
+use Neos\Flow\Tests\UnitTestCase;
 use TYPO3\Party\Domain\Model\AbstractParty;
 
 /**

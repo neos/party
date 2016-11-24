@@ -11,9 +11,9 @@ namespace TYPO3\Party\Tests\Unit\Domain\Service;
  * source code.
  */
 
-use TYPO3\Flow\Persistence\PersistenceManagerInterface;
-use TYPO3\Flow\Security\Account;
-use TYPO3\Flow\Tests\UnitTestCase;
+use Neos\Flow\Persistence\PersistenceManagerInterface;
+use Neos\Flow\Security\Account;
+use Neos\Flow\Tests\UnitTestCase;
 use TYPO3\Party\Domain\Model\AbstractParty;
 use TYPO3\Party\Domain\Model\Person;
 use TYPO3\Party\Domain\Repository\PartyRepository;

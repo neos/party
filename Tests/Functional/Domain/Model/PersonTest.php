@@ -11,10 +11,10 @@ namespace TYPO3\Party\Tests\Functional\Domain\Model;
  * source code.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Security\AccountFactory;
-use TYPO3\Flow\Security\AccountRepository;
-use TYPO3\Flow\Tests\FunctionalTestCase;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Security\AccountFactory;
+use Neos\Flow\Security\AccountRepository;
+use Neos\Flow\Tests\FunctionalTestCase;
 use TYPO3\Party\Domain\Model\ElectronicAddress;
 use TYPO3\Party\Domain\Model\Person;
 use TYPO3\Party\Domain\Model\PersonName;

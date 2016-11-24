@@ -14,8 +14,8 @@ namespace TYPO3\Party\Domain\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Security\Account;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Security\Account;
 
 /**
  * A party
@@ -29,7 +29,7 @@ abstract class AbstractParty
      * A unidirectional OneToMany association (done with ManyToMany and a unique constraint) to accounts. This is
      * required to not have any dependencies from Account to AbstractParty (the other way round).
      *
-     * @var Collection<\TYPO3\Flow\Security\Account>
+     * @var Collection<\Neos\Flow\Security\Account>
      * @ORM\ManyToMany
      * @ORM\JoinTable(inverseJoinColumns={@ORM\JoinColumn(unique=true, onDelete="CASCADE")})
      */
@@ -68,7 +68,7 @@ abstract class AbstractParty
     /**
      * Returns the accounts of this party
      *
-     * @return Collection<Account>|Account[] All assigned TYPO3\Flow\Security\Account objects
+     * @return Collection<Account>|Account[] All assigned Neos\Flow\Security\Account objects
      */
     public function getAccounts()
     {

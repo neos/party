@@ -1,9 +1,9 @@
 <?php
-namespace TYPO3\Flow\Persistence\Doctrine\Migrations;
+namespace Neos\Flow\Persistence\Doctrine\Migrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration,
 	Doctrine\DBAL\Schema\Schema,
-	TYPO3\Flow\Persistence\Doctrine\Service;
+	Neos\Flow\Persistence\Doctrine\Service;
 
 /**
  * Adjust flow3 to flow
