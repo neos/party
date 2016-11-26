@@ -18,7 +18,7 @@ class Version20161125175546 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on "mysql".');
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'postgresql', 'Migration can only be executed safely on "postgresql".');
 
         $this->addSql("UPDATE neos_party_domain_model_personname SET dtype = REPLACE(dtype, 'typo3_', 'neos_')");
         $this->addSql("UPDATE neos_party_domain_model_electronicaddress SET dtype = REPLACE(dtype, 'typo3_', 'neos_')");
@@ -31,7 +31,7 @@ class Version20161125175546 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on "mysql".');
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'postgresql', 'Migration can only be executed safely on "postgresql".');
 
         $this->addSql("UPDATE neos_party_domain_model_personname SET dtype = REPLACE(dtype, 'neos_', 'typo3_')");
         $this->addSql("UPDATE neos_party_domain_model_electronicaddress SET dtype = REPLACE(dtype, 'neos_', 'typo3_')");
