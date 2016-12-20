@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="ja">
+  <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="zh-CN">
     <body>
       <trans-unit id="personName.title" xml:space="preserve">
 				<source>Title</source>
-			<target xml:lang="ja" state="translated">タイトル</target></trans-unit>
+			<target xml:lang="zh-CN" state="needs-translation">Title</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="ja" state="translated">ファーストネーム</target></trans-unit>
+			<target xml:lang="zh-CN" state="translated">名</target><alt-trans><target xml:lang="zh-CN">姓氏</target></alt-trans></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="ja" state="translated">ミドルネーム</target></trans-unit>
+			<target xml:lang="zh-CN" state="translated">中间名</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="ja" state="translated">ラストネーム</target></trans-unit>
+			<target xml:lang="zh-CN" state="translated">姓氏</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="ja" state="translated">別名</target></trans-unit>
+			<target xml:lang="zh-CN" state="translated">其他名字</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="ja" state="translated">種類</target></trans-unit>
+			<target xml:lang="zh-CN" state="needs-translation">Type</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="ja" state="translated">用途</target></trans-unit>
+			<target xml:lang="zh-CN" state="translated">使用</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="ja" state="needs-translation">Identifier</target></trans-unit>
+			<target xml:lang="zh-CN" state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="ja" state="translated">プライマリ</target></trans-unit>
+			<target xml:lang="zh-CN" state="translated">主要</target></trans-unit>
     </body>
   </file>
 </xliff>
