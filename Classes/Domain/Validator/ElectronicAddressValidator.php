@@ -55,7 +55,7 @@ class ElectronicAddressValidator extends GenericObjectValidator
                 case 'Email':
                     $addressValidator = $this->validatorResolver->createValidator('EmailAddress');
                 break;
-                default;
+                default:
                     $addressValidator = $this->validatorResolver->createValidator('Neos.Party:' . $addressType . 'Address');
             }
             if ($addressValidator === null) {
