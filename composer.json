@@ -4,7 +4,7 @@
     "description": "A PHP implementation of the OASIS Customer Information Quality (CIQ) XML Standard.",
     "license": "MIT",
     "require": {
-        "neos/flow": "*"
+        "neos/flow": "~4.0 || dev-master"
     },
     "replace": {
         "typo3/party": "self.version"
