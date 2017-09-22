@@ -36,5 +36,4 @@ class PersonNameValidator extends GenericObjectValidator
             }
         }
     }
-
 }

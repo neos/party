@@ -49,7 +49,6 @@ class ElectronicAddressValidator extends GenericObjectValidator
     public function isValid($value)
     {
         if ($value instanceof ElectronicAddress) {
-
             $addressType = $value->getType();
             switch ($addressType) {
                 case 'Email':
@@ -68,5 +67,4 @@ class ElectronicAddressValidator extends GenericObjectValidator
             }
         }
     }
-
 }

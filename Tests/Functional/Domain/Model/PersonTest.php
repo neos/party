@@ -25,7 +25,7 @@ class PersonTest extends FunctionalTestCase
     /**
      * @var boolean
      */
-    static protected $testablePersistenceEnabled = true;
+    protected static $testablePersistenceEnabled = true;
 
     /**
      * @var PartyRepository
