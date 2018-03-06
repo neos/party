@@ -2,9 +2,9 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="" product-name="TYPO3.Party" source-language="en" datatype="plaintext" target-language="es-ES">
     <body>
-      <trans-unit id="personName.title" xml:space="preserve">
+      <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="es-ES" state="translated">Título</target></trans-unit>
+			<target xml:lang="es-ES">Título</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
 			<target xml:lang="es-ES" state="translated">Nombre</target><alt-trans><target xml:lang="es-ES">Nombre de pila</target></alt-trans></trans-unit>
@@ -17,15 +17,15 @@
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
 			<target xml:lang="es-ES" state="translated">Otro nombre</target></trans-unit>
-      <trans-unit id="electronicAddress.type" xml:space="preserve">
+      <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="es-ES" state="translated">Tipo</target></trans-unit>
+			<target xml:lang="es-ES">Tipo</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
 			<target xml:lang="es-ES" state="translated">Uso</target></trans-unit>
-      <trans-unit id="electronicAddress.identifier" xml:space="preserve">
+      <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target xml:lang="es-ES" state="translated">Identificador</target></trans-unit>
+			<target xml:lang="es-ES">Identificador</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
 			<target xml:lang="es-ES" state="translated">Primario</target></trans-unit>
