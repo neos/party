@@ -69,11 +69,19 @@ class PartyService {
 	 */
 	public function getAssignedPartyOfAccount(Account $account) {
 		$accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
-		if (!isset($this->accountsInPartyRuntimeCache[$accountIdentifier])) {
+
+		// We need to prevent stale object references and therefore only cache the identifier.
+		if (!array_key_exists($accountIdentifier, $this->accountsInPartyRuntimeCache)) {
 			$party = $this->partyRepository->findOneHavingAccount($account);
-			$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
+			$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party === null ? null : $this->persistenceManager->getIdentifierByObject($party);
+			return $party;
 		}
 
-		return $this->accountsInPartyRuntimeCache[$accountIdentifier];
+		if ($this->accountsInPartyRuntimeCache[$accountIdentifier] !== null) {
+			$partyIdentifier = $this->accountsInPartyRuntimeCache[$accountIdentifier];
+			return $this->persistenceManager->getObjectByIdentifier($partyIdentifier, AbstractParty::class);
+		}
+
+		return null;
 	}
 }
