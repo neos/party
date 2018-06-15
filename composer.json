@@ -1,7 +1,7 @@
 {
     "name": "neos/party",
     "type": "neos-package",
-    "description": "A PHP implementation of the OASIS Customer Information Quality (CIQ) XML Standard.",
+    "description": "A party package for PHP based on the OASIS Customer Information Quality (CIQ) XML Standard.",
     "license": "MIT",
     "require": {
         "neos/flow": "~4.0 || dev-master"
