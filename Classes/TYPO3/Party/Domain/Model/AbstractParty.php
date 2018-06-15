@@ -15,7 +15,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Persistence\PersistenceManagerInterface;
 use TYPO3\Flow\Security\Account;
 
 /**
@@ -24,52 +23,55 @@ use TYPO3\Flow\Security\Account;
  * @Flow\Entity
  * @ORM\InheritanceType("JOINED")
  */
-abstract class AbstractParty {
+abstract class AbstractParty
+{
+    /**
+     * A unidirectional OneToMany association (done with ManyToMany and a unique constraint) to accounts. This is
+     * required to not have any dependencies from Account to AbstractParty (the other way round).
+     *
+     * @var Collection<\TYPO3\Flow\Security\Account>
+     * @ORM\ManyToMany
+     * @ORM\JoinTable(inverseJoinColumns={@ORM\JoinColumn(unique=true, onDelete="CASCADE")})
+     */
+    protected $accounts;
 
-	/**
-	 * A unidirectional OneToMany association (done with ManyToMany and a unique constraint) to accounts. This is
-	 * required to not have any dependencies from Account to AbstractParty (the other way round).
-	 *
-	 * @var Collection<\TYPO3\Flow\Security\Account>
-	 * @ORM\ManyToMany
-	 * @ORM\JoinTable(inverseJoinColumns={@ORM\JoinColumn(unique=true, onDelete="CASCADE")})
-	 */
-	protected $accounts;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->accounts = new ArrayCollection();
+    }
 
-	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		$this->accounts = new ArrayCollection();
-	}
+    /**
+     * Assigns the given account to this party.
+     *
+     * @param Account $account The account
+     * @return void
+     */
+    public function addAccount(Account $account)
+    {
+        $this->accounts->add($account);
+    }
 
-	/**
-	 * Assigns the given account to this party.
-	 *
-	 * @param Account $account The account
-	 * @return void
-	 */
-	public function addAccount(Account $account) {
-		$this->accounts->add($account);
-	}
+    /**
+     * Remove an account from this party
+     *
+     * @param Account $account The account to remove
+     * @return void
+     */
+    public function removeAccount(Account $account)
+    {
+        $this->accounts->removeElement($account);
+    }
 
-	/**
-	 * Remove an account from this party
-	 *
-	 * @param Account $account The account to remove
-	 * @return void
-	 */
-	public function removeAccount(Account $account) {
-		$this->accounts->removeElement($account);
-	}
-
-	/**
-	 * Returns the accounts of this party
-	 *
-	 * @return Collection<Account>|Account[] All assigned TYPO3\Flow\Security\Account objects
-	 */
-	public function getAccounts() {
-		return $this->accounts;
-	}
-
+    /**
+     * Returns the accounts of this party
+     *
+     * @return Collection<Account>|Account[] All assigned TYPO3\Flow\Security\Account objects
+     */
+    public function getAccounts()
+    {
+        return $this->accounts;
+    }
 }

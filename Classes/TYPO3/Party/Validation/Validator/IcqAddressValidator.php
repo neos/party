@@ -19,22 +19,23 @@ use TYPO3\Flow\Annotations as Flow;
  * @api
  * @Flow\Scope("singleton")
  */
-class IcqAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValidator {
-
-	/**
-	 * Checks if the given value is a valid ICQ UIN address.
-	 *
-	 * The ICQ UIN address has the following requirements: "It must be
-	 * 9 numeric characters." More information is found on:
-	 * http://www.icq.com/support/icq_8/start/authorization/en
-	 *
-	 * @param mixed $value The value that should be validated
-	 * @return void
-	 * @api
-	 */
-	protected function isValid($value) {
-		if (!is_string($value) || preg_match('/^(-*[0-9]-*){7,9}$/', $value) !== 1) {
-			$this->addError('Please specify a valid ICQ address.', 1343235498);
-		}
-	}
+class IcqAddressValidator extends \TYPO3\Flow\Validation\Validator\AbstractValidator
+{
+    /**
+     * Checks if the given value is a valid ICQ UIN address.
+     *
+     * The ICQ UIN address has the following requirements: "It must be
+     * 9 numeric characters." More information is found on:
+     * http://www.icq.com/support/icq_8/start/authorization/en
+     *
+     * @param mixed $value The value that should be validated
+     * @return void
+     * @api
+     */
+    protected function isValid($value)
+    {
+        if (!is_string($value) || preg_match('/^(-*[0-9]-*){7,9}$/', $value) !== 1) {
+            $this->addError('Please specify a valid ICQ address.', 1343235498);
+        }
+    }
 }
