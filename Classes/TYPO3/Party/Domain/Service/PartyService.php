@@ -58,7 +58,8 @@ class PartyService {
 		$party->addAccount($account);
 
 		$accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
-		$this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
+		// We need to prevent stale object references and therefore only cache the identifier.
+		$this->accountsInPartyRuntimeCache[$accountIdentifier] = $this->persistenceManager->getIdentifierByObject($party);
 	}
 
 	/**
