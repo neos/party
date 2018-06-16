@@ -60,7 +60,8 @@ class PartyService
         $party->addAccount($account);
 
         $accountIdentifier = $this->persistenceManager->getIdentifierByObject($account);
-        $this->accountsInPartyRuntimeCache[$accountIdentifier] = $party;
+        // We need to prevent stale object references and therefore only cache the identifier.
+        $this->accountsInPartyRuntimeCache[$accountIdentifier] = $this->persistenceManager->getIdentifierByObject($party);
     }
 
     /**
@@ -77,11 +78,13 @@ class PartyService
         if (!array_key_exists($accountIdentifier, $this->accountsInPartyRuntimeCache)) {
             $party = $this->partyRepository->findOneHavingAccount($account);
             $this->accountsInPartyRuntimeCache[$accountIdentifier] = $party === null ? null : $this->persistenceManager->getIdentifierByObject($party);
+
             return $party;
         }
 
         if ($this->accountsInPartyRuntimeCache[$accountIdentifier] !== null) {
             $partyIdentifier = $this->accountsInPartyRuntimeCache[$accountIdentifier];
+
             return $this->persistenceManager->getObjectByIdentifier($partyIdentifier, AbstractParty::class);
         }
 
