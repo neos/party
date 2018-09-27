@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="nl">Titel</target></trans-unit>
+			<target xml:lang="nl" state="translated">Titel</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target xml:lang="nl">Voornaam</target></trans-unit>
+			<target xml:lang="nl" state="translated">Voornaam</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target xml:lang="nl">Tussenvoegsel</target></trans-unit>
+			<target xml:lang="nl" state="translated">Tussenvoegsel</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target xml:lang="nl">Achternaam</target></trans-unit>
+			<target xml:lang="nl" state="translated">Achternaam</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target xml:lang="nl">Achtervoegsel</target><alt-trans><target xml:lang="nl">Andere naam</target></alt-trans></trans-unit>
+			<target xml:lang="nl" state="translated">Achtervoegsel</target><alt-trans><target xml:lang="nl">Andere naam</target></alt-trans></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="nl">Type</target></trans-unit>
+			<target xml:lang="nl" state="translated">Type</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target xml:lang="nl">Gebruik</target></trans-unit>
+			<target xml:lang="nl" state="translated">Gebruik</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target xml:lang="nl">Identifier</target></trans-unit>
+			<target xml:lang="nl" state="translated">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target xml:lang="nl">Primair</target></trans-unit>
+			<target xml:lang="nl" state="translated">Primair</target></trans-unit>
     </body>
   </file>
 </xliff>
