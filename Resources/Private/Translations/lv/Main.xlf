@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="lv">Virsraksts</target></trans-unit>
+			<target xml:lang="lv" state="translated">Virsraksts</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target xml:lang="lv">Vārds</target></trans-unit>
+			<target xml:lang="lv" state="translated">Vārds</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target xml:lang="lv">Tēvvārds</target></trans-unit>
+			<target xml:lang="lv" state="translated">Tēvvārds</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target xml:lang="lv">Uzvārds</target></trans-unit>
+			<target xml:lang="lv" state="translated">Uzvārds</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target xml:lang="lv">Cits nosaukums</target></trans-unit>
+			<target xml:lang="lv" state="translated">Cits nosaukums</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="lv">Veids</target></trans-unit>
+			<target xml:lang="lv" state="translated">Veids</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target xml:lang="lv">Lietojums</target></trans-unit>
+			<target xml:lang="lv" state="translated">Lietojums</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target xml:lang="lv">Identifikators</target></trans-unit>
+			<target xml:lang="lv" state="translated">Identifikators</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target xml:lang="lv">Galvenais</target></trans-unit>
+			<target xml:lang="lv" state="translated">Galvenais</target></trans-unit>
     </body>
   </file>
 </xliff>
