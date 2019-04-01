@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve">
 				<source>Title</source>
-			<target xml:lang="el" state="translated">Τίτλος</target></trans-unit>
+			<target state="translated">Τίτλος</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="el" state="translated">Όνομα</target></trans-unit>
+			<target state="translated">Όνομα</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="el" state="translated">Μεσαίο όνομα</target></trans-unit>
+			<target state="translated">Μεσαίο όνομα</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="el" state="translated">Επώνυμο</target></trans-unit>
+			<target state="translated">Επώνυμο</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="el" state="translated">Άλλο όνομα</target></trans-unit>
+			<target state="translated">Άλλο όνομα</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="el" state="translated">Τύπος</target></trans-unit>
+			<target state="translated">Τύπος</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="el" state="translated">Χρήση</target></trans-unit>
+			<target state="translated">Χρήση</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="el" state="needs-translation">Identifier</target></trans-unit>
+			<target state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="el" state="translated">Κύριο</target></trans-unit>
+			<target state="translated">Κύριο</target></trans-unit>
     </body>
   </file>
 </xliff>

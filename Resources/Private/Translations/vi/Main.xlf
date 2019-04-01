@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve">
 				<source>Title</source>
-			<target xml:lang="vi" state="translated">Tiêu đề</target></trans-unit>
+			<target state="translated">Tiêu đề</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="vi" state="translated">Họ</target></trans-unit>
+			<target state="translated">Họ</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="vi" state="translated">Họ đệm</target></trans-unit>
+			<target state="translated">Họ đệm</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="vi" state="translated">Tên</target></trans-unit>
+			<target state="translated">Tên</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="vi" state="translated">Tên khác</target></trans-unit>
+			<target state="translated">Tên khác</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="vi" state="translated">Kiểu</target></trans-unit>
+			<target state="translated">Kiểu</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="vi" state="translated">Sử dụng</target></trans-unit>
+			<target state="translated">Sử dụng</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="vi" state="translated">Định danh</target></trans-unit>
+			<target state="translated">Định danh</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="vi" state="translated">Khóa chính</target></trans-unit>
+			<target state="translated">Khóa chính</target></trans-unit>
     </body>
   </file>
 </xliff>
