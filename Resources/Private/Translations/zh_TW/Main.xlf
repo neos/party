@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve">
 				<source>Title</source>
-			<target xml:lang="zh-TW" state="translated">標題</target></trans-unit>
+			<target state="translated">標題</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="zh-TW" state="translated">名字</target></trans-unit>
+			<target state="translated">名字</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="zh-TW" state="translated">中間名</target></trans-unit>
+			<target state="translated">中間名</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="zh-TW" state="translated">姓氏</target></trans-unit>
+			<target state="translated">姓氏</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="zh-TW" state="translated">其他名稱</target></trans-unit>
+			<target state="translated">其他名稱</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="zh-TW" state="translated">類型</target></trans-unit>
+			<target state="translated">類型</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="zh-TW" state="translated">使用量</target></trans-unit>
+			<target state="translated">使用量</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="zh-TW" state="needs-translation">Identifier</target></trans-unit>
+			<target state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="zh-TW" state="translated">主要的</target></trans-unit>
+			<target state="translated">主要的</target></trans-unit>
     </body>
   </file>
 </xliff>

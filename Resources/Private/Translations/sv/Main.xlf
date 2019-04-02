@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve">
 				<source>Title</source>
-			<target xml:lang="sv-SE" state="translated">Titel</target></trans-unit>
+			<target state="translated">Titel</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="sv-SE" state="translated">Förnamn</target></trans-unit>
+			<target state="translated">Förnamn</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="sv-SE" state="translated">Mellannamn</target></trans-unit>
+			<target state="translated">Mellannamn</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="sv-SE" state="translated">Efternamn</target></trans-unit>
+			<target state="translated">Efternamn</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="sv-SE" state="translated">Annat namn</target><alt-trans><target xml:lang="sv-SE">Andra namn</target></alt-trans></trans-unit>
+			<target state="translated">Annat namn</target><alt-trans><target>Andra namn</target></alt-trans></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="sv-SE" state="translated">Typ</target></trans-unit>
+			<target state="translated">Typ</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="sv-SE" state="translated">Användning</target></trans-unit>
+			<target state="translated">Användning</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="sv-SE" state="translated">Identifierare</target></trans-unit>
+			<target state="translated">Identifierare</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="sv-SE" state="translated">Primärt</target></trans-unit>
+			<target state="translated">Primärt</target></trans-unit>
     </body>
   </file>
 </xliff>

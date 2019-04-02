@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="fi" state="translated">Otsikko</target></trans-unit>
+			<target state="translated">Otsikko</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target xml:lang="fi" state="translated">Etunimi</target></trans-unit>
+			<target state="translated">Etunimi</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target xml:lang="fi" state="translated">Toinen nimi</target></trans-unit>
+			<target state="translated">Toinen nimi</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target xml:lang="fi" state="translated">Sukunimi</target></trans-unit>
+			<target state="translated">Sukunimi</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target xml:lang="fi" state="translated">Muu nimi</target></trans-unit>
+			<target state="translated">Muu nimi</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="fi" state="translated">Tyyppi</target></trans-unit>
+			<target state="translated">Tyyppi</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target xml:lang="fi" state="translated">Käyttö</target></trans-unit>
+			<target state="translated">Käyttö</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target xml:lang="fi" state="translated">Tunniste</target></trans-unit>
+			<target state="translated">Tunniste</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target xml:lang="fi" state="translated">Ensisijainen</target></trans-unit>
+			<target state="translated">Ensisijainen</target></trans-unit>
     </body>
   </file>
 </xliff>

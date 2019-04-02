@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve">
 				<source>Title</source>
-			<target xml:lang="cs" state="translated">Titul</target></trans-unit>
+			<target state="translated">Titul</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target xml:lang="cs" state="translated">Křestní Jméno</target></trans-unit>
+			<target state="translated">Křestní Jméno</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target xml:lang="cs" state="translated">Prostřední jméno</target><alt-trans><target xml:lang="cs">Druhé křestní jméno</target></alt-trans></trans-unit>
+			<target state="translated">Prostřední jméno</target><alt-trans><target>Druhé křestní jméno</target></alt-trans></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target xml:lang="cs" state="translated">Příjmení</target></trans-unit>
+			<target state="translated">Příjmení</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
-			<target xml:lang="cs" state="translated">Jiné jméno</target></trans-unit>
+			<target state="translated">Jiné jméno</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve">
 				<source>Type</source>
-			<target xml:lang="cs" state="translated">Typ</target></trans-unit>
+			<target state="translated">Typ</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target xml:lang="cs" state="translated">Využití</target></trans-unit>
+			<target state="translated">Využití</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target xml:lang="cs" state="needs-translation">Identifier</target></trans-unit>
+			<target state="needs-translation">Identifier</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
-			<target xml:lang="cs" state="translated">Výchozí</target></trans-unit>
+			<target state="translated">Výchozí</target></trans-unit>
     </body>
   </file>
 </xliff>

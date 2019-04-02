@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target xml:lang="da" state="translated">Titel</target></trans-unit>
+			<target state="translated">Titel</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target xml:lang="da" state="translated">Fornavn</target></trans-unit>
+			<target state="translated">Fornavn</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target xml:lang="da" state="translated">Mellemnavn</target></trans-unit>
+			<target state="translated">Mellemnavn</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target xml:lang="da" state="translated">Efternavn</target></trans-unit>
+			<target state="translated">Efternavn</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target xml:lang="da" state="translated">Andet navn</target></trans-unit>
+			<target state="translated">Andet navn</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target xml:lang="da" state="translated">Type</target></trans-unit>
+			<target state="translated">Type</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target xml:lang="da" state="translated">Brug</target></trans-unit>
+			<target state="translated">Brug</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target xml:lang="da" state="translated">ID</target><alt-trans><target xml:lang="da">Identifikator</target></alt-trans></trans-unit>
+			<target state="translated">ID</target><alt-trans><target>Identifikator</target></alt-trans></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target xml:lang="da" state="translated">Primær</target></trans-unit>
+			<target state="translated">Primær</target></trans-unit>
     </body>
   </file>
 </xliff>
