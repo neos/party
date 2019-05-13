@@ -18,16 +18,19 @@ use Neos\Party\Domain\Model\AbstractParty;
 use Neos\Party\Domain\Model\Person;
 use Neos\Party\Domain\Repository\PartyRepository;
 use Neos\Party\Domain\Service\PartyService;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
 class PartyServiceTest extends UnitTestCase
 {
     /**
-     * @var PartyRepository|\PHPUnit_Framework_MockObject_MockObject
+     * @var PartyRepository|MockObject
      */
     protected $mockPartyRepository;
 
     /**
-     * @var PersistenceManagerInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var PersistenceManagerInterface|MockObject
      */
     protected $mockPersistenceManager;
 
@@ -46,7 +49,7 @@ class PartyServiceTest extends UnitTestCase
      */
     protected $party;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockPartyRepository = $this->createMock(PartyRepository::class);
         $this->mockPersistenceManager = $this->createMock(PersistenceManagerInterface::class);
@@ -66,7 +69,7 @@ class PartyServiceTest extends UnitTestCase
     {
         $this->partyService->assignAccountToParty($this->account, $this->party);
 
-        $this->assertContains($this->account, $this->party->getAccounts());
+        Assert::assertContains($this->account, $this->party->getAccounts());
     }
 
     /**
@@ -76,16 +79,16 @@ class PartyServiceTest extends UnitTestCase
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects($this->at(1))->method('getIdentifierByObject')->with($this->party)->will($this->returnValue($partyIdentifier));
-        $this->mockPersistenceManager->expects($this->at(2))->method('getIdentifierByObject')->with($this->account)->will($this->returnValue($accountIdentifier));
-        $this->mockPersistenceManager->expects($this->any())->method('getObjectByIdentifier')->with($partyIdentifier)->will($this->returnValue($this->party));
-        $this->mockPartyRepository->expects($this->any())->method('findOneHavingAccount')->with($this->account)->will($this->returnValue($this->party));
+        $this->mockPersistenceManager->expects(TestCase::at(1))->method('getIdentifierByObject')->with($this->party)->will(TestCase::returnValue($partyIdentifier));
+        $this->mockPersistenceManager->expects(TestCase::at(2))->method('getIdentifierByObject')->with($this->account)->will(TestCase::returnValue($accountIdentifier));
+        $this->mockPersistenceManager->expects(TestCase::any())->method('getObjectByIdentifier')->with($partyIdentifier)->will(TestCase::returnValue($this->party));
+        $this->mockPartyRepository->expects(TestCase::any())->method('findOneHavingAccount')->with($this->account)->will(TestCase::returnValue($this->party));
 
         $this->partyService->assignAccountToParty($this->account, $this->party);
 
         $assignedParty = $this->partyService->getAssignedPartyOfAccount($this->account);
 
-        $this->assertSame($this->party, $assignedParty);
+        Assert::assertSame($this->party, $assignedParty);
     }
 
     /**
@@ -95,17 +98,17 @@ class PartyServiceTest extends UnitTestCase
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects($this->at(1))->method('getIdentifierByObject')->with($this->party)->will($this->returnValue($partyIdentifier));
-        $this->mockPersistenceManager->expects($this->at(2))->method('getIdentifierByObject')->with($this->account)->will($this->returnValue($accountIdentifier));
-        $this->mockPersistenceManager->expects($this->any())->method('getObjectByIdentifier')->with($partyIdentifier)->will($this->returnValue($this->party));
-        $this->mockPartyRepository->expects($this->any())->method('findOneHavingAccount')->with($this->account)->will($this->returnValue($this->party));
+        $this->mockPersistenceManager->expects(TestCase::at(1))->method('getIdentifierByObject')->with($this->party)->will(TestCase::returnValue($partyIdentifier));
+        $this->mockPersistenceManager->expects(TestCase::at(2))->method('getIdentifierByObject')->with($this->account)->will(TestCase::returnValue($accountIdentifier));
+        $this->mockPersistenceManager->expects(TestCase::any())->method('getObjectByIdentifier')->with($partyIdentifier)->will(TestCase::returnValue($this->party));
+        $this->mockPartyRepository->expects(TestCase::any())->method('findOneHavingAccount')->with($this->account)->will(TestCase::returnValue($this->party));
 
         $this->party->addAccount($this->account);
 
         $assignedParty = $this->partyService->getAssignedPartyOfAccount($this->account);
-        $this->assertSame($this->party, $assignedParty);
+        Assert::assertSame($this->party, $assignedParty);
 
         $assignedParty = $this->partyService->getAssignedPartyOfAccount($this->account);
-        $this->assertSame($this->party, $assignedParty);
+        Assert::assertSame($this->party, $assignedParty);
     }
 }
