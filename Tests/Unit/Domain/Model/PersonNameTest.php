@@ -13,6 +13,7 @@ namespace Neos\Party\Tests\Unit\Domain\Model;
 
 use Neos\Flow\Tests\UnitTestCase;
 use Neos\Party\Domain\Model\PersonName;
+use PHPUnit\Framework\Assert;
 
 /**
  * Testcase for the person name entity
@@ -25,6 +26,6 @@ class PersonNameTest extends UnitTestCase
     public function fullNameIsBuiltUpRightFromNameParts()
     {
         $personName = new PersonName(null, 'Sebastian', null, 'Michaelsen', '(born Gebhard)');
-        $this->assertEquals('Sebastian Michaelsen (born Gebhard)', $personName->getFullName());
+        Assert::assertEquals('Sebastian Michaelsen (born Gebhard)', $personName->getFullName());
     }
 }

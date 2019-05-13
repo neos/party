@@ -19,6 +19,7 @@ use Neos\Party\Domain\Model\ElectronicAddress;
 use Neos\Party\Domain\Model\Person;
 use Neos\Party\Domain\Model\PersonName;
 use Neos\Party\Domain\Repository\PartyRepository;
+use PHPUnit\Framework\Assert;
 
 class PersonTest extends FunctionalTestCase
 {
@@ -44,7 +45,7 @@ class PersonTest extends FunctionalTestCase
 
     /**
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->partyRepository = $this->objectManager->get(PartyRepository::class);
@@ -84,13 +85,13 @@ class PersonTest extends FunctionalTestCase
 
         $this->partyRepository->add($person);
         $this->persistenceManager->persistAll();
-        $this->assertEquals(1, $this->partyRepository->countAll());
+        Assert::assertEquals(1, $this->partyRepository->countAll());
 
         $this->persistenceManager->clearState();
         $foundPerson = $this->partyRepository->findByIdentifier($this->persistenceManager->getIdentifierByObject($person));
 
-        $this->assertEquals($foundPerson->getName()->getFullName(), $person->getName()->getFullName());
-        $this->assertEquals($foundPerson->getName()->getFullName(), $firstName . ' ' . $middleName . ' ' . $lastName);
-        $this->assertEquals($foundPerson->getPrimaryElectronicAddress()->getIdentifier(), $emailAddress);
+        Assert::assertEquals($foundPerson->getName()->getFullName(), $person->getName()->getFullName());
+        Assert::assertEquals($foundPerson->getName()->getFullName(), $firstName . ' ' . $middleName . ' ' . $lastName);
+        Assert::assertEquals($foundPerson->getPrimaryElectronicAddress()->getIdentifier(), $emailAddress);
     }
 }

@@ -15,6 +15,8 @@ use Doctrine\Common\Collections\Collection;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Tests\UnitTestCase;
 use Neos\Party\Domain\Model\AbstractParty;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * Testcase for an abstract party
@@ -27,11 +29,14 @@ class AbstractPartyTest extends UnitTestCase
     protected $abstractParty;
 
     /**
-     * @var Collection|\PHPUnit_Framework_MockObject_MockObject
+     * @var Collection|MockObject
      */
     protected $mockAccounts;
 
-    public function setUp()
+    /**
+     * @throws \ReflectionException
+     */
+    public function setUp(): void
     {
         $this->abstractParty = $this->getMockForAbstractClass(AbstractParty::class, ['dummy']);
 
@@ -64,6 +69,6 @@ class AbstractPartyTest extends UnitTestCase
      */
     public function getAccountsReturnsAccounts()
     {
-        $this->assertSame($this->mockAccounts, $this->abstractParty->getAccounts());
+        Assert::assertSame($this->mockAccounts, $this->abstractParty->getAccounts());
     }
 }
