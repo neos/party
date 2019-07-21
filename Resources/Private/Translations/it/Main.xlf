@@ -25,7 +25,7 @@
 			<target state="translated">Utilizzo</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
-			<target state="needs-translation">Identifier</target></trans-unit>
+			<target state="translated">Identificatore</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve">
 				<source>Primary</source>
 			<target state="translated">Primario</target></trans-unit>
