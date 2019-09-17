@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target state="translated">Tytuł</target></trans-unit>
+			<target state="final">Tytuł</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target state="translated">Imię</target></trans-unit>
+			<target state="final">Imię</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target state="translated">Drugie imię</target></trans-unit>
+			<target state="final">Drugie imię</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target state="translated">Nazwisko</target></trans-unit>
+			<target state="final">Nazwisko</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target state="translated">Inna nazwa</target></trans-unit>
+			<target state="final">Inna nazwa</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target state="translated">Typ</target></trans-unit>
+			<target state="final">Typ</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target state="translated">Użycie</target></trans-unit>
+			<target state="final">Użycie</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target state="translated">Identyfikator</target></trans-unit>
+			<target state="final">Identyfikator</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target state="translated">Główny</target></trans-unit>
+			<target state="final">Główny</target></trans-unit>
     </body>
   </file>
 </xliff>

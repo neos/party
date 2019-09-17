@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target state="translated">Otsikko</target></trans-unit>
+			<target state="final">Otsikko</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target state="translated">Etunimi</target></trans-unit>
+			<target state="final">Etunimi</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target state="translated">Toinen nimi</target></trans-unit>
+			<target state="final">Toinen nimi</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target state="translated">Sukunimi</target></trans-unit>
+			<target state="final">Sukunimi</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target state="translated">Muu nimi</target></trans-unit>
+			<target state="final">Muu nimi</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target state="translated">Tyyppi</target></trans-unit>
+			<target state="final">Tyyppi</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target state="translated">Käyttö</target></trans-unit>
+			<target state="final">Käyttö</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target state="translated">Tunniste</target></trans-unit>
+			<target state="final">Tunniste</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target state="translated">Ensisijainen</target></trans-unit>
+			<target state="final">Ensisijainen</target></trans-unit>
     </body>
   </file>
 </xliff>
