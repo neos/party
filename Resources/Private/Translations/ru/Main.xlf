@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target state="translated">Название</target></trans-unit>
+			<target state="final">Название</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target state="translated">Имя</target></trans-unit>
+			<target state="final">Имя</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target state="translated">Отчество</target></trans-unit>
+			<target state="final">Отчество</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target state="translated">Фамилия</target></trans-unit>
+			<target state="final">Фамилия</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target state="translated">Другая часть имени</target></trans-unit>
+			<target state="final">Другая часть имени</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target state="translated">Тип</target></trans-unit>
+			<target state="final">Тип</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target state="translated">Использование</target></trans-unit>
+			<target state="final">Использование</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target state="translated">Идентификатор</target></trans-unit>
+			<target state="final">Идентификатор</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target state="translated">Основной</target><alt-trans><target>Основное</target></alt-trans></trans-unit>
+			<target state="final">Основной</target><alt-trans><target>Основное</target></alt-trans></trans-unit>
     </body>
   </file>
 </xliff>

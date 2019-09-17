@@ -4,31 +4,31 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target state="translated">Virsraksts</target></trans-unit>
+			<target state="final">Virsraksts</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target state="translated">Vārds</target></trans-unit>
+			<target state="final">Vārds</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
-			<target state="translated">Tēvvārds</target></trans-unit>
+			<target state="final">Tēvvārds</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve" approved="yes">
 				<source>Last Name</source>
-			<target state="translated">Uzvārds</target></trans-unit>
+			<target state="final">Uzvārds</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target state="translated">Cits nosaukums</target></trans-unit>
+			<target state="final">Cits nosaukums</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
-			<target state="translated">Veids</target></trans-unit>
+			<target state="final">Veids</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target state="translated">Lietojums</target></trans-unit>
+			<target state="final">Lietojums</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target state="translated">Identifikators</target></trans-unit>
+			<target state="final">Identifikators</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target state="translated">Galvenais</target></trans-unit>
+			<target state="final">Galvenais</target></trans-unit>
     </body>
   </file>
 </xliff>
