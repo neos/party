@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="" product-name="Neos.Party" source-language="en" datatype="plaintext" target-language="hy-AM">
+    <body>
+      <trans-unit id="personName.title" xml:space="preserve">
+				<source>Title</source>
+			<target state="needs-translation">Title</target></trans-unit>
+      <trans-unit id="personName.firstName" xml:space="preserve">
+				<source>First Name</source>
+			<target state="needs-translation">First Name</target></trans-unit>
+      <trans-unit id="personName.middleName" xml:space="preserve">
+				<source>Middle Name</source>
+			<target state="needs-translation">Middle Name</target></trans-unit>
+      <trans-unit id="personName.lastName" xml:space="preserve">
+				<source>Last Name</source>
+			<target state="needs-translation">Last Name</target></trans-unit>
+      <trans-unit id="personName.otherName" xml:space="preserve">
+				<source>Other Name</source>
+			<target state="needs-translation">Other Name</target></trans-unit>
+      <trans-unit id="electronicAddress.type" xml:space="preserve">
+				<source>Type</source>
+			<target state="needs-translation">Type</target></trans-unit>
+      <trans-unit id="electronicAddress.usage" xml:space="preserve">
+				<source>Usage</source>
+			<target state="needs-translation">Usage</target></trans-unit>
+      <trans-unit id="electronicAddress.identifier" xml:space="preserve">
+				<source>Identifier</source>
+			<target state="needs-translation">Identifier</target></trans-unit>
+      <trans-unit id="electronicAddress.primary" xml:space="preserve">
+				<source>Primary</source>
+			<target state="needs-translation">Primary</target></trans-unit>
+    </body>
+  </file>
+</xliff>
