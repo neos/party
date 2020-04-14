@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="personName.title" xml:space="preserve">
 				<source>Title</source>
-			<target state="translated">Заголовок</target><alt-trans><target>Назва</target></alt-trans></trans-unit>
+			<target state="translated">Заголовок</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
 			<target state="translated">Ім'я</target></trans-unit>

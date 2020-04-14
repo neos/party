@@ -7,7 +7,7 @@
 			<target state="final">ចំណងជើង</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve" approved="yes">
 				<source>First Name</source>
-			<target state="final">ឈ្មោះ</target><alt-trans><target>គោត្តនាម</target></alt-trans></trans-unit>
+			<target state="final">ឈ្មោះ</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve" approved="yes">
 				<source>Middle Name</source>
 			<target state="final">េឈ​្មោះហៅក្រៅ</target></trans-unit>

@@ -28,7 +28,7 @@
 			<target state="final">Идентификатор</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
-			<target state="final">Основной</target><alt-trans><target>Основное</target></alt-trans></trans-unit>
+			<target state="final">Основной</target></trans-unit>
     </body>
   </file>
 </xliff>

@@ -7,13 +7,13 @@
 			<target state="translated">Başlık</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target state="translated">Ad</target><alt-trans><target>İsim</target></alt-trans></trans-unit>
+			<target state="translated">Ad</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
-			<target state="translated">Ikinci adınız varsa yazınız</target><alt-trans><target>İkinci İsminiz</target></alt-trans></trans-unit>
+			<target state="translated">Ikinci adınız varsa yazınız</target></trans-unit>
       <trans-unit id="personName.lastName" xml:space="preserve">
 				<source>Last Name</source>
-			<target state="translated">Soyad</target><alt-trans><target>Soyisim</target></alt-trans></trans-unit>
+			<target state="translated">Soyad</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve">
 				<source>Other Name</source>
 			<target state="translated">Diğer İsminiz</target></trans-unit>
@@ -22,7 +22,7 @@
 			<target state="translated">Tür</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve">
 				<source>Usage</source>
-			<target state="translated">Kullanım miktarı</target><alt-trans><target>Kullanım</target></alt-trans></trans-unit>
+			<target state="translated">Kullanım miktarı</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve">
 				<source>Identifier</source>
 			<target state="translated">Tanıtıcı</target></trans-unit>

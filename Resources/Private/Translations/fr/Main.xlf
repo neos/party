@@ -22,7 +22,7 @@
 			<target state="final">Type</target></trans-unit>
       <trans-unit id="electronicAddress.usage" xml:space="preserve" approved="yes">
 				<source>Usage</source>
-			<target state="final">Utilisation</target><alt-trans><target>Usage</target></alt-trans></trans-unit>
+			<target state="final">Utilisation</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
 			<target state="final">Identifiant</target></trans-unit>

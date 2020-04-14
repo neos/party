@@ -7,7 +7,7 @@
 			<target state="final">Título</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target state="translated">Nombre</target><alt-trans><target>Nombre de pila</target></alt-trans></trans-unit>
+			<target state="translated">Nombre</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
 			<target state="translated">Segundo nombre</target></trans-unit>

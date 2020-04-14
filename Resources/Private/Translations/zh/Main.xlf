@@ -7,7 +7,7 @@
 			<target state="translated">标题</target></trans-unit>
       <trans-unit id="personName.firstName" xml:space="preserve">
 				<source>First Name</source>
-			<target state="translated">名</target><alt-trans><target>姓氏</target></alt-trans></trans-unit>
+			<target state="translated">名</target></trans-unit>
       <trans-unit id="personName.middleName" xml:space="preserve">
 				<source>Middle Name</source>
 			<target state="translated">中间名</target></trans-unit>

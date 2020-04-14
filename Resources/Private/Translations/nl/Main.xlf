@@ -16,7 +16,7 @@
 			<target state="final">Achternaam</target></trans-unit>
       <trans-unit id="personName.otherName" xml:space="preserve" approved="yes">
 				<source>Other Name</source>
-			<target state="final">Achtervoegsel</target><alt-trans><target>Andere naam</target></alt-trans></trans-unit>
+			<target state="final">Achtervoegsel</target></trans-unit>
       <trans-unit id="electronicAddress.type" xml:space="preserve" approved="yes">
 				<source>Type</source>
 			<target state="final">Type</target></trans-unit>

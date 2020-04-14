@@ -25,7 +25,7 @@
 			<target state="final">Brug</target></trans-unit>
       <trans-unit id="electronicAddress.identifier" xml:space="preserve" approved="yes">
 				<source>Identifier</source>
-			<target state="final">ID</target><alt-trans><target>Identifikator</target></alt-trans></trans-unit>
+			<target state="final">ID</target></trans-unit>
       <trans-unit id="electronicAddress.primary" xml:space="preserve" approved="yes">
 				<source>Primary</source>
 			<target state="final">Primær</target></trans-unit>
