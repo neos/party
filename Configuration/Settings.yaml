@@ -1,0 +1,15 @@
+Neos:
+  Party:
+    availableElectronicAddressTypes:
+      Aim: Aim
+      Email: Email
+      Icq: Icq
+      Jabber: Jabber
+      Msn: Msn
+      Sip: Sip
+      Skype: Skype
+      Url: Url
+      Yahoo: Yahoo
+    availableUsageTypes:
+      Home: Home
+      Work: Work
