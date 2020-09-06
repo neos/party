@@ -1,4 +1,5 @@
 <?php
+
 namespace Neos\Party\Domain\Validator;
 
 /*
@@ -32,7 +33,7 @@ class ElectronicAddressValidator extends GenericObjectValidator
      * @param ValidatorResolver $validatorResolver
      * @return void
      */
-    public function injectValidatorResolver(ValidatorResolver $validatorResolver)
+    public function injectValidatorResolver(ValidatorResolver $validatorResolver): void
     {
         $this->validatorResolver = $validatorResolver;
     }
@@ -45,6 +46,8 @@ class ElectronicAddressValidator extends GenericObjectValidator
      *
      * @param mixed $value The value that should be validated
      * @return void
+     * @throws \Neos\Flow\Validation\Exception\InvalidValidationConfigurationException
+     * @throws \Neos\Flow\Validation\Exception\NoSuchValidatorException
      */
     public function isValid($value)
     {
@@ -53,7 +56,7 @@ class ElectronicAddressValidator extends GenericObjectValidator
             switch ($addressType) {
                 case 'Email':
                     $addressValidator = $this->validatorResolver->createValidator('EmailAddress');
-                break;
+                    break;
                 default:
                     $addressValidator = $this->validatorResolver->createValidator('Neos.Party:' . $addressType . 'Address');
             }
@@ -62,7 +65,9 @@ class ElectronicAddressValidator extends GenericObjectValidator
             } else {
                 $result = $addressValidator->validate($value->getIdentifier());
                 if ($result->hasErrors()) {
-                    $this->result = $result;
+                    foreach ($result->getErrors() as $error) {
+                        $this->addError($error->getMessage(), $error->getCode());
+                    }
                 }
             }
         }
