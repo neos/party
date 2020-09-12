@@ -75,7 +75,7 @@ class PersonTest extends FunctionalTestCase
         $person->setName(new PersonName('', $firstName, $middleName, $lastName));
 
         $electronicAddress = new ElectronicAddress();
-        $electronicAddress->setType(ElectronicAddress::TYPE_EMAIL);
+        $electronicAddress->setType('Email');
         $electronicAddress->setIdentifier($emailAddress);
         $person->setPrimaryElectronicAddress($electronicAddress);
 

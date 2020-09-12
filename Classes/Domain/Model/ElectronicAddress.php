@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Neos\Party\Domain\Model;
 
 /*
@@ -13,6 +15,9 @@ namespace Neos\Party\Domain\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Configuration\ConfigurationManager;
+use Neos\Flow\Configuration\Exception\InvalidConfigurationTypeException;
+use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 
 /**
  * An electronic address
@@ -22,43 +27,19 @@ use Neos\Flow\Annotations as Flow;
  */
 class ElectronicAddress
 {
-    const TYPE_AIM = 'Aim';
-    const TYPE_EMAIL = 'Email';
-    const TYPE_ICQ = 'Icq';
-    const TYPE_JABBER = 'Jabber';
-    const TYPE_MSN = 'Msn';
-    const TYPE_SIP = 'Sip';
-    const TYPE_SKYPE = 'Skype';
-    const TYPE_URL = 'Url';
-    const TYPE_YAHOO = 'Yahoo';
-
-    const USAGE_HOME = 'Home';
-    const USAGE_WORK = 'Work';
-
     /**
-     * @var array
+     * @var string[]
+     * @Flow\InjectConfiguration(package="Neos.Party", path="availableElectronicAddressTypes")
      * @Flow\Transient
      */
-    protected $availableElectronicAddressTypes = [
-        self::TYPE_AIM,
-        self::TYPE_EMAIL,
-        self::TYPE_ICQ,
-        self::TYPE_JABBER,
-        self::TYPE_MSN,
-        self::TYPE_SIP,
-        self::TYPE_SKYPE,
-        self::TYPE_URL,
-        self::TYPE_YAHOO
-    ];
+    protected $availableElectronicAddressTypes = [];
 
     /**
-     * @var array
+     * @var string[]
+     * @Flow\InjectConfiguration(package="Neos.Party", path="availableUsageTypes")
      * @Flow\Transient
      */
-    protected $availableUsageTypes = [
-        self::USAGE_HOME,
-        self::USAGE_WORK
-    ];
+    protected $availableUsageTypes = [];
 
     /**
      * @var string
@@ -94,7 +75,7 @@ class ElectronicAddress
      *
      * @return array
      */
-    public function getAvailableElectronicAddressTypes()
+    public function getAvailableElectronicAddressTypes(): array
     {
         return $this->availableElectronicAddressTypes;
     }
