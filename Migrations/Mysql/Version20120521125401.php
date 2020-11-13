@@ -1,7 +1,7 @@
 <?php
 namespace Neos\Flow\Persistence\Doctrine\Migrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration,
+use Doctrine\Migrations\AbstractMigration,
 	Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -13,7 +13,7 @@ class Version20120521125401 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function up(Schema $schema) {
+	public function up(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
 
 		$this->addSql("DROP INDEX flow3_identity_typo3_party_domain_model_electronicaddress ON typo3_party_domain_model_electronicaddress");
@@ -23,7 +23,7 @@ class Version20120521125401 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function down(Schema $schema) {
+	public function down(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
 
 		$this->addSql("CREATE UNIQUE INDEX flow3_identity_typo3_party_domain_model_electronicaddress ON typo3_party_domain_model_electronicaddress (identifier, type, usagetype)");

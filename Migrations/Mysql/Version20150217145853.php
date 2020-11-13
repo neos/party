@@ -1,7 +1,7 @@
 <?php
 namespace Neos\Flow\Persistence\Doctrine\Migrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration,
+use Doctrine\Migrations\AbstractMigration,
 	Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -13,7 +13,7 @@ class Version20150217145853 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function up(Schema $schema) {
+	public function up(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
 
         if ($this->sm->tablesExist(['typo3_flow_security_account'])) {
@@ -29,7 +29,7 @@ class Version20150217145853 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function down(Schema $schema) {
+	public function down(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
 
 		$this->addSql("ALTER TABLE typo3_party_domain_model_abstractparty_accounts_join DROP FOREIGN KEY FK_1EEEBC2F58842EFC");

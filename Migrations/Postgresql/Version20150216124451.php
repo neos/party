@@ -1,7 +1,7 @@
 <?php
 namespace Neos\Flow\Persistence\Doctrine\Migrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration,
+use Doctrine\Migrations\AbstractMigration,
 	Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -13,7 +13,7 @@ class Version20150216124451 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function up(Schema $schema) {
+	public function up(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "postgresql");
 
 		$this->addSql("CREATE TABLE typo3_party_domain_model_abstractparty_accounts_join (party_abstractparty VARCHAR(40) NOT NULL, flow_security_account VARCHAR(40) NOT NULL, PRIMARY KEY(party_abstractparty, flow_security_account))");
@@ -29,7 +29,7 @@ class Version20150216124451 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function down(Schema $schema) {
+	public function down(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "postgresql");
 
 		if ($this->partyColumnInFlowSecurityAccountExists()) {
