@@ -2,7 +2,7 @@
 namespace Neos\Party\Tests\Unit\Domain\Model;
 
 /*
- * This file is part of the TYPO3.Party package.
+ * This file is part of the Neos.Party package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
