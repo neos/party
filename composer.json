@@ -4,7 +4,7 @@
     "description": "A party package for PHP based on the OASIS Customer Information Quality (CIQ) XML Standard.",
     "license": "MIT",
     "require": {
-        "neos/flow": "~5.0 || ^6.0 || dev-master"
+        "neos/flow": "^7.0 || dev-master"
     },
     "replace": {
         "typo3/party": "self.version"
@@ -21,7 +21,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.0.x-dev"
+            "dev-master": "6.0.x-dev"
         },
         "applied-flow-migrations": [
             "TYPO3.FLOW3-201201261636",
