@@ -1,7 +1,7 @@
 <?php
 namespace Neos\Flow\Persistence\Doctrine\Migrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration,
+use Doctrine\Migrations\AbstractMigration,
 	Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -14,7 +14,7 @@ class Version20150615200704 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function up(Schema $schema) {
+	public function up(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "postgresql");
 		
 		$this->addSql("ALTER TABLE typo3_party_domain_model_electronicaddress ADD dtype VARCHAR(255) NULL");
@@ -29,7 +29,7 @@ class Version20150615200704 extends AbstractMigration {
 	 * @param Schema $schema
 	 * @return void
 	 */
-	public function down(Schema $schema) {
+	public function down(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "postgresql");
 		
 		$this->addSql("ALTER TABLE typo3_party_domain_model_personname DROP dtype");
