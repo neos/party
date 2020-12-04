@@ -79,10 +79,10 @@ class PartyServiceTest extends UnitTestCase
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects(TestCase::at(1))->method('getIdentifierByObject')->with($this->party)->will(TestCase::returnValue($partyIdentifier));
-        $this->mockPersistenceManager->expects(TestCase::at(2))->method('getIdentifierByObject')->with($this->account)->will(TestCase::returnValue($accountIdentifier));
-        $this->mockPersistenceManager->expects(TestCase::any())->method('getObjectByIdentifier')->with($partyIdentifier)->will(TestCase::returnValue($this->party));
-        $this->mockPartyRepository->expects(TestCase::any())->method('findOneHavingAccount')->with($this->account)->will(TestCase::returnValue($this->party));
+        $this->mockPersistenceManager->expects(self::atLeast(2))->method('getIdentifierByObject')->withConsecutive([$this->account], [$this->party])->willReturnOnConsecutiveCalls($accountIdentifier, $partyIdentifier);
+
+        $this->mockPersistenceManager->method('getObjectByIdentifier')->with($partyIdentifier)->willReturn($this->party);
+        $this->mockPartyRepository->method('findOneHavingAccount')->with($this->account)->willReturn($this->party);
 
         $this->partyService->assignAccountToParty($this->account, $this->party);
 
@@ -98,10 +98,10 @@ class PartyServiceTest extends UnitTestCase
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects(TestCase::at(1))->method('getIdentifierByObject')->with($this->party)->will(TestCase::returnValue($partyIdentifier));
-        $this->mockPersistenceManager->expects(TestCase::at(2))->method('getIdentifierByObject')->with($this->account)->will(TestCase::returnValue($accountIdentifier));
-        $this->mockPersistenceManager->expects(TestCase::any())->method('getObjectByIdentifier')->with($partyIdentifier)->will(TestCase::returnValue($this->party));
-        $this->mockPartyRepository->expects(TestCase::any())->method('findOneHavingAccount')->with($this->account)->will(TestCase::returnValue($this->party));
+        $this->mockPersistenceManager->expects(self::atLeast(2))->method('getIdentifierByObject')->withConsecutive([$this->account], [$this->party])->willReturnOnConsecutiveCalls($accountIdentifier, $partyIdentifier);
+
+        $this->mockPersistenceManager->method('getObjectByIdentifier')->with($partyIdentifier)->willReturn($this->party);
+        $this->mockPartyRepository->method('findOneHavingAccount')->with($this->account)->willReturn($this->party);
 
         $this->party->addAccount($this->account);
 
