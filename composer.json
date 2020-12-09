@@ -6,9 +6,6 @@
     "require": {
         "neos/flow": "^7.0 || dev-master"
     },
-    "replace": {
-        "typo3/party": "self.version"
-    },
     "autoload": {
         "psr-4": {
             "Neos\\Party\\": "Classes"
@@ -21,7 +18,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.0.x-dev"
+            "dev-master": "7.0.x-dev"
         },
         "applied-flow-migrations": [
             "TYPO3.FLOW3-201201261636",
