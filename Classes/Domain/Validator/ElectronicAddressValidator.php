@@ -12,6 +12,7 @@ namespace Neos\Party\Domain\Validator;
  * source code.
  */
 
+use Neos\Error\Messages\Error;
 use Neos\Flow\Validation\Validator\GenericObjectValidator;
 use Neos\Flow\Validation\ValidatorResolver;
 use Neos\Party\Domain\Model\ElectronicAddress;
@@ -65,8 +66,10 @@ class ElectronicAddressValidator extends GenericObjectValidator
             } else {
                 $result = $addressValidator->validate($value->getIdentifier());
                 if ($result->hasErrors()) {
+                    $identifierResult = $this->getResult()->forProperty('identifier');
+                    /** @var Error $error */
                     foreach ($result->getErrors() as $error) {
-                        $this->addError($error->getMessage(), $error->getCode());
+                        $identifierResult->addError($error);
                     }
                 }
             }
