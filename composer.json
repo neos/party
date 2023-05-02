@@ -4,7 +4,7 @@
     "description": "A party package for PHP based on the OASIS Customer Information Quality (CIQ) XML Standard.",
     "license": "MIT",
     "require": {
-        "neos/flow": "^7.0 || ^8.0"
+        "neos/flow": "^7.0 || ^8.0 || ^9.0"
     },
     "autoload": {
         "psr-4": {
