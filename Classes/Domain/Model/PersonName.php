@@ -68,7 +68,7 @@ class PersonName
      * @param string $alias an alias or nickname
      * @var string
      */
-    public function __construct($title = '', $firstName = '', $middleName = '', $lastName = '', $otherName = '', $alias = '')
+    public function __construct(string $title = '', string $firstName = '', string $middleName = '', string $lastName = '', string $otherName = '', string $alias = '')
     {
         $this->title = $title;
         $this->firstName = $firstName;

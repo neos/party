@@ -25,7 +25,7 @@ class PersonNameTest extends UnitTestCase
      */
     public function fullNameIsBuiltUpRightFromNameParts()
     {
-        $personName = new PersonName(null, 'Sebastian', null, 'Michaelsen', '(born Gebhard)');
+        $personName = new PersonName('', 'Sebastian', '', 'Michaelsen', '(born Gebhard)');
         Assert::assertEquals('Sebastian Michaelsen (born Gebhard)', $personName->getFullName());
     }
 }
