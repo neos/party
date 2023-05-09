@@ -70,12 +70,12 @@ class PersonName
      */
     public function __construct($title = '', $firstName = '', $middleName = '', $lastName = '', $otherName = '', $alias = '')
     {
-        $this->title = $title;
-        $this->firstName = $firstName;
-        $this->middleName = $middleName;
-        $this->lastName = $lastName;
-        $this->otherName = $otherName;
-        $this->alias = $alias;
+        $this->title = (string)$title;
+        $this->firstName = (string)$firstName;
+        $this->middleName = (string)$middleName;
+        $this->lastName = (string)$lastName;
+        $this->otherName = (string)$otherName;
+        $this->alias = (string)$alias;
 
         $this->generateFullName();
     }
@@ -110,7 +110,7 @@ class PersonName
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;
+        $this->firstName = (string)$firstName;
         $this->generateFullName();
     }
 
@@ -122,7 +122,7 @@ class PersonName
      */
     public function setMiddleName($middleName)
     {
-        $this->middleName = $middleName;
+        $this->middleName = (string)$middleName;
         $this->generateFullName();
     }
 
@@ -134,7 +134,7 @@ class PersonName
      */
     public function setLastName($lastName)
     {
-        $this->lastName = $lastName;
+        $this->lastName = (string)$lastName;
         $this->generateFullName();
     }
 
@@ -146,7 +146,7 @@ class PersonName
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->title = (string)$title;
         $this->generateFullName();
     }
 
@@ -158,7 +158,7 @@ class PersonName
      */
     public function setOtherName($otherName)
     {
-        $this->otherName = $otherName;
+        $this->otherName = (string)$otherName;
         $this->generateFullName();
     }
 
@@ -170,7 +170,7 @@ class PersonName
      */
     public function setAlias($alias)
     {
-        $this->alias = $alias;
+        $this->alias = (string)$alias;
     }
 
     /**
