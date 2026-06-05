@@ -16,10 +16,19 @@ class Version20110923125536 extends AbstractMigration {
 	public function up(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
 
-		$this->addSql("ALTER TABLE typo3_party_domain_model_person DROP FOREIGN KEY typo3_party_domain_model_person_ibfk_1");
-		$this->addSql("ALTER TABLE typo3_party_domain_model_person DROP FOREIGN KEY typo3_party_domain_model_person_ibfk_2");
-		$this->addSql("DROP INDEX UNIQ_72AAAA2F987E5DAB ON typo3_party_domain_model_person");
-		$this->addSql("DROP INDEX IDX_72AAAA2FB06BD60D ON typo3_party_domain_model_person");
+        foreach ($this->sm->listTableForeignKeys('typo3_party_domain_model_person') as $foreignKey) {
+            if (in_array('party_personname', array_map('strtolower', $foreignKey->getLocalColumns()), true)
+            || in_array('party_electronicaddress', array_map('strtolower', $foreignKey->getLocalColumns()), true)) {
+                $this->addSql("ALTER TABLE typo3_party_domain_model_person DROP FOREIGN KEY " . $foreignKey->getName());
+            }
+        }
+        $indexes = $this->sm->listTableIndexes('typo3_party_domain_model_person');
+        if (array_key_exists('uniq_72aaaa2f987e5dab', $indexes)) {
+            $this->addSql("DROP INDEX UNIQ_72AAAA2F987E5DAB ON typo3_party_domain_model_person");
+        }
+        if (array_key_exists('idx_72aaaa2fb06bd60d', $indexes)) {
+            $this->addSql("DROP INDEX IDX_72AAAA2FB06BD60D ON typo3_party_domain_model_person");
+        }
 		$this->addSql("ALTER TABLE typo3_party_domain_model_person CHANGE party_personname name VARCHAR(40) DEFAULT NULL, CHANGE party_electronicaddress primaryelectronicaddress VARCHAR(40) DEFAULT NULL");
 		$this->addSql("ALTER TABLE typo3_party_domain_model_person ADD CONSTRAINT typo3_party_domain_model_person_ibfk_1 FOREIGN KEY (name) REFERENCES typo3_party_domain_model_personname(flow3_persistence_identifier)");
 		$this->addSql("ALTER TABLE typo3_party_domain_model_person ADD CONSTRAINT typo3_party_domain_model_person_ibfk_2 FOREIGN KEY (primaryelectronicaddress) REFERENCES typo3_party_domain_model_electronicaddress(flow3_persistence_identifier)");
@@ -34,8 +43,12 @@ class Version20110923125536 extends AbstractMigration {
 	public function down(Schema $schema): void  {
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
 
-		$this->addSql("ALTER TABLE typo3_party_domain_model_person DROP FOREIGN KEY typo3_party_domain_model_person_ibfk_1");
-		$this->addSql("ALTER TABLE typo3_party_domain_model_person DROP FOREIGN KEY typo3_party_domain_model_person_ibfk_2");
+        foreach ($this->sm->listTableForeignKeys('typo3_party_domain_model_person') as $foreignKey) {
+            if (in_array('name', array_map('strtolower', $foreignKey->getLocalColumns()), true)
+                || in_array('primaryelectronicaddress', array_map('strtolower', $foreignKey->getLocalColumns()), true)) {
+                $this->addSql("ALTER TABLE typo3_party_domain_model_person DROP FOREIGN KEY " . $foreignKey->getName());
+            }
+        }
 		$this->addSql("DROP INDEX UNIQ_C60479E15E237E06 ON typo3_party_domain_model_person");
 		$this->addSql("DROP INDEX IDX_C60479E1A7CECF13 ON typo3_party_domain_model_person");
 		$this->addSql("ALTER TABLE typo3_party_domain_model_person CHANGE name party_personname VARCHAR(40) DEFAULT NULL, CHANGE primaryelectronicaddress party_electronicaddress VARCHAR(40) DEFAULT NULL");
