@@ -41,16 +41,28 @@ class Version20170110130325 extends AbstractMigration
             $this->addSql('CREATE UNIQUE INDEX UNIQ_E4E61AB058842EFC ON neos_party_domain_model_abstractparty_accounts_join (flow_security_account)');
             $this->addSql('ALTER TABLE neos_party_domain_model_abstractparty_accounts_join ADD CONSTRAINT FK_1EEEBC2F38110E12 FOREIGN KEY (party_abstractparty) REFERENCES neos_party_domain_model_abstractparty (persistence_object_identifier)');
             $this->addSql('ALTER TABLE neos_party_domain_model_abstractparty_accounts_join ADD CONSTRAINT FK_1EEEBC2F58842EFC FOREIGN KEY (flow_security_account) REFERENCES neos_flow_security_account (persistence_object_identifier) ON DELETE CASCADE');
-            $this->addSql('ALTER TABLE neos_party_domain_model_person DROP FOREIGN KEY neos_party_domain_model_person_ibfk_1');
-            $this->addSql('ALTER TABLE neos_party_domain_model_person DROP FOREIGN KEY neos_party_domain_model_person_ibfk_2');
+
+            foreach ($this->sm->listTableForeignKeys('neos_party_domain_model_person') as $foreignKey) {
+                if (in_array('name', array_map('strtolower', $foreignKey->getLocalColumns()), true)
+                    || in_array('primaryelectronicaddress', array_map('strtolower', $foreignKey->getLocalColumns()), true)
+                ) {
+                    $this->addSql("ALTER TABLE neos_party_domain_model_person DROP FOREIGN KEY " . $foreignKey->getName());
+                }
+            }
             $this->addSql('DROP INDEX uniq_c60479e15e237e06 ON neos_party_domain_model_person');
             $this->addSql('CREATE UNIQUE INDEX UNIQ_A7B0E9CC5E237E06 ON neos_party_domain_model_person (name)');
             $this->addSql('DROP INDEX idx_c60479e1a7cecf13 ON neos_party_domain_model_person');
             $this->addSql('CREATE INDEX IDX_A7B0E9CCA7CECF13 ON neos_party_domain_model_person (primaryelectronicaddress)');
             $this->addSql('ALTER TABLE neos_party_domain_model_person ADD CONSTRAINT neos_party_domain_model_person_ibfk_1 FOREIGN KEY (name) REFERENCES neos_party_domain_model_personname (persistence_object_identifier)');
             $this->addSql('ALTER TABLE neos_party_domain_model_person ADD CONSTRAINT neos_party_domain_model_person_ibfk_2 FOREIGN KEY (primaryelectronicaddress) REFERENCES neos_party_domain_model_electronicaddress (persistence_object_identifier)');
-            $this->addSql('ALTER TABLE neos_party_domain_model_person_electronicaddresses_join DROP FOREIGN KEY neos_party_domain_model_person_electronicaddresses_join_ibfk_1');
-            $this->addSql('ALTER TABLE neos_party_domain_model_person_electronicaddresses_join DROP FOREIGN KEY neos_party_domain_model_person_electronicaddresses_join_ibfk_2');
+
+            foreach ($this->sm->listTableForeignKeys('neos_party_domain_model_person_electronicaddresses_join') as $foreignKey) {
+                if (in_array('party_person', array_map('strtolower', $foreignKey->getLocalColumns()), true)
+                    || in_array('party_electronicaddress', array_map('strtolower', $foreignKey->getLocalColumns()), true)
+                ) {
+                    $this->addSql("ALTER TABLE neos_party_domain_model_person_electronicaddresses_join DROP FOREIGN KEY " . $foreignKey->getName());
+                }
+            }
             $this->addSql('DROP INDEX idx_be7d49f772aaaa2f ON neos_party_domain_model_person_electronicaddresses_join');
             $this->addSql('CREATE INDEX IDX_131A08DD72AAAA2F ON neos_party_domain_model_person_electronicaddresses_join (party_person)');
             $this->addSql('DROP INDEX idx_be7d49f7b06bd60d ON neos_party_domain_model_person_electronicaddresses_join');
