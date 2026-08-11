@@ -10,7 +10,7 @@ namespace Neos\Party\Tests\Unit\Domain\Model;
  * information, please view the LICENSE file which was distributed with this
  * source code.
  */
-
+use PHPUnit\Framework\Attributes\Test;
 use Doctrine\Common\Collections\Collection;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Tests\UnitTestCase;
@@ -44,9 +44,7 @@ class AbstractPartyTest extends UnitTestCase
         $this->inject($this->abstractParty, 'accounts', $this->mockAccounts);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addAccountAddsAccountToAccountsCollection()
     {
         $account = new Account();
@@ -54,9 +52,7 @@ class AbstractPartyTest extends UnitTestCase
         $this->abstractParty->addAccount($account);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function removeAccountRemovesAccountFromAccountsCollection()
     {
         $account = new Account();
@@ -64,9 +60,7 @@ class AbstractPartyTest extends UnitTestCase
         $this->abstractParty->removeAccount($account);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAccountsReturnsAccounts()
     {
         Assert::assertSame($this->mockAccounts, $this->abstractParty->getAccounts());

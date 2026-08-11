@@ -10,7 +10,7 @@ namespace Neos\Party\Tests\Unit\Domain\Service;
  * information, please view the LICENSE file which was distributed with this
  * source code.
  */
-
+use PHPUnit\Framework\Attributes\Test;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Tests\UnitTestCase;
@@ -62,9 +62,7 @@ class PartyServiceTest extends UnitTestCase
         $this->party = new Person();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assignAccountToPartyAddsAccount()
     {
         $this->partyService->assignAccountToParty($this->account, $this->party);
@@ -72,9 +70,7 @@ class PartyServiceTest extends UnitTestCase
         Assert::assertContains($this->account, $this->party->getAccounts());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assignAccountToPartyCachesAssignedParty()
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
@@ -91,9 +87,7 @@ class PartyServiceTest extends UnitTestCase
         Assert::assertSame($this->party, $assignedParty);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAssignedPartyOfAccountCachesParty()
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
