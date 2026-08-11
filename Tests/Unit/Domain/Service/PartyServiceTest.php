@@ -75,7 +75,17 @@ class PartyServiceTest extends UnitTestCase
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects(self::atLeast(2))->method('getIdentifierByObject')->withConsecutive([$this->account], [$this->party])->willReturnOnConsecutiveCalls($accountIdentifier, $partyIdentifier);
+        $matcher = self::atLeast(2);
+        $this->mockPersistenceManager->expects($matcher)->method('getIdentifierByObject')->willReturnCallback(function (...$parameters) use ($matcher, $accountIdentifier, $partyIdentifier) {
+            if ($matcher->numberOfInvocations() === 1) {
+                $this->assertSame($this->account, $parameters[0]);
+                return $accountIdentifier;
+            }
+            if ($matcher->numberOfInvocations() === 2) {
+                $this->assertSame($this->party, $parameters[0]);
+                return $partyIdentifier;
+            }
+        });
 
         $this->mockPersistenceManager->method('getObjectByIdentifier')->with($partyIdentifier)->willReturn($this->party);
         $this->mockPartyRepository->method('findOneHavingAccount')->with($this->account)->willReturn($this->party);
@@ -92,7 +102,17 @@ class PartyServiceTest extends UnitTestCase
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects(self::atLeast(2))->method('getIdentifierByObject')->withConsecutive([$this->account], [$this->party])->willReturnOnConsecutiveCalls($accountIdentifier, $partyIdentifier);
+        $matcher = self::atLeast(2);
+        $this->mockPersistenceManager->expects($matcher)->method('getIdentifierByObject')->willReturnCallback(function (...$parameters) use ($matcher, $accountIdentifier, $partyIdentifier) {
+            if ($matcher->numberOfInvocations() === 1) {
+                $this->assertSame($this->account, $parameters[0]);
+                return $accountIdentifier;
+            }
+            if ($matcher->numberOfInvocations() === 2) {
+                $this->assertSame($this->party, $parameters[0]);
+                return $partyIdentifier;
+            }
+        });
 
         $this->mockPersistenceManager->method('getObjectByIdentifier')->with($partyIdentifier)->willReturn($this->party);
         $this->mockPartyRepository->method('findOneHavingAccount')->with($this->account)->willReturn($this->party);
