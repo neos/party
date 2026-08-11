@@ -57,7 +57,7 @@ class PersonTest extends FunctionalTestCase
     /**
      * @return array Signature: firstName, middleName, lastName, emailAddress
      */
-    public function personsDataProvider()
+    public static function personsDataProvider()
     {
         return [
             ['Catalina', 'G.', 'Dalrymple', 'CatalinaGDalrymple@teleworm.us'],
