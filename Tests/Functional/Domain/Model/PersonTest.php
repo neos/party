@@ -10,7 +10,8 @@ namespace Neos\Party\Tests\Functional\Domain\Model;
  * information, please view the LICENSE file which was distributed with this
  * source code.
  */
-
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\AccountFactory;
 use Neos\Flow\Security\AccountRepository;
@@ -56,7 +57,7 @@ class PersonTest extends FunctionalTestCase
     /**
      * @return array Signature: firstName, middleName, lastName, emailAddress
      */
-    public function personsDataProvider()
+    public static function personsDataProvider()
     {
         return [
             ['Catalina', 'G.', 'Dalrymple', 'CatalinaGDalrymple@teleworm.us'],
@@ -65,10 +66,8 @@ class PersonTest extends FunctionalTestCase
         ];
     }
 
-    /**
-     * @dataProvider personsDataProvider
-     * @test
-     */
+    #[DataProvider('personsDataProvider')]
+    #[Test]
     public function personsAndAccountPersistingAndRetrievingWorksCorrectly($firstName, $middleName, $lastName, $emailAddress)
     {
         $person = new Person();

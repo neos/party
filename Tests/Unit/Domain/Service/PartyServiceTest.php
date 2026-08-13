@@ -10,7 +10,7 @@ namespace Neos\Party\Tests\Unit\Domain\Service;
  * information, please view the LICENSE file which was distributed with this
  * source code.
  */
-
+use PHPUnit\Framework\Attributes\Test;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Tests\UnitTestCase;
@@ -62,9 +62,7 @@ class PartyServiceTest extends UnitTestCase
         $this->party = new Person();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assignAccountToPartyAddsAccount()
     {
         $this->partyService->assignAccountToParty($this->account, $this->party);
@@ -72,14 +70,22 @@ class PartyServiceTest extends UnitTestCase
         Assert::assertContains($this->account, $this->party->getAccounts());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assignAccountToPartyCachesAssignedParty()
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects(self::atLeast(2))->method('getIdentifierByObject')->withConsecutive([$this->account], [$this->party])->willReturnOnConsecutiveCalls($accountIdentifier, $partyIdentifier);
+        $matcher = self::atLeast(2);
+        $this->mockPersistenceManager->expects($matcher)->method('getIdentifierByObject')->willReturnCallback(function (...$parameters) use ($matcher, $accountIdentifier, $partyIdentifier) {
+            if ($matcher->numberOfInvocations() === 1) {
+                $this->assertSame($this->account, $parameters[0]);
+                return $accountIdentifier;
+            }
+            if ($matcher->numberOfInvocations() === 2) {
+                $this->assertSame($this->party, $parameters[0]);
+                return $partyIdentifier;
+            }
+        });
 
         $this->mockPersistenceManager->method('getObjectByIdentifier')->with($partyIdentifier)->willReturn($this->party);
         $this->mockPartyRepository->method('findOneHavingAccount')->with($this->account)->willReturn($this->party);
@@ -91,14 +97,22 @@ class PartyServiceTest extends UnitTestCase
         Assert::assertSame($this->party, $assignedParty);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAssignedPartyOfAccountCachesParty()
     {
         $accountIdentifier = '723e3913-f803-42c8-a44c-fd7115f555c3';
         $partyIdentifier = 'f8033913-723e-42c8-a44c-fd7115f555c3';
-        $this->mockPersistenceManager->expects(self::atLeast(2))->method('getIdentifierByObject')->withConsecutive([$this->account], [$this->party])->willReturnOnConsecutiveCalls($accountIdentifier, $partyIdentifier);
+        $matcher = self::atLeast(2);
+        $this->mockPersistenceManager->expects($matcher)->method('getIdentifierByObject')->willReturnCallback(function (...$parameters) use ($matcher, $accountIdentifier, $partyIdentifier) {
+            if ($matcher->numberOfInvocations() === 1) {
+                $this->assertSame($this->account, $parameters[0]);
+                return $accountIdentifier;
+            }
+            if ($matcher->numberOfInvocations() === 2) {
+                $this->assertSame($this->party, $parameters[0]);
+                return $partyIdentifier;
+            }
+        });
 
         $this->mockPersistenceManager->method('getObjectByIdentifier')->with($partyIdentifier)->willReturn($this->party);
         $this->mockPartyRepository->method('findOneHavingAccount')->with($this->account)->willReturn($this->party);
