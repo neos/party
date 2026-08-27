@@ -38,7 +38,8 @@ class AbstractPartyTest extends UnitTestCase
      */
     public function setUp(): void
     {
-        $this->abstractParty = $this->getMockForAbstractClass(AbstractParty::class, ['dummy']);
+        $this->abstractParty = new class() extends AbstractParty {
+        };
 
         $this->mockAccounts = $this->getMockBuilder(Collection::class)->disableOriginalConstructor()->getMock();
         $this->inject($this->abstractParty, 'accounts', $this->mockAccounts);
